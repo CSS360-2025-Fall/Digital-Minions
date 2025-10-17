@@ -29,7 +29,7 @@ const TEST_COMMAND = {
 // Command containing options
 const CHALLENGE_COMMAND = {
   name: 'challenge',
-  description: 'Challenge to a match of rock paper scissors',
+  description: 'Challenge to a match of trivia',
   options: [
     {
       type: 3,
@@ -41,7 +41,8 @@ const CHALLENGE_COMMAND = {
   ],
   type: 1,
   integration_types: [0, 1],
-  contexts: [0, 2],
+    contexts: [0, 2],
+
 };
 
 // Rules command
