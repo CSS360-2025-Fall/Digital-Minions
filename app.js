@@ -64,7 +64,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
           // User ID is in user field for (G)DMs, and member for servers
           const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
           // User's object choice
-          const objectName = req.body.data.options[0].value;
+          const objectName = data.options[0].value;
 
           // Create active game using message ID as the game ID
           activeGames[id] = {
@@ -80,7 +80,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                       {
                           type: MessageComponentTypes.TEXT_DISPLAY,
                           // Fetches a random emoji to send from a helper function
-                          content: `Rock papers scissors challenge from <@${userId}>`,
+                          content: `Trivia challenge from <@${userId}>`,
                       },
                       {
                           type: MessageComponentTypes.ACTION_ROW,
