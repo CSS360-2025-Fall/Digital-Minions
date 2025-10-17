@@ -58,6 +58,29 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       });
     }
 
+    // "rules" command
+     if (name === 'rules') {
+         return res.send({
+             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+             data: {
+                 flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                 components: [
+                     {
+                         type: MessageComponentTypes.TEXT_DISPLAY,
+                         content: [
+                             ' **Trivia Rules**',
+                             '1. Questions are multiple choice.',
+                             '2. Correct answers earn you 1 point.',
+                             '3. No cheating! Google is off-limits!',
+                             '4. The player with the highest score wins.',
+                         ].join('\n'),
+                         ephemeral: true,
+                     } 
+                 ]
+             },
+         });
+     }
+
       // "challenge" command
       if (name === 'challenge' && id) {
           // Interaction context
