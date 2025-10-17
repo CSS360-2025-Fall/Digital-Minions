@@ -36,47 +36,47 @@ function formatResult(result) {
 
 // this is just to figure out winner + verb
 const RPSChoices = {
-  rock: {
-    description: 'sedimentary, igneous, or perhaps even metamorphic',
-    virus: 'outwaits',
-    computer: 'smashes',
-    scissors: 'crushes',
+  math: {
+    description: 'Painful, hard, and perhaps clever',
+    sports: 'out calculates',
+    language: 'confuses',
+    science: 'overdoes',
   },
-  cowboy: {
-    description: 'yeehaw~',
-    scissors: 'puts away',
-    wumpus: 'lassos',
-    rock: 'steel-toe kicks',
+  history: {
+    description: 'The birth of past from a new age',
+    science: 'Showing it the pain of its past',
+    art: 'From taking the fun',
+    math: 'outlives',
   },
-  scissors: {
-    description: 'careful ! sharp ! edges !!',
-    paper: 'cuts',
-    computer: 'cuts cord of',
-    virus: 'cuts DNA of',
+  science: {
+    description: 'percise, dangerous, and explosive',
+    pop_culture: 'By bringing the country back to live',
+    language: 'Demonstrating its own strong language',
+    sports: 'By exploding the feilds with dangerous cemicals',
   },
-  virus: {
-    description: 'genetic mutation, malware, or something inbetween',
-    cowboy: 'infects',
-    computer: 'corrupts',
-    wumpus: 'infects',
+  sports: {
+    description: 'exciting, engergetic and limit pushing',
+    history: 'bring the fun back',
+    language: 'By creating its own lingo',
+    art: 'throw a ball into the canvas',
   },
-  computer: {
-    description: 'beep boop beep bzzrrhggggg',
-    cowboy: 'overwhelms',
-    paper: 'uninstalls firmware for',
-    wumpus: 'deletes assets for',
+  language: {
+    description: 'Vi ar valdigt ung',
+    history: 'No understanding',
+    pop_culture: 'Creates new versions of it',
+    art: 'generates its next creators',
   },
-  wumpus: {
-    description: 'the purple Discord fella',
-    paper: 'draws picture on',
-    rock: 'paints cute face on',
-    scissors: 'admires own reflection in',
+  art: {
+    description: 'Silly, fun yet deliberate',
+    pop_culture: 'inspires the next generation',
+    math: 'paints its equations to the stars',
+    science: 'turns them into their suppliers',
   },
-  paper: {
-    description: 'versatile and iconic',
-    virus: 'ignores',
-    cowboy: 'gives papercut to',
-    rock: 'covers',
+  pop_culture: {
+    description: 'Wild and fun yet attractive',
+    sports: 'brings the party to',
+    history: 'begins the next era of',
+    math: 'begins to aid teaching',
   },
 };
 
