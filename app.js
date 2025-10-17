@@ -100,8 +100,80 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
       }
 
 
+    // "rules" command
+     if (name === 'rules') {
+         return res.send({
+             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+             data: {
+                 flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                 components: [
+                     {
+                         type: MessageComponentTypes.TEXT_DISPLAY,
+                         content: [
+                             ' **Trivia Rules**',
+                             '1. Questions are multiple choice.',
+                             '2. Correct answers earn you 1 point.',
+                             '3. No cheating! Google is off-limits!',
+                             '4. The player with the highest score wins.',
+                         ].join('\n'),
+                         ephemeral: true,
+                     } 
+                 ]
+             },
+         });
+     }
+
+      // "challenge" command
+      if (name === 'challenge' && id) {
+          // Interaction context
+          const context = req.body.context;
+          // User ID is in user field for (G)DMs, and member for servers
+          const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+          // User's object choice
+          const objectName = req.body.data.options[0].value;
+
+          // Create active game using message ID as the game ID
+          activeGames[id] = {
+              id: userId,
+              objectName,
+          };
+
+          return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                  flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                  components: [
+                      {
+                          type: MessageComponentTypes.TEXT_DISPLAY,
+                          // Fetches a random emoji to send from a helper function
+                          content: `Rock papers scissors challenge from <@${userId}>`,
+                      },
+                      {
+                          type: MessageComponentTypes.ACTION_ROW,
+                          components: [
+                              {
+                                  type: MessageComponentTypes.BUTTON,
+                                  // Append the game ID to use later on
+                                  custom_id: `accept_button_${req.body.id}`,
+                                  label: 'Accept',
+                                  style: ButtonStyleTypes.PRIMARY,
+                              },
+                          ],
+                      },
+                  ],
+              },
+          });
+      }
+
+
     console.error(`unknown command: ${name}`);
     return res.status(400).json({ error: 'unknown command' });
+    }
+
+  /**
+  * Handle requests from interactive components
+  * See https://discord.com/developers/docs/components/using-message-components#using-message-components-with-interactions
+  */
   }
     if (type === InteractionType.MESSAGE_COMPONENT) {
         // custom_id set in payload when sending message component
