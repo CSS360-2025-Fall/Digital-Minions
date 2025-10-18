@@ -9,7 +9,7 @@ import {
   verifyKeyMiddleware,
 } from 'discord-interactions';
 import { getRandomEmoji, DiscordRequest } from './utils.js';
-import { getShuffledOptions, getResult } from './game.js';
+import { getShuffledOptions, getResult, calculateGameResult } from './game.js';
 
 // Create an express app
 const app = express();
@@ -17,6 +17,24 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 // To keep track of our active games
 const activeGames = {};
+// To keep track of user win/loss records
+const userRecords = {};
+
+/**
+ * Helper function to update user records
+ */
+function updateUserRecord(userId, didWin) {
+  if (!userRecords[userId]) {
+    userRecords[userId] = { wins: 0, losses: 0, ties: 0 };
+  }
+  if (didWin === 'win') {
+    userRecords[userId].wins++;
+  } else if (didWin === 'loss') {
+    userRecords[userId].losses++;
+  } else if (didWin === 'tie') {
+    userRecords[userId].ties++;
+  }
+}
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
@@ -117,11 +135,47 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                              '4. The player with the highest score wins.',
                          ].join('\n'),
                          ephemeral: true,
-                     } 
+                     }
                  ]
              },
          });
      }
+
+    // "record" command
+    if (name === 'record') {
+        // Interaction context
+        const context = req.body.context;
+        // User ID is in user field for (G)DMs, and member for servers
+        const commandUserId = context === 0 ? req.body.member.user.id : req.body.user.id;
+
+        // Check if a specific user was mentioned, otherwise use command user
+        const targetUserId = data.options && data.options[0] ? data.options[0].value : commandUserId;
+
+        // Get user's record or default to 0s
+        const record = userRecords[targetUserId] || { wins: 0, losses: 0, ties: 0 };
+        const totalGames = record.wins + record.losses + record.ties;
+        const winRate = totalGames > 0 ? ((record.wins / totalGames) * 100).toFixed(1) : 0;
+
+        return res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+                flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                components: [
+                    {
+                        type: MessageComponentTypes.TEXT_DISPLAY,
+                        content: [
+                            `**<@${targetUserId}>'s Record**`,
+                            `Wins: **${record.wins}**`,
+                            `Losses: **${record.losses}**`,
+                            `Ties: **${record.ties}**`,
+                            `Total Games: **${totalGames}**`,
+                            `Win Rate: **${winRate}%**`
+                        ].join('\n'),
+                    }
+                ]
+            },
+        });
+    }
 
       // "challenge" command
       if (name === 'challenge' && id) {
@@ -224,11 +278,21 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 // User ID is in user field for (G)DMs, and member for servers
                 const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
                 const objectName = data.values[0];
+
                 // Calculate result from helper function
-                const resultStr = getResult(activeGames[gameId], {
-                    id: userId,
-                    objectName,
-                });
+                const p1 = activeGames[gameId];
+                const p2 = { id: userId, objectName };
+                const gameOutcome = calculateGameResult(p1, p2);
+                const resultStr = getResult(p1, p2);
+
+                // Update win/loss records
+                if (gameOutcome.verb === 'tie') {
+                    updateUserRecord(p1.id, 'tie');
+                    updateUserRecord(p2.id, 'tie');
+                } else {
+                    updateUserRecord(gameOutcome.win.id, 'win');
+                    updateUserRecord(gameOutcome.lose.id, 'loss');
+                }
 
                 // Remove game from storage
                 delete activeGames[gameId];
