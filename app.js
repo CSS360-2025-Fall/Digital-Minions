@@ -1,12 +1,12 @@
 import 'dotenv/config';
 import express from 'express';
 import {
-  ButtonStyleTypes,
-  InteractionResponseFlags,
-  InteractionResponseType,
-  InteractionType,
-  MessageComponentTypes,
-  verifyKeyMiddleware,
+    ButtonStyleTypes,
+    InteractionResponseFlags,
+    InteractionResponseType,
+    InteractionType,
+    MessageComponentTypes,
+    verifyKeyMiddleware,
 } from 'discord-interactions';
 import { getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult, calculateGameResult } from './game.js';
@@ -24,16 +24,16 @@ const userRecords = {};
  * Helper function to update user records
  */
 function updateUserRecord(userId, didWin) {
-  if (!userRecords[userId]) {
-    userRecords[userId] = { wins: 0, losses: 0, ties: 0 };
-  }
-  if (didWin === 'win') {
-    userRecords[userId].wins++;
-  } else if (didWin === 'loss') {
-    userRecords[userId].losses++;
-  } else if (didWin === 'tie') {
-    userRecords[userId].ties++;
-  }
+    if (!userRecords[userId]) {
+        userRecords[userId] = { wins: 0, losses: 0, ties: 0 };
+    }
+    if (didWin === 'win') {
+        userRecords[userId].wins++;
+    } else if (didWin === 'loss') {
+        userRecords[userId].losses++;
+    } else if (didWin === 'tie') {
+        userRecords[userId].ties++;
+    }
 }
 
 /**
@@ -41,150 +41,150 @@ function updateUserRecord(userId, didWin) {
  * Parse request body and verifies incoming requests using discord-interactions package
  */
 app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async function (req, res) {
-  // Interaction id, type and data
-  const { id, type, data } = req.body;
+    // Interaction id, type and data
+    const { id, type, data } = req.body;
 
-  /**
-   * Handle verification requests
-   */
-  if (type === InteractionType.PING) {
-    return res.send({ type: InteractionResponseType.PONG });
-  }
-
-  /**
-   * Handle slash command requests
-   * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
-   */
-  if (type === InteractionType.APPLICATION_COMMAND) {
-    const { name } = data;
-
-    // "test" command
-    if (name === 'test') {
-      // Send a message into the channel where command was triggered from
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-          components: [
-            {
-              type: MessageComponentTypes.TEXT_DISPLAY,
-              // Fetches a random emoji to send from a helper function
-              content: `hello world ${getRandomEmoji()}`
-            }
-          ]
-        },
-      });
-    }
-      // "challenge" command
-      if (name === 'challenge' && id) {
-          // Interaction context
-          const context = req.body.context;
-          // User ID is in user field for (G)DMs, and member for servers
-          const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
-          // User's object choice
-          const objectName = data.options[0].value;
-
-          // Create active game using message ID as the game ID
-          activeGames[id] = {
-              id: userId,
-              objectName,
-          };
-
-          return res.send({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-              data: {
-                  flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-                  components: [
-                      {
-                          type: MessageComponentTypes.TEXT_DISPLAY,
-                          // Fetches a random emoji to send from a helper function
-                          content: `Trivia challenge from <@${userId}>`,
-                      },
-                      {
-                          type: MessageComponentTypes.ACTION_ROW,
-                          components: [
-                              {
-                                  type: MessageComponentTypes.BUTTON,
-                                  // Append the game ID to use later on
-                                  custom_id: `accept_button_${req.body.id}`,
-                                  label: 'Accept',
-                                  style: ButtonStyleTypes.PRIMARY,
-                              },
-                          ],
-                      },
-                  ],
-              },
-          });
-      }
-
-
-    // "rules" command
-     if (name === 'rules') {
-         return res.send({
-             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-             data: {
-                 flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-                 components: [
-                     {
-                         type: MessageComponentTypes.TEXT_DISPLAY,
-                         content: [
-                             ' **Trivia Rules**',
-                             '1. Questions are multiple choice.',
-                             '2. Correct answers earn you 1 point.',
-                             '3. No cheating! Google is off-limits!',
-                             '4. The player with the highest score wins.',
-                         ].join('\n'),
-                         ephemeral: true,
-                     }
-                 ]
-             },
-         });
-     }
-
-    // "record" command
-    if (name === 'record') {
-        // Interaction context
-        const context = req.body.context;
-        // User ID is in user field for (G)DMs, and member for servers
-        const commandUserId = context === 0 ? req.body.member.user.id : req.body.user.id;
-
-        // Check if a specific user was mentioned, otherwise use command user
-        const targetUserId = data.options && data.options[0] ? data.options[0].value : commandUserId;
-
-        // Get user's record or default to 0s
-        const record = userRecords[targetUserId] || { wins: 0, losses: 0, ties: 0 };
-        const totalGames = record.wins + record.losses + record.ties;
-        const winRate = totalGames > 0 ? ((record.wins / totalGames) * 100).toFixed(1) : 0;
-
-        return res.send({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            data: {
-                flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-                components: [
-                    {
-                        type: MessageComponentTypes.TEXT_DISPLAY,
-                        content: [
-                            `**<@${targetUserId}>'s Record**`,
-                            `Wins: **${record.wins}**`,
-                            `Losses: **${record.losses}**`,
-                            `Ties: **${record.ties}**`,
-                            `Total Games: **${totalGames}**`,
-                            `Win Rate: **${winRate}%**`
-                        ].join('\n'),
-                    }
-                ]
-            },
-        });
+    /**
+     * Handle verification requests
+     */
+    if (type === InteractionType.PING) {
+        return res.send({ type: InteractionResponseType.PONG });
     }
 
-    console.error(`unknown command: ${name}`);
-    return res.status(400).json({ error: 'unknown command' });
+    /**
+     * Handle slash command requests
+     * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
+     */
+    if (type === InteractionType.APPLICATION_COMMAND) {
+        const { name } = data;
+
+        // "test" command
+        if (name === 'test') {
+            // Send a message into the channel where command was triggered from
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            // Fetches a random emoji to send from a helper function
+                            content: `hello world ${getRandomEmoji()}`
+                        }
+                    ]
+                },
+            });
+        }
+
+        // "challenge" command
+        if (name === 'challenge' && id) {
+            // Interaction context
+            const context = req.body.context;
+            // User ID is in user field for (G)DMs, and member for servers
+            const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+            // User's object choice
+            const objectName = data.options[0].value;
+
+            // Create active game using message ID as the game ID
+            activeGames[id] = {
+                id: userId,
+                objectName,
+            };
+
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            // Fetches a random emoji to send from a helper function
+                            content: `Trivia challenge from <@${userId}>`,
+                        },
+                        {
+                            type: MessageComponentTypes.ACTION_ROW,
+                            components: [
+                                {
+                                    type: MessageComponentTypes.BUTTON,
+                                    // Append the game ID to use later on
+                                    custom_id: `accept_button_${req.body.id}`,
+                                    label: 'Accept',
+                                    style: ButtonStyleTypes.PRIMARY,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            });
+        }
+
+        // "rules" command
+        if (name === 'rules') {
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            content: [
+                                ' **Trivia Rules**',
+                                '1. Questions are multiple choice.',
+                                '2. Correct answers earn you 1 point.',
+                                '3. No cheating! Google is off-limits!',
+                                '4. The player with the highest score wins.',
+                            ].join('\n'),
+                            ephemeral: true,
+                        }
+                    ]
+                },
+            });
+        }
+
+        // "record" command
+        if (name === 'record') {
+            // Interaction context
+            const context = req.body.context;
+            // User ID is in user field for (G)DMs, and member for servers
+            const commandUserId = context === 0 ? req.body.member.user.id : req.body.user.id;
+
+            // Check if a specific user was mentioned, otherwise use command user
+            const targetUserId = data.options && data.options[0] ? data.options[0].value : commandUserId;
+
+            // Get user's record or default to 0s
+            const record = userRecords[targetUserId] || { wins: 0, losses: 0, ties: 0 };
+            const totalGames = record.wins + record.losses + record.ties;
+            const winRate = totalGames > 0 ? ((record.wins / totalGames) * 100).toFixed(1) : 0;
+
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            content: [
+                                `**<@${targetUserId}>'s Record**`,
+                                `Wins: **${record.wins}**`,
+                                `Losses: **${record.losses}**`,
+                                `Ties: **${record.ties}**`,
+                                `Total Games: **${totalGames}**`,
+                                `Win Rate: **${winRate}%**`
+                            ].join('\n'),
+                        }
+                    ]
+                },
+            });
+        }
+
+        console.error(`unknown command: ${name}`);
+        return res.status(400).json({ error: 'unknown command' });
     }
 
-  /**
-  * Handle requests from interactive components
-  * See https://discord.com/developers/docs/components/using-message-components#using-message-components-with-interactions
-  */
+    /**
+     * Handle requests from interactive components
+     * See https://discord.com/developers/docs/components/using-message-components#using-message-components-with-interactions
+     */
     if (type === InteractionType.MESSAGE_COMPONENT) {
         // custom_id set in payload when sending message component
         const componentId = data.custom_id;
