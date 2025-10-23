@@ -26,38 +26,89 @@ npm run dev        # Start with nodemon (auto-restart on file changes)
 
 ## Architecture
 
-### Core Application Flow
+The codebase follows a modular architecture with clear separation of concerns:
 
-**commands.js** → **app.js** → **game.js** → **utils.js**
+```
+src/
+├── app.js                      # Main Express server (entry point)
+├── commands.js                 # Command registration script
+├── constants/
+│   └── index.js               # Shared constants and enums
+├── config/
+│   └── commands.js            # Discord command definitions
+├── handlers/
+│   ├── commands/
+│   │   ├── index.js          # Command router
+│   │   ├── test.js           # /test command handler
+│   │   ├── challenge.js      # /challenge command handler
+│   │   ├── rules.js          # /rules command handler
+│   │   └── record.js         # /record command handler
+│   └── components/
+│       ├── index.js          # Component router
+│       ├── buttons.js        # Accept button handler
+│       └── selectMenus.js    # Choice selection handler
+├── services/
+│   ├── game.js               # Game logic and rules
+│   ├── gameState.js          # Active game state management
+│   └── userRecords.js        # Win/loss record tracking
+└── utils/
+    ├── discord.js            # Discord API wrapper
+    ├── helpers.js            # Common utility functions
+    └── messageBuilders.js    # Discord message component builders
+```
 
-1. `commands.js` - Run once to register slash commands with Discord
-   - Defines command structures (TEST_COMMAND, CHALLENGE_COMMAND)
-   - Calls `InstallGlobalCommands()` to push to Discord API
+### Core Components
+
+1. **app.js** - Main Express server listening on `/interactions`
+   - Routes interactions to appropriate handlers
+   - Handles 3 interaction types: PING, APPLICATION_COMMAND, MESSAGE_COMPONENT
+   - Uses `verifyKeyMiddleware` to cryptographically verify Discord requests
+   - Clean orchestrator with minimal business logic
+
+2. **commands.js** - Run once to register slash commands with Discord
+   - Loads command definitions from `config/commands.js`
+   - Calls `installGlobalCommands()` to push to Discord API
    - Must be re-run whenever command definitions change
 
-2. `app.js` - Main Express server listening on `/interactions`
-   - Handles 3 interaction types: PING, APPLICATION_COMMAND, MESSAGE_COMPONENT
-   - Manages in-memory game state via `activeGames` object (keyed by interaction ID)
-   - Uses `verifyKeyMiddleware` to cryptographically verify Discord requests
+3. **handlers/** - Request handlers organized by type
+   - **commands/**: Individual handlers for each slash command
+   - **components/**: Handlers for interactive components (buttons, menus)
+   - Each handler is a focused, single-purpose function
 
-3. `game.js` - Game logic and category relationships
-   - `RPSChoices` object maps all 7 categories and their win conditions
-   - Each category has 3 wins, 3 losses, and 1 description field
-   - `getResult(p1, p2)` determines winner and returns formatted string
-   - `getShuffledOptions()` formats choices for Discord select menus
+4. **services/** - Business logic and state management
+   - **game.js**: Game rules, win conditions, result calculation
+   - **gameState.js**: In-memory active game storage
+   - **userRecords.js**: Win/loss record tracking and statistics
 
-4. `utils.js` - Shared Discord API utilities
-   - `DiscordRequest()` - Authenticated fetch wrapper for Discord API v10
-   - `InstallGlobalCommands()` - Bulk command registration
-   - Helper functions (`getRandomEmoji`, `capitalize`)
+5. **utils/** - Reusable utilities
+   - **discord.js**: Authenticated Discord API requests
+   - **helpers.js**: Common functions (user ID extraction, emoji, capitalize)
+   - **messageBuilders.js**: Discord component factory functions
+
+6. **config/** - Configuration and definitions
+   - **commands.js**: Discord command structures and options
+
+7. **constants/** - Shared constants
+   - Component ID prefixes, command names, result types, context types
 
 ### Complete Game Interaction Flow
 
-1. User runs `/challenge <choice>` → creates entry in `activeGames[interactionId]`
+1. User runs `/challenge <choice>` → handled by `handlers/commands/challenge.js`
+   - Extracts user ID and choice
+   - Creates game entry via `services/gameState.js`
+   - Returns challenge message with Accept button
+
 2. Bot posts message with "Accept" button (custom_id: `accept_button_{gameId}`)
-3. Another user clicks Accept → bot sends ephemeral select menu
-4. User selects choice from menu (custom_id: `select_choice_{gameId}`)
-5. Bot calculates result via `getResult()`, posts outcome, deletes game from `activeGames`
+
+3. Another user clicks Accept → handled by `handlers/components/buttons.js`
+   - Sends ephemeral select menu with shuffled choices
+   - Deletes original challenge message
+
+4. User selects choice from menu (custom_id: `select_choice_{gameId}`) → handled by `handlers/components/selectMenus.js`
+   - Retrieves game from state
+   - Calculates result via `services/game.js`
+   - Updates user records via `services/userRecords.js`
+   - Posts game outcome and deletes game from state
 
 ### Discord API Implementation Details
 
@@ -66,29 +117,44 @@ npm run dev        # Start with nodemon (auto-restart on file changes)
 - Component types: `TEXT_DISPLAY`, `ACTION_ROW`, `BUTTON`, `STRING_SELECT`
 - Custom IDs track game state by appending game ID to component identifiers
 
-**User ID Extraction Pattern:**
+**User ID Extraction:**
 ```javascript
-// Context 0 = guild/server, 1/2 = DM/group DM
-const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+// Centralized in utils/helpers.js
+import { extractUserId } from '../utils/helpers.js';
+const userId = extractUserId(req);
+// Context 0 = guild/server, others = DM contexts
 ```
 
-**Message Update Pattern:**
-- Uses webhook endpoints: `webhooks/{APP_ID}/{token}/messages/{messageId}`
+**Message Updates:**
+```javascript
+// Centralized endpoint creation in utils/helpers.js
+import { createWebhookEndpoint } from '../utils/helpers.js';
+const endpoint = createWebhookEndpoint(appId, token, messageId);
+// Pattern: webhooks/{APP_ID}/{token}/messages/{messageId}
+```
 - PATCH method updates existing messages
 - DELETE method removes messages
-- Ephemeral messages use `InteractionResponseFlags.EPHEMERAL`
+- Message builders in `utils/messageBuilders.js` handle component structure
 
 ### State Management
 
-Games stored in-memory:
+**Active Games** (`services/gameState.js`):
 ```javascript
-activeGames[interactionId] = {
-  id: userId,          // First player's Discord user ID
-  objectName: choice   // First player's category choice
-}
+// In-memory storage with clean API
+createGame(gameId, userId, objectName)
+getGame(gameId)
+deleteGame(gameId)
 ```
 
-**Important:** State is ephemeral and cleared on bot restart. For production, replace with database.
+**User Records** (`services/userRecords.js`):
+```javascript
+// Win/loss tracking with statistics
+updateUserRecord(userId, result)  // result: 'win', 'loss', or 'tie'
+getUserRecord(userId)
+calculateWinRate(userId)
+```
+
+**Important:** Both use in-memory storage and are cleared on bot restart. For production, replace with persistent database (SQLite, PostgreSQL, etc.).
 
 ### Examples Directory
 
