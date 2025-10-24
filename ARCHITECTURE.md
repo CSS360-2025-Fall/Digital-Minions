@@ -1,4 +1,4 @@
-# Bot architecture
+# Bot Architecture
 
 ## Networking
 This bot works over HTTP. It starts an HTTP server on port 3000, and listens for POSTS to '/interactions'. Connections are verified with middleware provided by Discord. Requests sent to Discord go to their API URL via `discordRequest`. Various HTTP methods can be sent, and they are verified with the 'Authorization' field in the HTTP header, which contains our API token.
