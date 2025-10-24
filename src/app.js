@@ -7,6 +7,7 @@ import {
 } from 'discord-interactions';
 import { handleApplicationCommand } from './handlers/commands/index.js';
 import { handleMessageComponent } from './handlers/components/index.js';
+import { announceStartup } from './utils/startup.js';
 
 // Create Express app
 const app = express();
@@ -46,4 +47,9 @@ app.post(
 // Start server
 app.listen(PORT, () => {
   console.log('Listening on port', PORT);
+
+  // Announce startup to all guilds
+  announceStartup().catch(err => {
+    console.error('Error during startup announcement:', err);
+  });
 });
