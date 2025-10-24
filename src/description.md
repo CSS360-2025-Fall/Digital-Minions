@@ -1,5 +1,51 @@
 # Description of this trivia bot
 
+## How Slash Commands Get Registered (npm run register)
+__Defining a slash command:__
+
+Each slash command has the following:
+- A name (e.g. /rules)
+- A description
+- Optional parameters (options, choices, subcommands)
+- A handler function in the bot code that executes when the command is invoked
+
+In our codebase, commands are defined in a structured command class format:
+
+      {
+        name: "rules",
+        description: "Describes the rules of the game",
+         type: 1,
+         integration_types: [0, 1],
+         contexts: [0, 1, 2],
+      };
+
+and are built in their own javascript files (rules.js, test.js, and so on).
+
+__Registering a command:__  
+Commands are registered globally meaning that new and updated commands are available across all the servers trivia bot is in (typically takes up to 1 hour to propagate). When commands are registered discord sends these definitions to their external api (https://discord.com/api/v10/applications/<some_application_id>/command). This process is automated using discords software development kit in the discord.js file in trivia bot's utilities. Trivia Bot also has CI/CD where we the developers commit changes and merge branches while the bot is able to pull the latest versions for us to test.
+
+__When a command gets registered:__
+* Once registered, Discord adds our commands to the command list when users type / in any server trivia bot is in.
+* Discord validates the commands (so users can’t run malformed commands), and stores them globally in its backend.
+* Users who have access to trivia bot can now see the commands autocomplete in the Discord UI
+
+__When a user invokes a slash command:__
+* Discord sends an interaction payload (JSON) to trivia bot’s interaction endpoint hosted on our own server or locally on our own machines with ngrok. 
+* The bot parses the command data, matches it to its internal handler registry, and calls the correct function.
+* The bot responds within 3 seconds (via deffered response) with either: An ephemeral message (only the invoking user can see) or a public message in the channel.
+
+__Simplified:__
+
+[Developer] → defines slash command → 
+[Registration Script] → POSTs to Discord API → 
+[Discord] → lists command in chat UI → 
+[User] → invokes slash command → 
+[Discord API] → sends interaction payload → 
+[Bot Listener] → executes handler → 
+[Bot] → sends message response
+
+_This architecture ensures commands are validated before execution, improving safety and user interaction._
+
 ## Test Command
    Once all the commands are established and the user types out the test command, but before they select it. 
    The compiler will go to the method test_command in commands.js in config to pull the name and description to display to the user. 
