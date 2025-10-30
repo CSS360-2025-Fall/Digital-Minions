@@ -35,7 +35,7 @@ The bot currently stores user records (win/loss/tie data) in temporary memory. A
 all stored data is lost.
 
 Implications:
--Loss of progress: Users cannot maintain long-term records or compete on persistent leaderboards.
+- Loss of progress: Users cannot maintain long-term records or compete on persistent leaderboards.
 - Inconsistent analytics: Gameplay statistics and user metrics are unreliable after each session.
 - Limited engagement: Players lack motivation to return since progress is erased.
   
