@@ -1,0 +1,78 @@
+# Limitations
+## Limits
+### Lack of Rate Limit
+Description:
+
+Currently, the bot does not enforce any rate limits on user-triggered actions. This includes:
+- Discord API requests
+- Button or select menu interactions
+- Game creation or acceptance
+
+Implications:
+- Spam risk: Users could repeatedly trigger interactions, creating excessive load on the bot or the Discord API.
+- Game state conflicts: Multiple rapid interactions can cause race conditions or an inconsistent in-memory game state.
+- API throttling: Excessive requests could exceed Discord’s rate limits, leading to temporary API bans or downtime.
+
+Scope:
+
+This is an operational problem affecting user interaction at runtime. It does not directly involve sensitive secrets or
+environment variables.
+
+Status:
+
+Currently left as-is during the testing phase. Will be patched before deployment.
+
+Possible steps forward:
+- Add middleware or throttling mechanisms before launch to enforce limits on:
+  - Interaction frequency per user
+  - Game creation/acceptance rate
+  - API request bursts
+- Add server-side queuing or cooldowns to prevent spam and ensure fair gameplay.
+### Non-persistent User Records
+Description:
+
+The bot currently stores user records (win/loss/tie data) in temporary memory. As a result, once the bot restarts or a user logs out, 
+all stored data is lost.
+
+Implications:
+-Loss of progress: Users cannot maintain long-term records or compete on persistent leaderboards.
+- Inconsistent analytics: Gameplay statistics and user metrics are unreliable after each session.
+- Limited engagement: Players lack motivation to return since progress is erased.
+  
+Scope:
+
+This is a functional limitation and has no security risk. This primarily affects user experience and continuity.
+
+Status:
+
+Intended for early testing to simplify debugging.
+
+Possible steps forward:
+- Connect the bot to a persistent data store (e.g., SQLite, PostgreSQL, or MongoDB).
+- Implement CRUD operations for user stats retrieval and updates.
+- Optionally sync stats with Discord IDs to ensure persistence across sessions.
+### Game in Rock Paper Scissors Mode
+Description:
+
+The bot’s game logic is still based on Rock, Paper, Scissors (RPS) instead of Trivia.
+While the user interface references trivia categories, the underlying decision-making still follows the RPS model.
+
+Implication:
+- Functional mismatch: The bot’s behavior does not match the project’s intended trivia gameplay or documentation.
+- Unclear outcomes: Players have no way to understand which category “beats” another, reducing clarity and strategy.
+- Incomplete testing: Trivia-specific features (question banks, scoring, validation) cannot yet be tested or implemented.
+- Requirement gap: The bot does not yet meet the user requirement for a trivia challenge game.
+  
+Scope:
+
+This is a functional/design limitation, affecting the core purpose of the bot.
+
+Status:
+
+Trivia logic has not yet been added. The RPS framework remains for testing the interaction flow.
+
+Possible steps forward:
+- Add a trivia command module and supporting question database.
+- Replace the RPS outcome system with trivia question logic (category, question, answer, score).
+- Update /rules or help commands to explain trivia gameplay.
+- the game logic to support future expansion (e.g., different trivia categories or difficulties).
