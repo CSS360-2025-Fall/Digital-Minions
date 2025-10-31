@@ -1,5 +1,37 @@
 # Limitations
 
+## ESLint Suggestions
+### Methodology:
+
+For an initial search into possible syntax errors and other problems in our codebase we used the static analysis tool ESLint to audit our javascript files in their current states. We first went through each javascript file in our source folder, using ESLint individually on all them. We then audited the entire repository with ESLint to ensure we hadn't missed anything.
+
+ In both tests ESLint found the same 3 errors:
+
+    in button.js
+       'InteractionResponseFlags' is undefined
+    in selectMenu.js
+       'InteractionResponseFlags' is undefined
+    in  startup.js
+        'error' is defined but never used
+ 
+### Error Interpretation:
+- _'InteractionResponseFlags'_ is undefined in both __buttons.js__ and __selectMenus.js__
+
+This means that somewhere in __buttons.js__ and __selectMenus.js__, our code is referencing _'InteractionResponseFlags'_, but that variable or import doesn’t exist in our current scope. Since these files are imported from the discord example bot and we haven't altered them in any significant way, we believe these errors may be the result of a false positive. This is because _'InteractionResponseFlags'_ isn't referenced in either __buttons.js__ or __selectMenus.js__, _'InteractionResponseFlags'_ also aids in ephemerality which we have yet to use in any meaningful way. However, we can't be 100% certain that it won't be an issue going forward. Thus, we'll continue investigating just to be sure.
+
+- _'error'_ is defined but never used in __startup.js__
+
+This mean that in __startup.js__ _'error'_ is an unused variable which gets flagged by ESLint to reduce clutter and show unfinished logic. When combing through __startup.js__ we found that all catches had some sort of error handling and weren't intentionally or unintentionally left blank. This is likely a false positive, but we will continue investigating just to be certain. However, in the current scope of our bot's capabilities we have yet to focus on error handling; this might be an issue that leads to tech debt later depending on how we go about error handling for Trivia Bot. 
+
+### Next Steps:
+
+- For the _'InteracionResponseFlags'_ error, we plan on just using the built in __Discord.js__ property "ephemeral: True" instead of using response flags like "InteractionResponseFlags.Ephemeral". If the error persists we could also just explicitly import in __buttons.js__ and __selectMenus.js__.
+
+- For the _'error'_ defined but never used problem, we plan on finding it and handling it if it turns out to be a blank catch from the example bot template, but worst case scenario we can just remove it if necessary to reduce clutter. 
+
+### Conclusion
+Overall, the linting audit went over well. It was helpful for highlighting some issues that need to be worked on in the coming sprint. Linting the codebase was an essential part of our post-refactoring limitation assessment as files post-refactor have been trimmed/scaled down for efficiency and easy scalability. We wanted to check this automated refactor to make certain that any new or older syntax errors and bugs didn't persist in the code going forward.
+
 ## Memory leak in gameState.js
 ### Description:
 Games that are added to the map exist indefinitely if a game is abandoned.
