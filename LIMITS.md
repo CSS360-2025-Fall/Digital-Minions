@@ -1,5 +1,55 @@
 # Limitations
 
+## Memory leak in gameState.js
+### Description:
+Games that are added to the map exist indefinitely if a game is abandoned.
+
+### Implications:
+Memory leak.
+
+### Scope:
+Critical bug.
+
+### Status:
+Queued for immediate fix.
+
+### Possible steps forward:
+Add timer thread that removes games after a certain timeout.
+
+## Concurrency not handled in gameState.js
+### Description:
+The game storage object does not use any form of locking. It could be written to by multiple users at once.
+
+### Implications:
+Potential memory corruption leading to crashes.
+
+### Scope:
+Critical bug.
+
+### Status:
+Queued for immediate change, alongside the switch to persistent record storage.
+
+### Possible steps forward:
+Implement proper locking when we switch to persistent record storage.
+
+## CD Implementation
+### Description:
+For CD purposes, the bot announces its current commit and commit description every time it starts. It does this in the main channel of every server.
+
+### Implications:
+- Spam in servers
+- Uses `exec` on the CD server. Currently, commands are hard-coded and do not use environmental variables. If this were to change, there could be risk of command injection.
+
+### Scope:
+If the `exec` statements are changed by future devs security issues could arise. Server spam is not acceptable for production.
+
+### Status:
+- Left as-is for testing purposes. Node config change is in the queue.
+
+### Possible steps forward:
+- Specific node configuration for testing that conditionally includes the announcement function.
+- Only announce in the development server.
+
 ## Lack of Rate Limit
 ### Description:
 Currently, the bot does not enforce any rate limits on user-triggered actions. This includes:
