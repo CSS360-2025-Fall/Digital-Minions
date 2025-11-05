@@ -163,3 +163,116 @@ export const triviaQuestions = {
   ],
   sports: [
     {
+      question: "How many players are there on a soccer team on the field at once?",
+      options: ["9", "10", "11", "12"],
+      correct: "11",
+    },
+    {
+      question: "In what sport would you perform a slam dunk?",
+      options: ["Volleyball", "Basketball", "Tennis", "Baseball"],
+      correct: "Basketball",
+    },
+    {
+      question: "What country hosted the 2016 Summer Olympics?",
+      options: ["China", "Brazil", "United Kingdom", "Japan"],
+      correct: "Brazil",
+    },
+    {
+      question: "What is the maximum break in a standard game of snooker?",
+      options: ["147", "155", "150", "160"],
+      correct: "147",
+    },
+    {
+      question: "Which country has won the most FIFA World Cup titles in men's soccer?",
+      options: ["Germany", "Italy", "Argentina", "Brazil"],
+      correct: "Brazil",
+    },
+    {
+      question: "In baseball, how many strikes make an out?",
+      options: ["2", "3", "4", "5"],
+      correct: "3",
+    },
+    {
+      question: "What sport uses the terms ‘birdie’, ‘eagle’, and ‘bogey’?",
+      options: ["Tennis", "Badminton", "Golf", "Cricket"],
+      correct: "Golf",
+    },
+    {
+      question: "Who has won the most Olympic gold medals of all time?",
+      options: ["Usain Bolt", "Michael Phelps", "Carl Lewis", "Simone Biles"],
+      correct: "Michael Phelps",
+    },
+    {
+       question: "Which team won the first Super Bowl in 1967?",
+       options: [
+        "Green Bay Packers",
+        "Kansas City Chiefs",
+        "New York Jets",
+        "Dallas Cowboys",
+      ],
+      correct: "Green Bay Packers",
+    },
+    {
+      question: "What is the distance of a marathon?",
+      options: [
+        "24.2 miles",
+        "26.2 miles",
+        "28.2 miles",
+        "30.2 miles",
+      ],
+      correct: "26.2 miles",
+    },
+  ],
+  language: [
+    {
+      question: "What is the most widely spoken language in the world by native speakers?",
+      options: ["English", "Spanish", "Mandarin Chinese", "Hindi"],
+      correct: "Mandarin Chinese",
+    },
+    {
+      question: "Which language is the official language of Brazil?",
+      options: ["Spanish", "Portuguese", "French", "English"],
+      correct: "Portuguese",
+    },
+    {
+      question: "What does the word 'bonjour' mean in French?",
+      options: ["Good morning", "Goodbye", "Please", "Thank you"],
+      correct: "Good morning",
+    },
+    {
+      question: "In the Spanish language, what does the word 'rojo' mean?",
+      options: ["Blue", "Red", "Green", "Yellow"],
+      correct: "Red",
+    },
+    {
+      question: "Which ancient language is the root of most modern European languages?",
+      options: ["Greek", "Latin", "Sanskrit", "Hebrew"],
+      correct: "Latin",
+    },
+    {
+      question: "Which language is written from right to left?",
+      options: ["Arabic", "Korean", "Hindi", "Greek"],
+      correct: "Arabic",
+    },
+    {
+      question: "What is the longest word in the English dictionary (non-technical)?",
+      options: ["Antidisestablishmentarianism", "Supercalifragilisticexpialidocious", "Pneumonoultramicroscopicsilicovolcanoconiosis", "Floccinaucinihilipilification"],
+      correct: "Pneumonoultramicroscopicsilicovolcanoconiosis",
+    },
+    {
+      question: "What does the word 'aldrig' mean in Sweadish?",
+      options: ["Always", "Never", "Often", "Or"],
+      correct: "Never",
+    },
+    {
+      question: "What does the word 'Usein' mean in Finnish?",
+      options: ["Always", "Never", "Often", "Or"],
+      correct: "Often",
+    },
+    {
+      question: "What does the word 'Livi' mean in Tongan?",
+      options: ["Leave", "Come", "Away", "Child"],
+      correct: "Leave",
+    },
+  ],
+  
