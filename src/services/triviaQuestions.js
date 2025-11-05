@@ -63,4 +63,23 @@ export const triviaQuestions = {
       options: ["Plymouth", "Jamestown", "Roanoke", "Salem"],
       correct: "Jamestown",
     },
-    
+    {//3
+      question: "What year did the French Revolution begin?",
+      options:["1744", "1740", "1804", "1789"],
+      correct: "1789",
+    },
+    {//4
+      question: "Which empire was ruled by Genghis Khan?",
+      options: ["Chinese empire", "Russian empire", "Ottoman empire", "Mongol empire"],
+      correct: "Mongol empire",
+    },
+    {//5
+      question: "Who discovered America in 1492 (for Europe)?",
+      options: ["Ferdinand Magellan", "Christopher Columbus", "Marco Polo", "Vasco da Gama"],
+      correct: "Christopher Columbus",
+    },
+    {//6
+      question: "Who was the first President of the United States?",
+      options: ["Benjamin Franklin", "Thomas Jefferson", "Abraham Lincoln", "George Washington"],
+      correct: "George Washington",
+    },
