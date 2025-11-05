@@ -275,4 +275,108 @@ export const triviaQuestions = {
       correct: "Leave",
     },
   ],
+  art: [
+    {
+      question: "Who painted the Mona Lisa?",
+      options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+      correct: "Leonardo da Vinci",
+    },
+    {
+      question: "Which artist is famous for cutting off part of his ear?",
+      options: ["Salvador Dalí", "Vincent van Gogh", "Edvard Munch", "Paul Cézanne"],
+      correct: "Vincent van Gogh",
+    },
+    {
+      question: "The painting 'The Starry Night' was created by which artist?",
+      options: ["Vincent van Gogh", "Claude Monet", "Pablo Picasso", "Georgia O’Keeffe"],
+      correct: "Vincent van Gogh",
+    },
+    {
+      question: "What is the art movement associated with Salvador Dalí?",
+      options: ["Cubism", "Surrealism", "Impressionism", "Expressionism"],
+      correct: "Surrealism",
+    },
+    {
+      question: "Which artist is known for the abstract drip paintings in the mid-20th century?",
+      options: ["Jackson Pollock", "Andy Warhol", "Wassily Kandinsky", "Henri Matisse"],
+      correct: "Jackson Pollock",
+    },
+    {
+       question: "What material did Michelangelo use to carve the statue of David?",
+      options: ["Bronze", "Marble", "Granite", "Wood"],
+      correct: "Marble",
+    },
+    {
+      question: "The painting 'The Persistence of Memory', featuring melting clocks, was painted by whom?",
+      options: ["Salvador Dalí", "René Magritte", "Joan Miró", "Henri Rousseau"],
+      correct: "Salvador Dalí",
+    },
+    {
+      question: "Which artist is considered the founder of the Cubist movement?",
+      options: ["Pablo Picasso", "Henri Matisse", "Paul Gauguin", "Claude Monet"],
+      correct: "Pablo Picasso",
+    },
+    {
+      question: "The term 'Renaissance' refers to a period of renewed interest in which subjects?",
+      options: ["Science and Religion", "Art and Learning", "War and Politics", "Trade and Exploration"],
+      correct: "Art and Learning",
+    },
+    {
+      question: "What city is home to the Louvre Museum?",
+      options: ["Rome", "Paris", "London", "Madrid"],
+      correct: "Paris",
+    },
+  ],
+  pop_culture: [
+    {
+      question: "Which singer is known as the 'King of Pop'?",
+      options: ["Elvis Presley", "Prince", "Michael Jackson", "Justin Timberlake"],
+      correct: "Michael Jackson",
+    },
+    {
+      question: "Who played Iron Man in the Marvel movies?",
+      options: ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Tom Holland"],
+      correct: "Robert Downey Jr.",
+    },
+    {
+      question: "What social media app is known for short video clips and viral trends?",
+      options: ["Twitter", "TikTok", "Snapchat", "Instagram"],
+      correct: "TikTok",
+    },
+    {
+      question: "Which singer released the 2022 album Midnights?",
+      options: ["Ariana Grande", "Beyoncé", "Taylor Swift", "Adele"],
+      correct: "Taylor Swift",
+    },
+    {
+      question: "In The Office (U.S.), what is the name of the paper company?",
+      options: ["Dunder Mifflin", "PaperCo", "Scranton Supply", "Office Depot"],
+      correct: "Dunder Mifflin",
+    },
+    {
+      question: "Which film won the Academy Award for Best Picture in 2020?",
+      options: ["1917", "Joker", "Parasite", "Once Upon a Time in Hollywood"],
+      correct: "Parasite",
+    },
+    {
+      question: "Who voiced Elsa in Disney’s Frozen?",
+      options: ["Idina Menzel", "Kristen Bell", "Demi Lovato", "Mandy Moore"],
+      correct: "Idina Menzel",
+    },
+    {
+      question: "Which artist painted the album cover for The Beatles’ Sgt. Pepper’s Lonely Hearts Club Band?",
+      options: ["Peter Blake", "Andy Warhol", "Roy Lichtenstein", "David Hockney"],
+      correct: "Peter Blake"
+    },
+    {
+      question: "Who won the first season of American Idol?",
+      options: ["Kelly Clarkson", "Carrie Underwood", "Fantasia Barrino", "Ruben Studdard"],
+      correct: "Kelly Clarkson",
+    },
+    {
+      question: "What is the name of the fictional African nation in Black Panther?",
+      options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
+      correct: "Wakanda",
+    },
+  ],
   
