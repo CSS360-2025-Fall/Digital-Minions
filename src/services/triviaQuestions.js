@@ -379,4 +379,11 @@ export const triviaQuestions = {
       correct: "Wakanda",
     },
   ],
-  
+};
+
+// Helper function to fetch one random question
+export function getRandomQuestion(category) {
+  const questions = triviaQuestions[category];
+  if (!questions || questions.length === 0) return null;
+  return questions[Math.floor(Math.random() * questions.length)];
+}
