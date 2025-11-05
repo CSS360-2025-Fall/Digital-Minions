@@ -23,16 +23,24 @@ export const TEST_COMMAND = {
   contexts: [0, 1, 2],
 };
 
-export const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of trivia',
+export const TRIVIA_COMMAND = {
+  name: 'trivia',
+  description: 'start a trivia challenge',
   options: [
     {
-      type: 3,
-      name: 'object',
-      description: 'Pick your object',
+      type: 3, // STRING
+      name: 'category',
+      description: 'Pick your trivia category',
       required: true,
-      choices: createCommandChoices(),
+      choices: [
+        { name: 'Science', value: 'science' },
+        { name: 'History', value: 'history' },
+        { name: 'Geography', value: 'geography' },
+        { name: 'Movies', value: 'movies' },
+        { name: 'Sports', value: 'sports' },
+        { name: 'Music', value: 'music' },
+        { name: 'Random', value: 'random' },
+      ],
     },
   ],
   type: 1,
@@ -66,7 +74,7 @@ export const RECORD_COMMAND = {
 
 export const ALL_COMMANDS = [
   TEST_COMMAND,
-  CHALLENGE_COMMAND,
+  TRIVIA_COMMAND,
   RULES_COMMAND,
   RECORD_COMMAND,
 ];
