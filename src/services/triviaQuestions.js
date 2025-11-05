@@ -302,7 +302,7 @@ export const triviaQuestions = {
       correct: "Jackson Pollock",
     },
     {
-       question: "What material did Michelangelo use to carve the statue of David?",
+      question: "What material did Michelangelo use to carve the statue of David?",
       options: ["Bronze", "Marble", "Granite", "Wood"],
       correct: "Marble",
     },
