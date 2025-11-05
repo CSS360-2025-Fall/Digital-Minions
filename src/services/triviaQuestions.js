@@ -53,8 +53,14 @@ export const triviaQuestions = {
     },
   ],
   history: [
-    {
-      question: "?",
-      options: ["", "", "", ""],
-      correct: "",
+    {//1
+      question: "Which treaty ended WW1?",
+      options: ["Treaty of Paris", "Treaty of Versailles", "Treaty of Ghent", "Treaty of Tordesillas"],
+      correct: "Treaty of Versailles",
     },
+    {//2
+      question: "What was the name of the first permanent English settlement in North America?",
+      options: ["Plymouth", "Jamestown", "Roanoke", "Salem"],
+      correct: "Jamestown",
+    },
+    
