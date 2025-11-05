@@ -83,3 +83,19 @@ export const triviaQuestions = {
       options: ["Benjamin Franklin", "Thomas Jefferson", "Abraham Lincoln", "George Washington"],
       correct: "George Washington",
     },
+    {//7
+      question: "Who wrote the Declaration of Independence?",
+      options: ["George Washington", "Benjamin Franklin", "Thomas Jefferson", "John Hancock"],
+      correct: "Thomas Jefferson",
+    },
+    {//8
+      question: "Who was the first woman to fly solo across the Atlantic Ocean?",
+      options: ["Bessie Coleman", "Amelia Earhart", "Sally Ride", "Harriet Quimby"],
+      correct: "Amelia Earhart",
+    },
+    {//9
+      question: "Who was the longest-reigning British monarch before Queen Elizabeth II?",
+      options: ["Queen Victoria", "King George III", "Henry VIII", "Elizabeth I"],
+      correct: "Queen Victoria",
+    },
+    
