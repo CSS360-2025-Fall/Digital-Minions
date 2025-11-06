@@ -112,4 +112,23 @@ export function createResultMessage(resultStr) {
     flags: InteractionResponseFlags.IS_COMPONENTS_V2,
     components: [createTextDisplay(resultStr)],
   };
+  // Add after createResultMessage() in src/utils/messageBuilders.js
+export function createTriviaQuestionMessage(gameId, question) {
+  const options = question.options.map((opt) => ({
+    label: opt,
+    value: opt,
+    description: "",
+  }));
+
+  return {
+    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [
+      createTextDisplay(`**${question.question}**`),
+      createActionRow([
+        createStringSelect(`${COMPONENT_IDS.SELECT_CHOICE}${gameId}`, options),
+      ]),
+    ],
+  };
 }
+}
+  
