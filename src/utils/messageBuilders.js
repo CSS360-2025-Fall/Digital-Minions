@@ -93,42 +93,58 @@ export function createChoiceSelectionMessage(gameId, options) {
 /**
  * Creates a simple text message
  */
-export function createSimpleMessage(content, ephemeral = false) {
-  const flags = ephemeral
-    ? InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2
-    : InteractionResponseFlags.IS_COMPONENTS_V2;
+// ============================================================
+// Message Builder Utilities
+// Converted to ES Module syntax (import/export)
+// ============================================================
 
-  return {
-    flags,
-    components: [createTextDisplay(content, ephemeral)],
-  };
+// ✅ Simple text message
+export function createSimpleMessage(content) {
+  return { content };
 }
 
-/**
- * Creates the game result message
- */
-export function createResultMessage(resultStr) {
+// ✅ Challenge invitation message
+export function createChallengeMessage(userId, id) {
   return {
-    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-    components: [createTextDisplay(resultStr)],
-  };
-  // Add after createResultMessage() in src/utils/messageBuilders.js
-export function createTriviaQuestionMessage(gameId, question) {
-  const options = question.options.map((opt) => ({
-    label: opt,
-    value: opt,
-    description: "",
-  }));
-
-  return {
-    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    content: `<@${userId}> has issued a challenge!`,
     components: [
-      createTextDisplay(`**${question.question}**`),
-      createActionRow([
-        createStringSelect(`${COMPONENT_IDS.SELECT_CHOICE}${gameId}`, options),
-      ]),
+      {
+        type: 1, // action row
+        components: [
+          {
+            type: 2, // button
+            style: 1,
+            label: 'Accept',
+            custom_id: `accept_${id}`,
+          },
+          {
+            type: 2,
+            style: 4,
+            label: 'Decline',
+            custom_id: `decline_${id}`,
+          },
+        ],
+      },
     ],
   };
 }
+
+// ✅ Game-result message
+export function createGameResultMessage(resultText) {
+  return { content: resultText };
 }
-  
+
+// ✅ Error message
+export function createErrorMessage(errorText) {
+  return {
+    content: `⚠️ Error: ${errorText}`,
+    flags: 64, // ephemeral (visible only to user)
+  };
+}
+
+// ✅ Trivia question message (new addition)
+export function createTriviaQuestionMessage(gameId, question) {
+  return {
+    content: `🎯 **Trivia Time!**\nGame ID: ${gameId}\n\n**Question:** ${question}`,
+  };
+}
