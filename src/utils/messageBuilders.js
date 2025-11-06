@@ -103,31 +103,6 @@ export function createSimpleMessage(content) {
   return { content };
 }
 
-// ✅ Challenge invitation message
-export function createChallengeMessage(userId, id) {
-  return {
-    content: `<@${userId}> has issued a challenge!`,
-    components: [
-      {
-        type: 1, // action row
-        components: [
-          {
-            type: 2, // button
-            style: 1,
-            label: 'Accept',
-            custom_id: `accept_${id}`,
-          },
-          {
-            type: 2,
-            style: 4,
-            label: 'Decline',
-            custom_id: `decline_${id}`,
-          },
-        ],
-      },
-    ],
-  };
-}
 
 // ✅ Game-result message
 export function createGameResultMessage(resultText) {
