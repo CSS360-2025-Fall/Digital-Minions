@@ -25,7 +25,7 @@ export const TEST_COMMAND = {
 
 export const TRIVIA_COMMAND = {
   name: 'trivia',
-  description: 'start a trivia challenge',
+  description: 'start a trivia challenge by category',
   options: [
     {
       type: 3, // STRING
@@ -33,13 +33,13 @@ export const TRIVIA_COMMAND = {
       description: 'Pick your trivia category',
       required: true,
       choices: [
-        { name: 'Science', value: 'science' },
+        { name: 'Math', value: 'math' },
         { name: 'History', value: 'history' },
-        { name: 'Geography', value: 'geography' },
-        { name: 'Movies', value: 'movies' },
+        { name: 'Science', value: 'science' },
         { name: 'Sports', value: 'sports' },
-        { name: 'Music', value: 'music' },
-        { name: 'Random', value: 'random' },
+        { name: 'Language', value: 'language' },
+        { name: 'Art', value: 'art' },
+        { name: 'Pop Culture', value: 'pop_culture' },
       ],
     },
   ],
