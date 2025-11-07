@@ -1,22 +1,14 @@
 import { InteractionResponseType } from "discord-interactions";
-import { extractUserId } from "../../utils/helpers.js";
-import { getTriviaRecord } from "../../services/userRecords.js";
-import { createSimpleMessage } from "../../utils/messageBuilders.js";
+import { getTriviaRecord } from "../../services/gameState.js";
 
 export async function handleRecordCommand(req, res) {
-  const userId = extractUserId(req);
+  const userId = req.body.member?.user?.id;
   const record = getTriviaRecord(userId);
-
-  const total = record.correct + record.incorrect;
-  const accuracy = total > 0 ? ((record.correct / total) * 100).toFixed(1) : 0;
-
-  const message = `📊 Trivia Record for <@${userId}>:
-✅ **Correct:** ${record.correct}
-❌ **Incorrect:** ${record.incorrect}
-🏅 **Accuracy:** ${accuracy}%`;
 
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: createSimpleMessage(message),
+    data: {
+      content: `📊 **Your Trivia Record**\n✅ Correct: ${record.correct}\n❌ Incorrect: ${record.incorrect}`,
+    },
   });
 }
