@@ -3,26 +3,22 @@ import { InteractionResponseType } from "discord-interactions";
 import { extractUserId } from "../../utils/helpers.js";
 import { getRandomQuestion } from "../../services/triviaQuestions.js";
 import { createTriviaQuestionMessage } from "../../utils/messageBuilders.js";
-import { createGame, generateGameId } from "../../services/gameState.js"; // ← FIXED: use generateGameId
+import { createGame } from "../../services/gameState.js";
 
-/**
- * Handles the /trivia command
- */
 export async function handleTriviaCommand(req, res) {
   const interaction = req.body;
   const userId = extractUserId(req);
 
-  // Get category (lowercase for consistency)
-  const categoryOption = interaction.data.options?.find(opt => opt.name === "category");
+  // Get category
+  const categoryOption = interaction.data.options?.find(o => o.name === "category");
   const category = categoryOption?.value?.toLowerCase() || "random";
 
-  // 1) Defer immediately
+  // Defer immediately
   res.send({
     type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
   });
 
   try {
-    // 2) Get a random question
     const question = getRandomQuestion(category);
     if (!question) {
       await interaction.followUp({
@@ -32,17 +28,20 @@ export async function handleTriviaCommand(req, res) {
       return;
     }
 
-    // 3) Generate unique game ID and save game
-    const gameId = generateGameId();
-    createGame(userId, { category, question }, gameId); // ← Fixed structure
+    // Create game and get ID
+    const gameId = createGame(userId, { category, question });
 
-    // 4) Delete the "thinking..." message (optional but clean)
-    await interaction.deleteReply().catch(() => {});
+    // Delete "thinking..." message
+    try { await interaction.deleteReply(); } catch (e) {}
 
-    // 5) Send the trivia message as a REAL bot message (NOT webhook/followup)
-    // This allows UPDATE_MESSAGE to work perfectly
-    const channel = await global.client.channels.fetch(interaction.channel_id);
-    await channel.send(createTriviaQuestionMessage(gameId, question));
+    // Send as REAL message so dropdown can be updated
+    const channelId = interaction.channel_id || interaction.channel.id;
+    const endpoint = `channels/${channelId}/messages`;
+    
+    await discordRequest(endpoint, {
+      method: 'POST',
+      body: createTriviaQuestionMessage(gameId, question),
+    });
 
   } catch (err) {
     console.error('Error in handleTriviaCommand:', err);
@@ -52,7 +51,7 @@ export async function handleTriviaCommand(req, res) {
         ephemeral: true,
       });
     } catch (e) {
-      console.error('Failed to send error followup:', e);
+      console.error('Failed to send error:', e);
     }
   }
 }
