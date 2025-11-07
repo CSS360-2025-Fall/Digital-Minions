@@ -4,6 +4,7 @@ import { extractUserId } from "../../utils/helpers.js";
 import { getRandomQuestion } from "../../services/triviaQuestions.js";
 import { createTriviaQuestionMessage } from "../../utils/messageBuilders.js";
 import { createGame } from "../../services/gameState.js";
+import { discordRequest } from '../../utils/discord.js'; // ← ADD THIS LINE
 
 export async function handleTriviaCommand(req, res) {
   const interaction = req.body;
