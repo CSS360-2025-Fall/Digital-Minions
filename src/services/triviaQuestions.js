@@ -260,7 +260,7 @@ export const triviaQuestions = {
       correct: "Pneumonoultramicroscopicsilicovolcanoconiosis",
     },
     {
-      question: "What does the word 'aldrig' mean in Sweadish?",
+      question: "What does the word 'aldrig' mean in Swedish?",
       options: ["Always", "Never", "Often", "Or"],
       correct: "Never",
     },
