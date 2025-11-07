@@ -40,3 +40,21 @@ export function deleteGame(gameId) {
 export function getAllGames() {
   return { ...activeGames };
 }
+
+// Track trivia scores per user
+const triviaScores = {};
+
+export function recordTriviaResult(userId, correct) {
+  if (!triviaScores[userId]) {
+    triviaScores[userId] = { correct: 0, incorrect: 0 };
+  }
+  if (correct) {
+    triviaScores[userId].correct += 1;
+  } else {
+    triviaScores[userId].incorrect += 1;
+  }
+}
+
+export function getTriviaRecord(userId) {
+  return triviaScores[userId] || { correct: 0, incorrect: 0 };
+}
