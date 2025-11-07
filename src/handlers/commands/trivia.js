@@ -9,31 +9,29 @@ import { discordRequest } from '../../utils/discord.js';
 export async function handleTriviaCommand(req, res) {
   const interaction = req.body;
   const userId = extractUserId(req);
-  const channelId = interaction.channel_id;
 
   // Get category
   const categoryOption = interaction.data.options?.find(o => o.name === "category");
   const category = categoryOption?.value?.toLowerCase() || "random";
 
-  // DEFER WITH **INVISIBLE LOADING** (no text, no bubble)
+  // 1) DEFER WITH EMPTY UPDATE — NO TEXT, NO FLAGS, NO BUBBLE
   res.send({
-    type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
-    data: { flags: 64 }, // ephemeral = invisible to everyone
+    type: InteractionResponseType.DEFERRED_MESSAGE_UPDATE,
   });
 
   try {
     const question = getRandomQuestion(category);
     if (!question) {
       await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
-        method: 'POST',
-        body: { content: "No questions!", flags: 64 },
+        method: 'PATCH',
+        body: { content: "❌ No questions found for that category!" },
       });
       return;
     }
 
     const gameId = createGame(userId, { category, question });
 
-    // EDIT THE DEFERRED MESSAGE INTO THE REAL QUESTION
+    // 2) PATCH THE DEFERRED MESSAGE INTO THE REAL TRIVIA QUESTION
     await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
       method: 'PATCH',
       body: createTriviaQuestionMessage(gameId, question),
@@ -43,7 +41,7 @@ export async function handleTriviaCommand(req, res) {
     console.error('Trivia error:', err);
     await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
       method: 'PATCH',
-      body: { content: "Error!" },
+      body: { content: "⚠️ Something went wrong!" },
     });
   }
 }
