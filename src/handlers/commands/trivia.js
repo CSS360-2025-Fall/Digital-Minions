@@ -15,34 +15,50 @@ export async function handleTriviaCommand(req, res) {
   const userId = extractUserId(req);
   const category = data.options[0].value;
 
-  // ✅ Step 1: immediately acknowledge to avoid Discord timeout
+  // 1) Immediately acknowledge to Discord to avoid timeout
   res.send({
     type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
   });
 
-  // ✅ Step 2: build the question after acknowledgment
-  const question = getRandomQuestion(category);
+  try {
+    // 2) Build the question
+    const question = getRandomQuestion(category);
 
-  if (!question) {
-    // Post an error message via webhook if no questions found
+    if (!question) {
+      // Post an error message via webhook if no questions found
+      const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
+      await discordRequest(endpoint, {
+        method: 'POST',
+        body: {
+          content: `No questions found for category **${category}**.`,
+        },
+      });
+      return;
+    }
+
+    // 3) Save active question
+    createGame(id, userId, { category, question });
+
+    // 4) Send the question to the channel via webhook
     const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
     await discordRequest(endpoint, {
-      method: "POST",
-      body: {
-        content: `No questions found for category **${category}**.`,
-      },
+      method: 'POST',
+      body: createTriviaQuestionMessage(id, question),
     });
-    return;
+  } catch (err) {
+    console.error('Error in handleTriviaCommand:', err);
+    // Try to notify the user of failure (ephemeral)
+    try {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: '⚠️ An error occurred while creating the trivia question.',
+          flags: 64, // ephemeral
+        },
+      });
+    } catch (e) {
+      // If we can't send (already sent deferred), just log
+      console.error('Also failed to send error response:', e);
+    }
   }
-
-  // ✅ Step 3: save active question
-  createGame(id, userId, { category, question });
-
-  // ✅ Step 4: send the question to the channel via webhook
-  const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
-  await discordRequest(endpoint, {
-    method: "POST",
-    body: createTriviaQuestionMessage(id, question),
-  });
 }
-
