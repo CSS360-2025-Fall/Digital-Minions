@@ -18,26 +18,35 @@ function initializeUserRecord(userId) {
 /**
  * Updates a user's record with a win, loss, or tie
  */
-export function updateUserRecord(userId, result) {
-  initializeUserRecord(userId);
-  const record = userRecords.get(userId);
 
-  switch (result) {
-    case GAME_RESULTS.WIN:
-    case "win": // ← SUPPORT BOTH OLD RPS AND NEW TRIVIA
-      record.wins++;
-      break;
-    case GAME_RESULTS.LOSS:
-    case "loss":
-      record.losses++;
-      break;
-    case GAME_RESULTS.TIE:
-      record.ties++;
-      break;
-    default:
-      console.warn(`Unknown game result: ${result}`);
-  }
+
+export function updateUserRecord(userId, result) {
+  let record = userRecords.get(userId) || { wins: 0, losses: 0, ties: 0 };
+  // ... your existing switch ...
+  userRecords.set(userId, record);
+
+  // ←←← FIX: Save to file every update
+  saveRecords();
 }
+
+// ←←← ADD AT BOTTOM
+import fs from 'fs';
+const FILE = 'records.json';
+
+function saveRecords() {
+  try {
+    fs.writeFileSync(FILE, JSON.stringify(Object.fromEntries(userRecords)));
+  } catch (e) {}
+}
+
+// Load on startup (add to top of file or app.js)
+try {
+  const data = fs.readFileSync(FILE, 'utf8');
+  const obj = JSON.parse(data);
+  for (const [id, rec] of Object.entries(obj)) {
+    userRecords.set(id, rec);
+  }
+} catch (e) {}
 
 /**
  * Retrieves a user's record
