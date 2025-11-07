@@ -33,6 +33,7 @@ export async function handleTriviaCommand(req, res) {
     const gameId = createGame(userId, { category, question });
 
     // SEND REAL QUESTION — ONE MESSAGE ONLY
+    console.log("DEBUG webhook endpoint:", `webhooks/${process.env.APP_ID}/${interaction.token}`);
     await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
       method: 'PATCH',
       body: createTriviaQuestionMessage(gameId, question),
