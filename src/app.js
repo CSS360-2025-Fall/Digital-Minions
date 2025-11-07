@@ -2,7 +2,7 @@
 import 'dotenv/config';
 import express from 'express';
 import { InteractionType, InteractionResponseType, verifyKeyMiddleware } from 'discord-interactions';
-import { announceStartup } from './utils/startup.js';
+//import { announceStartup } from './utils/startup.js';
 import { handleMessageComponent } from './handlers/components/index.js';
 import { handleApplicationCommand } from './handlers/commands/index.js';
 
