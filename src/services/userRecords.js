@@ -1,4 +1,3 @@
-/**
 
 //When deleted, it caused errors
 
@@ -14,7 +13,7 @@ const userRecords = new Map(); // ← CHANGED TO Map() FOR MODERN JS
 
 /**
  * Initializes a user record if it doesn't exist
-
+*/
 function initializeUserRecord(userId) {
   if (!userRecords.has(userId)) {
     userRecords.set(userId, { wins: 0, losses: 0, ties: 0 });
@@ -23,7 +22,7 @@ function initializeUserRecord(userId) {
 
 /**
  * Updates a user's record with a win, loss, or tie
- 
+ */
 
 
 export function updateUserRecord(userId, result) {
@@ -56,14 +55,14 @@ try {
 
 /**
  * Retrieves a user's record
- 
+ */
 export function getUserRecord(userId) {
   return userRecords.get(userId) || { wins: 0, losses: 0, ties: 0 };
 }
 
 /**
  * Calculates win rate for a user
- 
+ */
 export function calculateWinRate(userId) {
   const record = getUserRecord(userId);
   const totalGames = record.wins + record.losses + record.ties;
@@ -73,7 +72,7 @@ export function calculateWinRate(userId) {
 
 /**
  * Returns all user records (for debugging)
- 
+ */
 export function getAllRecords() {
   return Object.fromEntries(userRecords);
 }
@@ -92,4 +91,3 @@ export function getTriviaRecord(userId) {
     ties: record.ties,
   };
 }
-*/
