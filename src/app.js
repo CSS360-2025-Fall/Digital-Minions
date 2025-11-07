@@ -53,3 +53,14 @@ app.listen(PORT, () => {
     console.error('Error during startup announcement:', err);
   });
 });
+
+// Add at bottom
+process.on('SIGTERM', () => {
+  console.log('Shutting down gracefully...');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('Caught interrupt signal');
+  process.exit(0);
+});
