@@ -1,66 +1,37 @@
-// In-memory storage for active games
-// NOTE: This is ephemeral and will be cleared on bot restart
-// For production, replace with persistent database storage
-const activeGames = {};
+// src/services/gameState.js
+const games = new Map(); // ← THIS WAS MISSING IN YOUR FILE!
 
 export function generateGameId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
-/**
- * Creates a new game with the given ID
- */
+
 export function createGame(userId, data, gameId = generateGameId()) {
   const game = {
     id: gameId,
     userId,
-    objectName: data, // ← keeps compatibility with your current selectMenus.js
+    objectName: data, // Keeps compatibility with selectMenus.js
     createdAt: Date.now(),
   };
   games.set(gameId, game);
+  console.log(`Trivia game created: ${gameId} for user ${userId}`);
+  return gameId;
 }
 
-/**
- * Retrieves a game by ID
- */
 export function getGame(gameId) {
-  return activeGames[gameId];
+  return games.get(gameId);
 }
 
-/**
- * Checks if a game exists
- */
-export function gameExists(gameId) {
-  return gameId in activeGames;
-}
-
-/**
- * Deletes a game by ID
- */
 export function deleteGame(gameId) {
-  delete activeGames[gameId];
+  games.delete(gameId);
+  console.log(`Trivia game deleted: ${gameId}`);
 }
 
-/**
- * Returns all active games (primarily for debugging)
- */
-export function getAllGames() {
-  return { ...activeGames };
-}
-
-// Track trivia scores per user
-const triviaScores = {};
-
-export function recordTriviaResult(userId, correct) {
-  if (!triviaScores[userId]) {
-    triviaScores[userId] = { correct: 0, incorrect: 0 };
+// Optional: auto-expire old games (run every 10 minutes)
+setInterval(() => {
+  const now = Date.now();
+  for (const [id, game] of games.entries()) {
+    if (now - game.createdAt > 10 * 60 * 1000) { // 10 minutes
+      deleteGame(id);
+    }
   }
-  if (correct) {
-    triviaScores[userId].correct += 1;
-  } else {
-    triviaScores[userId].incorrect += 1;
-  }
-}
-
-export function getTriviaRecord(userId) {
-  return triviaScores[userId] || { correct: 0, incorrect: 0 };
-}
+}, 10 * 60 * 1000);
