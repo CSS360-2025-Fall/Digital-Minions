@@ -72,16 +72,15 @@ export function createErrorMessage(errorText) {
 // ✅ Trivia question message (new addition)
 export function createTriviaQuestionMessage(gameId, question) {
   const options = question.options.map((opt) => ({
-    label: opt,
+    label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
     value: opt,
-    description: "",
   }));
 
   return {
-    content: `🧠 Trivia Time!\n**${question.question}**`,
+    content: `🧠 **Trivia Time!**\n**${question.question}**`,
     components: [
       createActionRow([
-        createStringSelect(`${COMPONENT_IDS.SELECT_CHOICE}${gameId}`, options),
+        createStringSelect(`select_choice_${gameId}`, options), // ← EXACT PREFIX, NO COMPONENT_IDS
       ]),
     ],
   };
