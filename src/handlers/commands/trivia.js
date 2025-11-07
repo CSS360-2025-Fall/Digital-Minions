@@ -4,46 +4,47 @@ import { extractUserId } from "../../utils/helpers.js";
 import { getRandomQuestion } from "../../services/triviaQuestions.js";
 import { createTriviaQuestionMessage } from "../../utils/messageBuilders.js";
 import { createGame } from "../../services/gameState.js";
-import { discordRequest } from "../../utils/discordRequest.js";
-
 
 export async function handleTriviaCommand(req, res) {
   const interaction = req.body;
   const userId = extractUserId(req);
 
-  // Get category
+  // Get the category from the slash command
   const categoryOption = interaction.data.options?.find(o => o.name === "category");
   const category = categoryOption?.value?.toLowerCase() || "random";
 
-  // DEFER — INVISIBLE, NO MESSAGE, NO POPUP
-  res.send({
-    type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
-    data: { flags: 64 }, // ephemeral defer (invisible)
-  });
-
   try {
+    // Pick a random question for that category
     const question = getRandomQuestion(category);
+
     if (!question) {
-      return await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
-        method: 'PATCH',
-        body: { content: "❌ No questions in that category!", flags: 64 },
+      // ❌ No questions available for that category
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `❌ No questions available for **${category}**.`,
+        },
       });
     }
 
+    // ✅ Create a game entry for tracking user’s progress
     const gameId = createGame(userId, { category, question });
 
-    // SEND REAL QUESTION — ONE MESSAGE ONLY
-    console.log("DEBUG webhook endpoint:", `webhooks/${process.env.APP_ID}/${interaction.token}`);
-    await discordRequest(`webhooks/${interaction.application_id}/${interaction.token}`, {
-      method: 'PATCH',
-      body: createTriviaQuestionMessage(gameId, question),
+    // ✅ Send the trivia question immediately
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: createTriviaQuestionMessage(gameId, question),
     });
 
   } catch (err) {
-    console.error('Trivia error:', err);
-    await discordRequest(`webhooks/${interaction.application_id}/${interaction.token}`, {
-      method: 'PATCH',
-      body: { content: "⚠️ Trivia failed — try again!", flags: 64 },
+    console.error("Trivia error:", err);
+
+    // ⚠️ Show an error if something goes wrong
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: "⚠️ An error occurred while starting trivia. Please try again!",
+      },
     });
   }
 }
