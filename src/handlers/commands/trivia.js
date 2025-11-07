@@ -4,7 +4,7 @@ import { extractUserId } from "../../utils/helpers.js";
 import { getRandomQuestion } from "../../services/triviaQuestions.js";
 import { createTriviaQuestionMessage } from "../../utils/messageBuilders.js";
 import { createGame } from "../../services/gameState.js";
-import { discordRequest } from '../../utils/discord.js'; // ← ADD THIS LINE
+import { discordRequest } from '../../utils/discord.js';
 
 export async function handleTriviaCommand(req, res) {
   const interaction = req.body;
@@ -22,24 +22,22 @@ export async function handleTriviaCommand(req, res) {
   try {
     const question = getRandomQuestion(category);
     if (!question) {
-      await interaction.followUp({
-        content: "❌ No questions found for that category!",
-        ephemeral: true,
+      await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
+        method: 'POST',
+        body: { content: "❌ No questions found for that category!", flags: 64 },
       });
       return;
     }
 
-    // Create game and get ID
+    // Create game
     const gameId = createGame(userId, { category, question });
 
-    // Delete "thinking..." message
-    try { await interaction.deleteReply(); } catch (e) {}
+    // DELETE "Bot is thinking..." USING WEBHOOK (100% WORKS)
+    const webhookEndpoint = `webhooks/${process.env.APP_ID}/${interaction.token}`;
+    await discordRequest(webhookEndpoint, { method: 'DELETE' }).catch(() => {});
 
-    // Send as REAL message so dropdown can be updated
-    const channelId = interaction.channel_id || interaction.channel.id;
-    const endpoint = `channels/${channelId}/messages`;
-    
-    await discordRequest(endpoint, {
+    // Send real message
+    await discordRequest(`channels/${interaction.channel_id}/messages`, {
       method: 'POST',
       body: createTriviaQuestionMessage(gameId, question),
     });
@@ -47,12 +45,10 @@ export async function handleTriviaCommand(req, res) {
   } catch (err) {
     console.error('Error in handleTriviaCommand:', err);
     try {
-      await interaction.followUp({
-        content: '⚠️ An error occurred while creating the trivia question.',
-        ephemeral: true,
+      await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
+        method: 'POST',
+        body: { content: '⚠️ Error creating trivia.', flags: 64 },
       });
-    } catch (e) {
-      console.error('Failed to send error:', e);
-    }
+    } catch {}
   }
 }
