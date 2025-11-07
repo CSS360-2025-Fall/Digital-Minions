@@ -382,8 +382,13 @@ export const triviaQuestions = {
 };
 
 // Helper function to fetch one random question
-export function getRandomQuestion(category) {
-  const questions = triviaQuestions[category];
-  if (!questions || questions.length === 0) return null;
-  return questions[Math.floor(Math.random() * questions.length)];
+export function getRandomQuestion(category = "random") {
+  // ... your existing code ...
+
+  const shuffled = [...question.options].sort(() => Math.random() - 0.5);  // ←←← FIX
+  return {
+    question: question.question,
+    options: shuffled,
+    correct: question.correct,
+  };
 }
