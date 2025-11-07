@@ -62,3 +62,15 @@ export function calculateWinRate(userId) {
 export function getAllRecords() {
   return { ...userRecords };
 }
+// Get formatted trivia record for /record command
+export function getTriviaRecord(userId) {
+  const record = records.get(userId) || { wins: 0, losses: 0 };
+  const total = record.wins + record.losses;
+  const rate = total === 0 ? 0 : Math.round((record.wins / total) * 100);
+  return {
+    wins: record.wins,
+    losses: record.losses,
+    total,
+    winRate: rate,
+  };
+}
