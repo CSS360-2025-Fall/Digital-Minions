@@ -5,46 +5,47 @@ import { deleteGame, getGame } from "../../services/gameState.js";
 import { extractUserId } from "../../utils/helpers.js";
 
 export async function handleSelectChoice(req, res) {
-  const { data } = req.body;
-  const componentId = data.custom_id;
-  const gameId = componentId.replace("select_choice_", "");
-  const game = getGame(gameId);
+  try {
+    const { data, member } = req.body;
+    const userId = member?.user?.id;
+    const gameId = data.custom_id.split("_")[1];
+    const selectedChoice = data.values[0];
 
-  if (!game) {
-  // Safely acknowledge and tell the user the game expired
+    const game = getGame(gameId);
+    if (!game) {
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: "⚠️ This trivia game has expired or no longer exists.",
+          flags: 64, // ephemeral
+        },
+      });
+    }
+
+    // Check answer and build result text
+    const isCorrect = game.question.correct === selectedChoice;
+    const resultText = isCorrect
+      ? `✅ Correct, ${game.question.correct}!`
+      : `❌ Incorrect. The correct answer was **${game.question.correct}**.`;
+
+    clearGame(gameId);
+
+    // Safely clear dropdown and display result
+    return res.send({
+      type: InteractionResponseType.UPDATE_MESSAGE,
+      data: {
+        content: resultText,
+        components: [], // safely removes dropdown
+      },
+    });
+  } catch (err) {
+    console.error("Error handling select choice:", err);
     return res.send({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: "⚠️ This trivia round has already ended or expired.",
-        flags: 64, // ephemeral; only the user sees it
+        content: "⚠️ An error occurred processing your selection.",
+        flags: 64,
       },
     });
   }
-
-
-
-
-  const userId = extractUserId(req);
-  const selectedAnswer = data.values[0];
-  const question = game.question || game.objectName?.question;
-  const correct = question.correct === selectedAnswer;
-
-  // ✅ Record trivia result
-  recordTriviaResult(userId, correct);
-
-  // ✅ Remove the dropdown
-  deleteGame(gameId);
-
-  const resultText = correct
-    ? `✅ Correct, <@${userId}>! The answer was **${question.correct}**.`
-    : `❌ Sorry, <@${userId}>. The correct answer was **${question.correct}**.`;
-
-  // ✅ Edit the original message (removes dropdown & shows answer)
-  return res.send({
-    type: InteractionResponseType.UPDATE_MESSAGE,
-    data: {
-      content: resultText,
-      components: [], // removes dropdown
-    },
-  });
 }
