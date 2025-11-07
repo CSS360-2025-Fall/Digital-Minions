@@ -4,6 +4,8 @@ import { extractUserId } from "../../utils/helpers.js";
 import { getGame, deleteGame } from "../../services/gameState.js";
 import { createSimpleMessage } from "../../utils/messageBuilders.js";
 import { recordTriviaResult } from "../../services/gameState.js";
+import { discordRequest } from "../../utils/discord.js"; // add this import at the top
+
 
 export async function handleSelectChoice(req, res) {
   try {
@@ -32,10 +34,21 @@ export async function handleSelectChoice(req, res) {
       ? `✅ Correct, <@${userId}>! The answer was **${question.correct}**.`
       : `❌ Sorry, <@${userId}>. The correct answer was **${question.correct}**.`;
 
-    return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: createSimpleMessage(resultText),
-    });
+    // Edit the original trivia message to show the correct answer
+   const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
+    await discordRequest(endpoint, {
+    method: "PATCH",
+    body: {
+      content: resultText, // replaces the dropdown with the result
+      components: [], // clears dropdown components
+    },
+  });
+
+// Send an acknowledgment (ephemeral success response)
+return res.send({
+  type: InteractionResponseType.DEFERRED_UPDATE_MESSAGE,
+});
+
   } catch (err) {
     console.error("Trivia answer error:", err);
     return res.status(500).json({ error: "Internal server error" });
