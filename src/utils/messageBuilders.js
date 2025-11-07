@@ -70,25 +70,39 @@ export function createErrorMessage(errorText) {
 }
 
 // ✅ Trivia question message (new addition)
-export function createTriviaQuestionMessage(gameId, question) {
+export function createTriviaQuestionMessage(gameId, question, category = "random") {
+  const categoryEmoji = {
+    math: "🧮",
+    history: "📜",
+    science: "🧪",
+    sports: "⚽",
+    language: "🗣️",
+    art: "🎨",
+    "pop culture": "🎬",
+    random: "❓"
+  }[category] || "❓";
+
   return {
     embeds: [{
-      title: "🧠 Trivia Time!",
+      title: `${categoryEmoji} **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
       description: `**${question.question}**`,
-      color: 0x00ff00,
-      footer: { text: "Select an answer below!" },
+      color: 0x5865F2, // Discord blurple
+      footer: { text: "You have 30 seconds • Correct answers earn points!" },
+      timestamp: new Date().toISOString(),
     }],
     components: [{
       type: 1,
       components: [{
-        type: 3,
+        type: 3, // SELECT_MENU
         custom_id: `select_choice_${gameId}`,
         options: question.options.map((opt, i) => ({
-          label: opt,
+          label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
           value: opt,
-          description: i === 0 ? "Option 1" : i === 1 ? "Option 2" : undefined,
+          description: `Option ${i + 1}`,
         })),
-        placeholder: "Choose wisely...",
+        placeholder: "Choose the correct answer...",
+        min_values: 1,
+        max_values: 1,
       }],
     }],
   };
