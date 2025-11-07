@@ -1,13 +1,13 @@
 import { InteractionResponseType } from "discord-interactions";
 import { createSimpleMessage } from "../../utils/messageBuilders.js";
-import { recordTriviaResult } from "../../services/gameState.js";
+import { updateUserRecord } from "../../services/userRecords.js";  // ← NEW IMPORT
 import { deleteGame, getGame } from "../../services/gameState.js";
 import { extractUserId } from "../../utils/helpers.js";
 
 export async function handleSelectChoice(req, res) {
   try {
     const { data, member } = req.body;
-    const userId = member?.user?.id;
+    const userId = member?.user?.id || extractUserId(req); // fallback safety
     const gameId = data.custom_id.replace("select_choice_", "");
     const selectedChoice = data.values[0];
 
@@ -22,20 +22,24 @@ export async function handleSelectChoice(req, res) {
       });
     }
 
-    // Check answer and build result text
+    // Check answer
     const isCorrect = game.question.correct === selectedChoice;
     const resultText = isCorrect
-      ? `✅ Correct, ${game.question.correct}!`
-      : `❌ Incorrect. The correct answer was **${game.question.correct}**.`;
+      ? `✅ Correct! The answer is **${game.question.correct}**!`
+      : `❌ Wrong. The correct answer was **${game.question.correct}**.`;
 
+    // ← RECORD THE RESULT FOR THE PERSON WHO ANSWERED
+    updateUserRecord(userId, isCorrect ? "win" : "loss");
+
+    // Clean up
     deleteGame(gameId);
 
-    // Safely clear dropdown and display result
+    // Update the message (removes dropdown, shows result)
     return res.send({
       type: InteractionResponseType.UPDATE_MESSAGE,
       data: {
         content: resultText,
-        components: [], // safely removes dropdown
+        components: [], // removes the select menu
       },
     });
   } catch (err) {
