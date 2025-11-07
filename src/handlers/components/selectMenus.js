@@ -24,6 +24,8 @@ export async function handleSelectChoice(req, res) {
 
   const correct = question.correct === selectedAnswer;
 
+  recordTriviaResult(userId, correct);
+
   deleteGame(gameId);
 
   const resultText = correct
