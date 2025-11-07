@@ -11,8 +11,16 @@ export async function handleSelectChoice(req, res) {
   const game = getGame(gameId);
 
   if (!game) {
-    return res.status(404).json({ error: "game not found" });
+    // Gracefully handle attempts to answer after the game ended
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: "⚠️ This trivia round has already ended or expired.",
+        flags: 64, // Ephemeral: only the user sees this message
+      },
+    });
   }
+
 
   const userId = extractUserId(req);
   const selectedAnswer = data.values[0];
