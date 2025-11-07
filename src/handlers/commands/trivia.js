@@ -13,23 +13,34 @@ export async function handleTriviaCommand(req, res) {
   const userId = extractUserId(req);
   const category = data.options[0].value;
 
+  // ✅ Step 1: immediately acknowledge to avoid Discord timeout
+  res.send({
+    type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
+  });
+
+  // ✅ Step 2: build the question after acknowledgment
   const question = getRandomQuestion(category);
 
   if (!question) {
-    return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
+    // Post an error message via webhook if no questions found
+    const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
+    await discordRequest(endpoint, {
+      method: "POST",
+      body: {
         content: `No questions found for category **${category}**.`,
       },
     });
+    return;
   }
 
-  // Save active question
+  // ✅ Step 3: save active question
   createGame(id, userId, { category, question });
 
-  // Send the question to the channel
-  return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: createTriviaQuestionMessage(id, question),
+  // ✅ Step 4: send the question to the channel via webhook
+  const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
+  await discordRequest(endpoint, {
+    method: "POST",
+    body: createTriviaQuestionMessage(id, question),
   });
 }
+
