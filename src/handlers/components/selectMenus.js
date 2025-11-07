@@ -11,15 +11,16 @@ export async function handleSelectChoice(req, res) {
   const game = getGame(gameId);
 
   if (!game) {
-    // Gracefully handle attempts to answer after the game ended
-    return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
-        content: "⚠️ This trivia round has already ended or expired.",
-        flags: 64, // Ephemeral: only the user sees this message
-      },
-    });
-  }
+  // Remove dropdown and notify user that the game has expired
+  return res.send({
+    type: InteractionResponseType.UPDATE_MESSAGE,
+    data: {
+      content: "⚠️ This trivia round has already ended or expired.",
+      components: [], // 🔥 removes dropdown menu
+    },
+  });
+}
+
 
 
   const userId = extractUserId(req);
