@@ -16,9 +16,12 @@ export async function handleTriviaCommand(req, res) {
   const category = data.options[0].value;
 
   // 1) Immediately acknowledge to Discord to avoid timeout
+  console.log("Sending deferred response to Discord...");
   res.send({
     type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
   });
+  console.log("Deferred response sent successfully");
+
 
   try {
     // 2) Build the question
