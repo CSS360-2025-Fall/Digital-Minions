@@ -92,3 +92,4 @@ export function getTriviaRecord(userId) {
     ties: record.ties,
   };
 }
+*/
