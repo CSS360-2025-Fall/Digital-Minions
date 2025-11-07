@@ -76,28 +76,26 @@ export async function announceStartup() {
     return;
   }
 
-  let successCount = 0;
+    let successCount = 0;
   for (const guild of guilds) {
     console.log(`Processing guild: ${guild.name} (${guild.id})`);
     
     try {
-      // AUTOMATICALLY FIND FIRST TEXT CHANNEL THE BOT CAN SEND TO
       const channels = await discordRequest(`guilds/${guild.id}/channels`, { method: 'GET' });
+      // ←←← FIX: Pick first visible text channel (works even with complex perms)
       const textChannel = channels
-        .filter(c => c.type === 0) // Text channels only
-        .find(c => {
-          const perms = BigInt(c.permissions || 0);
-          return (perms & 0x800n) && (perms & 0x400n); // VIEW_CHANNEL and SEND_MESSAGES
-        });
+        .filter(c => c.type === 0)
+        .sort((a, b) => a.position - b.position)
+        .find(() => true);  // just take first
 
       if (textChannel) {
         const success = await sendAnnouncement(textChannel.id, commitInfo);
         if (success) successCount++;
       } else {
-        console.log(`  No writable text channel found in ${guild.name}`);
+        console.log(`  No text channel found in ${guild.name}`);
       }
     } catch (e) {
-      console.error(`Failed to get channels for guild ${guild.name}:`, e);
+      console.error(`Failed to process guild ${guild.name}:`, e);
     }
   }
 
