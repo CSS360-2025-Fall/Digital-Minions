@@ -30,12 +30,13 @@ export async function handleTriviaCommand(req, res) {
     if (!question) {
       // Post an error message via webhook if no questions found
       const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
-      await discordRequest(endpoint, {
-        method: 'POST',
-        body: {
-          content: `No questions found for category **${category}**.`,
-        },
-      });
+      console.log("Posting question to webhook:", endpoint, question);
+    await discordRequest(endpoint, {
+      method: 'POST',
+      body: createTriviaQuestionMessage(id, question),
+    });
+    console.log("Question sent successfully");
+
       return;
     }
 
