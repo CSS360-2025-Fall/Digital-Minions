@@ -1,6 +1,7 @@
 import { InteractionResponseType } from "discord-interactions";
 import { updateUserRecord } from "../../services/userRecords.js";
 import { deleteGame, getGame } from "../../services/gameState.js";
+import { recordTriviaResult } from "../../services/gameState.js";
 import { extractUserId } from "../../utils/helpers.js";
 
 export async function handleSelectChoice(req, res) {
