@@ -1,47 +1,34 @@
+// src/utils/discord.js
 import 'dotenv/config';
-import { DISCORD_API_BASE_URL } from '../constants/index.js';
 
-/**
- * Makes an authenticated request to the Discord API
- */
-export async function discordRequest(endpoint, options = {}) {
-  const url = DISCORD_API_BASE_URL + endpoint;
+export async function discordRequest(endpoint, options) {
+  // Full URL
+  const url = 'https://discord.com/api/v10/' + endpoint;
 
-  // Stringify payloads
-  if (options.body) {
-    options.body = JSON.stringify(options.body);
-  }
+  // Stringify body if present
+  if (options.body) options.body = JSON.stringify(options.body);
 
-  // Make request with authentication headers
+  // DEFAULT HEADERS — INCLUDING AUTH ON EVERY REQUEST
+  const headers = {
+    'Authorization': `Bot ${process.env.DISCORD_TOKEN}`,
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+
   const res = await fetch(url, {
-    headers: {
-      Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
-      'Content-Type': 'application/json; charset=UTF-8',
-      'User-Agent': 'DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)',
-    },
+    headers,
     ...options,
   });
 
-  // Throw on API errors
+  // Throw API errors
   if (!res.ok) {
-    const data = await res.json();
-    console.log(res.status);
+    const data = await res.json().catch(() => ({}));
+    console.error('Discord API error:', res.status, data);
     throw new Error(JSON.stringify(data));
   }
 
-  return res;
-}
+  // Return if no content
+  if (res.status === 204) return {};
 
-/**
- * Installs global Discord commands for the application
- */
-export async function installGlobalCommands(appId, commands) {
-  const endpoint = `applications/${appId}/commands`;
-
-  try {
-    // Bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
-    await discordRequest(endpoint, { method: 'PUT', body: commands });
-  } catch (err) {
-    console.error(err);
-  }
+  return res.json();
 }
