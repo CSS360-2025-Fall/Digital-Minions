@@ -9,11 +9,19 @@ export function createGame(userId, data, gameId = generateGameId()) {
   const game = {
     id: gameId,
     userId,
-    objectName: data, // Keeps compatibility with selectMenus.js
+    objectName: data,
     createdAt: Date.now(),
   };
   games.set(gameId, game);
-  //console.log(`Trivia game created: ${gameId} for user ${userId}`);
+
+  // ←←← FIX: Auto-expire after 5 minutes
+  setTimeout(() => {
+    if (games.has(gameId)) {
+      deleteGame(gameId);
+      console.log(`Auto-expired game ${gameId}`);
+    }
+  }, 5 * 60 * 1000);
+
   return gameId;
 }
 
