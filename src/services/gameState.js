@@ -1,4 +1,22 @@
 // src/services/gameState.js
+const triviaScores = {};
+
+export function recordTriviaResult(userId, isCorrect) {
+  if (!triviaScores[userId]) {
+    triviaScores[userId] = { correct: 0, incorrect: 0 };
+  }
+  if (isCorrect) triviaScores[userId].correct++;
+  else triviaScores[userId].incorrect++;
+}
+
+export function getTriviaRecord(userId) {
+  if (!triviaScores[userId]) {
+    triviaScores[userId] = { correct: 0, incorrect: 0 };
+  }
+  return triviaScores[userId];
+}
+
+
 const games = new Map();
 
 function generateGameId() {
@@ -41,20 +59,3 @@ setInterval(() => {
     }
   }
 }, 60 * 1000);
-
-const triviaScores = {};
-
-export function recordTriviaResult(userId, isCorrect) {
-  if (!triviaScores[userId]) {
-    triviaScores[userId] = { correct: 0, incorrect: 0 };
-  }
-  if (isCorrect) triviaScores[userId].correct++;
-  else triviaScores[userId].incorrect++;
-}
-
-export function getTriviaRecord(userId) {
-  if (!triviaScores[userId]) {
-    triviaScores[userId] = { correct: 0, incorrect: 0 };
-  }
-  return triviaScores[userId];
-}
