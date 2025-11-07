@@ -58,7 +58,7 @@ export const RULES_COMMAND = {
 
 export const RECORD_COMMAND = {
   name: 'record',
-  description: 'View win/loss record',
+  description: 'View your accuracy record',
   options: [
     {
       type: 6, // USER type
