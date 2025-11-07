@@ -41,3 +41,10 @@ setInterval(() => {
     }
   }
 }, 60 * 1000);
+
+export function getTriviaRecord(userId) {
+  if (!triviaScores[userId]) {
+    triviaScores[userId] = { correct: 0, incorrect: 0 };
+  }
+  return triviaScores[userId];
+}
