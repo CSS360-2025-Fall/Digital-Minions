@@ -78,3 +78,4 @@ export const ALL_COMMANDS = [
   RULES_COMMAND,
   RECORD_COMMAND,
 ];
+export default ALL_COMMANDS;  // ← ADD THIS LINE
