@@ -3,66 +3,56 @@ import { InteractionResponseType } from "discord-interactions";
 import { extractUserId } from "../../utils/helpers.js";
 import { getRandomQuestion } from "../../services/triviaQuestions.js";
 import { createTriviaQuestionMessage } from "../../utils/messageBuilders.js";
-import { createGame } from "../../services/gameState.js";
-import { discordRequest } from '../../utils/discord.js';
-
+import { createGame, generateGameId } from "../../services/gameState.js"; // ← FIXED: use generateGameId
 
 /**
  * Handles the /trivia command
  */
 export async function handleTriviaCommand(req, res) {
-  const { id, data } = req.body;
+  const interaction = req.body;
   const userId = extractUserId(req);
-  const category = data.options[0].value;
 
-  // 1) Immediately acknowledge to Discord to avoid timeout
-  console.log("Sending deferred response to Discord...");
+  // Get category (lowercase for consistency)
+  const categoryOption = interaction.data.options?.find(opt => opt.name === "category");
+  const category = categoryOption?.value?.toLowerCase() || "random";
+
+  // 1) Defer immediately
   res.send({
     type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
   });
-  console.log("Deferred response sent successfully");
-
 
   try {
-    // 2) Build the question
+    // 2) Get a random question
     const question = getRandomQuestion(category);
-
     if (!question) {
-      // Post an error message via webhook if no questions found
-      const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
-      console.log("Posting question to webhook:", endpoint, question);
-    await discordRequest(endpoint, {
-      method: 'POST',
-      body: createTriviaQuestionMessage(id, question),
-    });
-    console.log("Question sent successfully");
-
+      await interaction.followUp({
+        content: "❌ No questions found for that category!",
+        ephemeral: true,
+      });
       return;
     }
 
-    // 3) Save active question
-    createGame(id, userId, { category, question });
+    // 3) Generate unique game ID and save game
+    const gameId = generateGameId();
+    createGame(userId, { category, question }, gameId); // ← Fixed structure
 
-    // 4) Send the question to the channel via webhook
-    const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}`;
-    await discordRequest(endpoint, {
-      method: 'POST',
-      body: createTriviaQuestionMessage(id, question),
-    });
+    // 4) Delete the "thinking..." message (optional but clean)
+    await interaction.deleteReply().catch(() => {});
+
+    // 5) Send the trivia message as a REAL bot message (NOT webhook/followup)
+    // This allows UPDATE_MESSAGE to work perfectly
+    const channel = await global.client.channels.fetch(interaction.channel_id);
+    await channel.send(createTriviaQuestionMessage(gameId, question));
+
   } catch (err) {
     console.error('Error in handleTriviaCommand:', err);
-    // Try to notify the user of failure (ephemeral)
     try {
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: '⚠️ An error occurred while creating the trivia question.',
-          flags: 64, // ephemeral
-        },
+      await interaction.followUp({
+        content: '⚠️ An error occurred while creating the trivia question.',
+        ephemeral: true,
       });
     } catch (e) {
-      // If we can't send (already sent deferred), just log
-      console.error('Also failed to send error response:', e);
+      console.error('Failed to send error followup:', e);
     }
   }
 }
