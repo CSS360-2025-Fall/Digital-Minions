@@ -1,6 +1,3 @@
-// src/services/triviaQuestions.js
-// ALL QUESTIONS + FIXED getRandomQuestion — NO "question is not defined" EVER
-
 export const triviaQuestions = {
   math: [
     {
