@@ -13,7 +13,7 @@ export function createGame(userId, data, gameId = generateGameId()) {
     createdAt: Date.now(),
   };
   games.set(gameId, game);
-  console.log(`Trivia game created: ${gameId} for user ${userId}`);
+  //console.log(`Trivia game created: ${gameId} for user ${userId}`);
   return gameId;
 }
 
