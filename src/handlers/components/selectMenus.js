@@ -24,7 +24,9 @@ export async function handleSelectChoice(req, res) {
     const game = getGame(gameId);
     console.log('Step 6: Fetched game:', game ? JSON.stringify(game) : 'NOT FOUND');
 
-    if (!game || !game.question) {
+    // FIXED: Trivia questions are stored in game.objectName.question
+    const question = game?.objectName?.question;
+    if (!game || !question) {
       console.log('Step 7: Game or question invalid — sending expired message');
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -32,15 +34,15 @@ export async function handleSelectChoice(req, res) {
       });
     }
 
-    const isCorrect = game.question.correct === selectedAnswer;
+    const isCorrect = question.correct === selectedAnswer;
     console.log('Step 8: Calculated isCorrect:', isCorrect);
 
     updateUserRecord(userId, isCorrect ? "win" : "loss");
     console.log('Step 9: Updated user record');
 
     const resultText = isCorrect
-      ? `✅ **Correct!** The answer is **${game.question.correct}**`
-      : `❌ **Incorrect.** The correct answer was **${game.question.correct}**`;
+      ? `✅ **Correct!** The answer is **${question.correct}**`
+      : `❌ **Incorrect.** The correct answer was **${question.correct}**`;
 
     deleteGame(gameId);
     console.log('Step 10: Deleted game');
@@ -53,6 +55,7 @@ export async function handleSelectChoice(req, res) {
         components: [],
       },
     });
+
   } catch (err) {
     console.error("Select menu error:", err);
     return res.send({
