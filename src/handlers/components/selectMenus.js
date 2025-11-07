@@ -8,11 +8,7 @@ export async function handleSelectChoice(req, res) {
     console.log('Step 1: Received component interaction:', req.body.data.custom_id);
 
     const { data, member, user } = req.body;
-    console.log('Step 2: Extracted data, member, user from req.body');
-
     const userId = member?.user?.id || user?.id || extractUserId(req);
-    console.log('Step 3: Calculated userId:', userId);
-
     if (!userId) throw new Error("User ID not found");
 
     const gameId = data.custom_id.replace("select_choice_", "");
@@ -21,11 +17,11 @@ export async function handleSelectChoice(req, res) {
     const selectedAnswer = data.values[0];
     console.log('Step 5: Got selectedAnswer:', selectedAnswer);
 
+    // ←←← FIX 1: DON'T DECLARE `game` TWICE
     const game = getGame(gameId);
-    console.log('Step 6: Fetched game:', game ? JSON.stringify(game) : 'NOT FOUND');
+    console.log('Step 6: Fetched game:', game ? 'FOUND' : 'NOT FOUND');
 
-    // FIXED: Trivia questions are stored in game.objectName.question
-    const game = getGame(gameId);
+    // ←←← FIX 2: EXPIRED CHECK — EPHEMERAL + CLEAN
     if (!game) {
       console.log('Trivia expired or invalid game ID:', gameId);
       return res.send({
@@ -34,13 +30,14 @@ export async function handleSelectChoice(req, res) {
           content: "⏰ This trivia has expired!",
           embeds: [],
           components: [],
-          flags: 64, // ephemeral — only YOU see it, no public spam
+          flags: 64, // only you see it
         },
       });
     }
 
-// Keep your existing code below this (the part that checks answer, updates record, etc.)
-const { question } = game.data; // or game.objectName if that's how you stored it
+    // ←←← FIX 3: CORRECT PATH TO QUESTION (you store in game.data)
+    const { question } = game.data;  // ← this is correct based on your createGame()
+
     const isCorrect = question.correct === selectedAnswer;
     console.log('Step 8: Calculated isCorrect:', isCorrect);
 
@@ -54,12 +51,13 @@ const { question } = game.data; // or game.objectName if that's how you stored i
     deleteGame(gameId);
     console.log('Step 10: Deleted game');
 
-    console.log('Step 11: Sending update response');
+    // ←←← FINAL RESULT: CLEAN EDIT, NO EMBEDS, NO COMPONENTS
     return res.send({
       type: InteractionResponseType.UPDATE_MESSAGE,
       data: {
         content: resultText,
-        components: [],
+        embeds: [],       // clear embeds
+        components: [],   // remove dropdown
       },
     });
 
