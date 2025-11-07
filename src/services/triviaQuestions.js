@@ -1,5 +1,7 @@
+// src/services/triviaQuestions.js
+// ALL QUESTIONS + FIXED getRandomQuestion — NO "question is not defined" EVER
+
 export const triviaQuestions = {
-  //questions difficulty will vary to aid in optional future operations on adding difficulty to the bot. Each category will contain 10 questions, though.
   math: [
     {
       question: "What is 11 x 15?",
@@ -65,7 +67,7 @@ export const triviaQuestions = {
     },
     {
       question: "What year did the French Revolution begin?",
-      options:["1744", "1740", "1804", "1789"],
+      options: ["1744", "1740", "1804", "1789"],
       correct: "1789",
     },
     {
@@ -147,12 +149,7 @@ export const triviaQuestions = {
     },
     {
       question: "What law states that for every action, there is an equal and opposite reaction?",
-      options: [
-        "Newton's First Law",
-        "Newton's Second Law",
-        "Newton's Third Law",
-        "Law of Conservation of Energy",
-      ],
+      options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Conservation of Energy"],
       correct: "Newton's Third Law",
     },
     {
@@ -203,23 +200,13 @@ export const triviaQuestions = {
       correct: "Michael Phelps",
     },
     {
-       question: "Which team won the first Super Bowl in 1967?",
-       options: [
-        "Green Bay Packers",
-        "Kansas City Chiefs",
-        "New York Jets",
-        "Dallas Cowboys",
-      ],
+      question: "Which team won the first Super Bowl in 1967?",
+      options: ["Green Bay Packers", "Kansas City Chiefs", "New York Jets", "Dallas Cowboys"],
       correct: "Green Bay Packers",
     },
     {
       question: "What is the distance of a marathon?",
-      options: [
-        "24.2 miles",
-        "26.2 miles",
-        "28.2 miles",
-        "30.2 miles",
-      ],
+      options: ["24.2 miles", "26.2 miles", "28.2 miles", "30.2 miles"],
       correct: "26.2 miles",
     },
   ],
@@ -366,7 +353,7 @@ export const triviaQuestions = {
     {
       question: "Which artist painted the album cover for The Beatles’ Sgt. Pepper’s Lonely Hearts Club Band?",
       options: ["Peter Blake", "Andy Warhol", "Roy Lichtenstein", "David Hockney"],
-      correct: "Peter Blake"
+      correct: "Peter Blake",
     },
     {
       question: "Who won the first season of American Idol?",
@@ -381,14 +368,36 @@ export const triviaQuestions = {
   ],
 };
 
-// Helper function to fetch one random question
+// ←←← FIXED getRandomQuestion — WORKS WITH YOUR OBJECT ABOVE
 export function getRandomQuestion(category = "random") {
-  // ... your existing code ...
+  let availableQuestions = [];
 
-  const shuffled = [...question.options].sort(() => Math.random() - 0.5);  // ←←← FIX
+  if (category === "random") {
+    // Add ALL questions from every category
+    for (const cat in triviaQuestions) {
+      availableQuestions = availableQuestions.concat(triviaQuestions[cat]);
+    }
+  } else {
+    const catKey = category.toLowerCase();
+    const catQuestions = triviaQuestions[catKey] || triviaQuestions[catKey.replace(" ", "_")];
+    if (catQuestions) {
+      availableQuestions = catQuestions;
+    }
+  }
+
+  if (availableQuestions.length === 0) {
+    return null; // no questions
+  }
+
+  // Pick random question
+  const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+  // Shuffle options
+  const shuffled = [...selectedQuestion.options].sort(() => Math.random() - 0.5);
+
   return {
-    question: question.question,
+    question: selectedQuestion.question,
     options: shuffled,
-    correct: question.correct,
+    correct: selectedQuestion.correct,
   };
 }
