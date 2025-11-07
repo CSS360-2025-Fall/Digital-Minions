@@ -54,23 +54,6 @@ export function createStringSelect(customId, options) {
   };
 }
 
-/**
- * Creates the challenge button message
- */
-export function createChallengeMessage(userId, gameId) {
-  return {
-    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-    components: [
-      createTextDisplay(`Trivia challenge from <@${userId}>`),
-      createActionRow([
-        createButton(
-          `${COMPONENT_IDS.ACCEPT_BUTTON}${gameId}`,
-          'Accept'
-        ),
-      ]),
-    ],
-  };
-}
 
 /**
  * Creates the choice selection menu (ephemeral)
