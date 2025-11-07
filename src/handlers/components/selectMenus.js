@@ -25,15 +25,22 @@ export async function handleSelectChoice(req, res) {
     console.log('Step 6: Fetched game:', game ? JSON.stringify(game) : 'NOT FOUND');
 
     // FIXED: Trivia questions are stored in game.objectName.question
-    const question = game?.objectName?.question;
-    if (!game || !question) {
-      console.log('Step 7: Game or question invalid — sending expired message');
+    const game = getGame(gameId);
+    if (!game) {
+      console.log('Trivia expired or invalid game ID:', gameId);
       return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: { content: "⚠️ This trivia game has expired.", flags: 64 },
+        type: InteractionResponseType.UPDATE_MESSAGE,
+        data: {
+          content: "⏰ This trivia has expired!",
+          embeds: [],
+          components: [],
+          flags: 64, // ephemeral — only YOU see it, no public spam
+        },
       });
     }
 
+// Keep your existing code below this (the part that checks answer, updates record, etc.)
+const { question } = game.data; // or game.objectName if that's how you stored it
     const isCorrect = question.correct === selectedAnswer;
     console.log('Step 8: Calculated isCorrect:', isCorrect);
 
