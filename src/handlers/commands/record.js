@@ -1,6 +1,6 @@
 import { InteractionResponseType } from "discord-interactions";
 import { extractUserId } from "../../utils/helpers.js";
-import { getTriviaRecord } from "../../services/gameState.js";
+import { getTriviaRecord } from "../../services/userRecords.js";
 import { createSimpleMessage } from "../../utils/messageBuilders.js";
 
 export async function handleRecordCommand(req, res) {
