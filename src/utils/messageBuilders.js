@@ -71,18 +71,25 @@ export function createErrorMessage(errorText) {
 
 // ✅ Trivia question message (new addition)
 export function createTriviaQuestionMessage(gameId, question) {
-  const options = question.options.map((opt) => ({
-    label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
-    value: opt,
-  }));
-
   return {
-    content: `🧠 **Trivia Time!**\n**${question.question}**`,
-    components: [
-      createActionRow([
-        createStringSelect(`select_choice_${gameId}`, options), // ← EXACT PREFIX, NO COMPONENT_IDS
-      ]),
-    ],
+    embeds: [{
+      title: "🧠 Trivia Time!",
+      description: `**${question.question}**`,
+      color: 0x00ff00,
+      footer: { text: "Select an answer below!" },
+    }],
+    components: [{
+      type: 1,
+      components: [{
+        type: 3,
+        custom_id: `select_choice_${gameId}`,
+        options: question.options.map((opt, i) => ({
+          label: opt,
+          value: opt,
+          description: i === 0 ? "Option 1" : i === 1 ? "Option 2" : undefined,
+        })),
+        placeholder: "Choose wisely...",
+      }],
+    }],
   };
 }
-
