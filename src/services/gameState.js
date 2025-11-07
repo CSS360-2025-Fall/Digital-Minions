@@ -23,7 +23,7 @@ export function getGame(gameId) {
 
 export function deleteGame(gameId) {
   games.delete(gameId);
-  console.log(`Trivia game deleted: ${gameId}`);
+  //console.log(`Trivia game deleted: ${gameId}`);
 }
 
 // Optional: auto-expire old games (run every 10 minutes)
