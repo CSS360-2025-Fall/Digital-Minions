@@ -27,7 +27,23 @@ export function createStringSelect(customId, options) {
   };
 }
 
-
+/**
+ * Creates the choice selection menu (ephemeral)
+ */
+export function createChoiceSelectionMessage(gameId, options) {
+  return {
+    flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [
+      createTextDisplay('What is your object of choice?'),
+      createActionRow([
+        createStringSelect(
+          `${COMPONENT_IDS.SELECT_CHOICE}${gameId}`,
+          options
+        ),
+      ]),
+    ],
+  };
+}
 
 // ============================================================
 // Message Builder Utilities
