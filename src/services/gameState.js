@@ -3,14 +3,20 @@
 // For production, replace with persistent database storage
 const activeGames = {};
 
+export function generateGameId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
 /**
  * Creates a new game with the given ID
  */
-export function createGame(gameId, userId, objectName) {
-  activeGames[gameId] = {
-    id: userId,
-    objectName,
+export function createGame(userId, data, gameId = generateGameId()) {
+  const game = {
+    id: gameId,
+    userId,
+    objectName: data, // ← keeps compatibility with your current selectMenus.js
+    createdAt: Date.now(),
   };
+  games.set(gameId, game);
 }
 
 /**
