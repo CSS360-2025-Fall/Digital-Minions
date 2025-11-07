@@ -34,14 +34,14 @@ export async function handleTriviaCommand(req, res) {
 
     // SEND REAL QUESTION — ONE MESSAGE ONLY
     console.log("DEBUG webhook endpoint:", `webhooks/${process.env.APP_ID}/${interaction.token}`);
-    await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
+    await discordRequest(`webhooks/${interaction.application_id}/${interaction.token}`, {
       method: 'PATCH',
       body: createTriviaQuestionMessage(gameId, question),
     });
 
   } catch (err) {
     console.error('Trivia error:', err);
-    await discordRequest(`webhooks/${process.env.APP_ID}/${interaction.token}`, {
+    await discordRequest(`webhooks/${interaction.application_id}/${interaction.token}`, {
       method: 'PATCH',
       body: { content: "⚠️ Trivia failed — try again!", flags: 64 },
     });
