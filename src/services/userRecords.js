@@ -1,16 +1,17 @@
+// src/services/userRecords.js
 import { GAME_RESULTS } from '../constants/index.js';
 
 // In-memory storage for user win/loss records
 // NOTE: This is ephemeral and will be cleared on bot restart
 // For production, replace with persistent database storage
-const userRecords = {};
+const userRecords = new Map(); // ← CHANGED TO Map() FOR MODERN JS
 
 /**
  * Initializes a user record if it doesn't exist
  */
 function initializeUserRecord(userId) {
-  if (!userRecords[userId]) {
-    userRecords[userId] = { wins: 0, losses: 0, ties: 0 };
+  if (!userRecords.has(userId)) {
+    userRecords.set(userId, { wins: 0, losses: 0, ties: 0 });
   }
 }
 
@@ -19,16 +20,19 @@ function initializeUserRecord(userId) {
  */
 export function updateUserRecord(userId, result) {
   initializeUserRecord(userId);
+  const record = userRecords.get(userId);
 
   switch (result) {
     case GAME_RESULTS.WIN:
-      userRecords[userId].wins++;
+    case "win": // ← SUPPORT BOTH OLD RPS AND NEW TRIVIA
+      record.wins++;
       break;
     case GAME_RESULTS.LOSS:
-      userRecords[userId].losses++;
+    case "loss":
+      record.losses++;
       break;
     case GAME_RESULTS.TIE:
-      userRecords[userId].ties++;
+      record.ties++;
       break;
     default:
       console.warn(`Unknown game result: ${result}`);
@@ -39,7 +43,7 @@ export function updateUserRecord(userId, result) {
  * Retrieves a user's record
  */
 export function getUserRecord(userId) {
-  return userRecords[userId] || { wins: 0, losses: 0, ties: 0 };
+  return userRecords.get(userId) || { wins: 0, losses: 0, ties: 0 };
 }
 
 /**
@@ -48,29 +52,28 @@ export function getUserRecord(userId) {
 export function calculateWinRate(userId) {
   const record = getUserRecord(userId);
   const totalGames = record.wins + record.losses + record.ties;
-
-  if (totalGames === 0) {
-    return 0;
-  }
-
+  if (totalGames === 0) return "0.0";
   return ((record.wins / totalGames) * 100).toFixed(1);
 }
 
 /**
- * Returns all user records (primarily for debugging)
+ * Returns all user records (for debugging)
  */
 export function getAllRecords() {
-  return { ...userRecords };
+  return Object.fromEntries(userRecords);
 }
-// Get formatted trivia record for /record command
+
+// ←←← FIXED getTriviaRecord — NOW USES userRecords NOT "records"
 export function getTriviaRecord(userId) {
-  const record = records.get(userId) || { wins: 0, losses: 0 };
+  const record = userRecords.get(userId) || { wins: 0, losses: 0, ties: 0 };
   const total = record.wins + record.losses;
-  const rate = total === 0 ? 0 : Math.round((record.wins / total) * 100);
+  const winRate = total === 0 ? 0 : Math.round((record.wins / total) * 100);
+
   return {
     wins: record.wins,
     losses: record.losses,
     total,
-    winRate: rate,
+    winRate,
+    ties: record.ties,
   };
 }
