@@ -8,7 +8,7 @@ export async function handleSelectChoice(req, res) {
   try {
     const { data, member } = req.body;
     const userId = member?.user?.id;
-    const gameId = data.custom_id.split("_")[1];
+    const gameId = data.custom_id.replace("select_choice_", "");
     const selectedChoice = data.values[0];
 
     const game = getGame(gameId);
@@ -28,7 +28,7 @@ export async function handleSelectChoice(req, res) {
       ? `✅ Correct, ${game.question.correct}!`
       : `❌ Incorrect. The correct answer was **${game.question.correct}**.`;
 
-    clearGame(gameId);
+    deleteGame(gameId);
 
     // Safely clear dropdown and display result
     return res.send({
