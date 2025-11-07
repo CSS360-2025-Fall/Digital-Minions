@@ -1,16 +1,5 @@
-//import { getChoices } from '../services/game.js';
 import { capitalize } from '../utils/helpers.js';
 
-/**
- * Creates command choice options from game choices
- */
-/**function createCommandChoices() {
-  const choices = getChoices();
-  return choices.map((choice) => ({
-    name: capitalize(choice),
-    value: choice.toLowerCase(),
-  }));
-}*/
 
 /**
  * Command definitions for Discord
