@@ -40,6 +40,7 @@ export async function handleSelectChoice(req, res) {
     const { question } = game.data;  // ← this is correct based on your createGame()
 
     const isCorrect = question.correct === selectedAnswer;
+    recordTriviaResult(userId, isCorrect);
     console.log('Step 8: Calculated isCorrect:', isCorrect);
 
     updateUserRecord(userId, isCorrect ? "win" : "loss");
