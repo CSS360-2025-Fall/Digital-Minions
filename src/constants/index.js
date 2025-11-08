@@ -11,7 +11,7 @@ export const COMPONENT_IDS = {
 // Command Names
 export const COMMANDS = {
   TEST: 'test',
-  CHALLENGE: 'challenge',
+  TRIVIA: 'trivia',
   RULES: 'rules',
   RECORD: 'record',
 };

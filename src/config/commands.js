@@ -1,16 +1,5 @@
-import { getChoices } from '../services/game.js';
 import { capitalize } from '../utils/helpers.js';
 
-/**
- * Creates command choice options from game choices
- */
-function createCommandChoices() {
-  const choices = getChoices();
-  return choices.map((choice) => ({
-    name: capitalize(choice),
-    value: choice.toLowerCase(),
-  }));
-}
 
 /**
  * Command definitions for Discord
@@ -23,16 +12,24 @@ export const TEST_COMMAND = {
   contexts: [0, 1, 2],
 };
 
-export const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of trivia',
+export const TRIVIA_COMMAND = {
+  name: 'trivia',
+  description: 'start a trivia challenge by category',
   options: [
     {
-      type: 3,
-      name: 'object',
-      description: 'Pick your object',
+      type: 3, // STRING
+      name: 'category',
+      description: 'Pick your trivia category',
       required: true,
-      choices: createCommandChoices(),
+      choices: [
+        { name: 'Math', value: 'math' },
+        { name: 'History', value: 'history' },
+        { name: 'Science', value: 'science' },
+        { name: 'Sports', value: 'sports' },
+        { name: 'Language', value: 'language' },
+        { name: 'Art', value: 'art' },
+        { name: 'Pop Culture', value: 'pop_culture' },
+      ],
     },
   ],
   type: 1,
@@ -50,7 +47,7 @@ export const RULES_COMMAND = {
 
 export const RECORD_COMMAND = {
   name: 'record',
-  description: 'View win/loss record',
+  description: 'View your accuracy record',
   options: [
     {
       type: 6, // USER type
@@ -66,7 +63,8 @@ export const RECORD_COMMAND = {
 
 export const ALL_COMMANDS = [
   TEST_COMMAND,
-  CHALLENGE_COMMAND,
+  TRIVIA_COMMAND,
   RULES_COMMAND,
   RECORD_COMMAND,
 ];
+export default ALL_COMMANDS;  // ← ADD THIS LINE

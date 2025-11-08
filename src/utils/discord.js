@@ -1,47 +1,40 @@
+// src/utils/discord.js
 import 'dotenv/config';
-import { DISCORD_API_BASE_URL } from '../constants/index.js';
 
-/**
- * Makes an authenticated request to the Discord API
- */
 export async function discordRequest(endpoint, options = {}) {
-  const url = DISCORD_API_BASE_URL + endpoint;
+  const url = 'https://discord.com/api/v10/' + endpoint;
 
-  // Stringify payloads
   if (options.body) {
     options.body = JSON.stringify(options.body);
   }
 
-  // Make request with authentication headers
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
-      'Content-Type': 'application/json; charset=UTF-8',
-      'User-Agent': 'DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)',
-    },
-    ...options,
-  });
+  const headers = {
+    Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
+    'Content-Type': 'application/json',
+    'User-Agent': 'TriviaBot (https://github.com/cyndi/Digital-Minions-JR, v1.1)',  // ←←← FIX
+    ...options.headers,
+  };
 
-  // Throw on API errors
-  if (!res.ok) {
-    const data = await res.json();
-    console.log(res.status);
-    throw new Error(JSON.stringify(data));
-  }
-
-  return res;
-}
-
-/**
- * Installs global Discord commands for the application
- */
-export async function installGlobalCommands(appId, commands) {
-  const endpoint = `applications/${appId}/commands`;
+  const controller = new AbortController();  // ←←← FIX: timeout
+  const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
-    // Bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
-    await discordRequest(endpoint, { method: 'PUT', body: commands });
-  } catch (err) {
-    console.error(err);
+    const res = await fetch(url, {
+      headers,
+      signal: controller.signal,
+      ...options,
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      console.error('Discord API error:', res.status, data);
+      if (res.status === 429) console.log('Rate limited! Retry later.');
+      throw new Error(JSON.stringify(data));
+    }
+
+    if (res.status === 204) return {};
+    return res.json();
+  } finally {
+    clearTimeout(timeout);
   }
 }
