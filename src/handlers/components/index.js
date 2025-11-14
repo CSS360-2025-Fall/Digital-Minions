@@ -1,4 +1,5 @@
 import { COMPONENT_IDS } from '../../constants/index.js';
+import { handleAcceptButton } from './buttons.js';
 import { handleSelectChoice } from './selectMenus.js';
 
 /**
@@ -6,6 +7,10 @@ import { handleSelectChoice } from './selectMenus.js';
  */
 export async function handleMessageComponent(req, res) {
   const componentId = req.body.data.custom_id;
+
+  if (componentId.startsWith(COMPONENT_IDS.ACCEPT_BUTTON)) {
+    return handleAcceptButton(req, res);
+  }
 
   if (componentId.startsWith(COMPONENT_IDS.SELECT_CHOICE)) {
     return handleSelectChoice(req, res);
