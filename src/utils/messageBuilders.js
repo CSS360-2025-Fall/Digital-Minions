@@ -5,6 +5,21 @@ import {
 } from 'discord-interactions';
 import { COMPONENT_IDS } from '../constants/index.js';
 
+/**
+ * Creates a text display component
+ */
+export function createTextDisplay(content, ephemeral = false) {
+  const component = {
+    type: MessageComponentTypes.TEXT_DISPLAY,
+    content,
+  };
+
+  if (ephemeral) {
+    component.ephemeral = true;
+  }
+
+  return component;
+}
 
 /**
  * Creates an action row component
@@ -17,6 +32,18 @@ export function createActionRow(components) {
 }
 
 /**
+ * Creates a button component
+ */
+export function createButton(customId, label, style = ButtonStyleTypes.PRIMARY) {
+  return {
+    type: MessageComponentTypes.BUTTON,
+    custom_id: customId,
+    label,
+    style,
+  };
+}
+
+/**
  * Creates a string select menu component
  */
 export function createStringSelect(customId, options) {
@@ -24,6 +51,24 @@ export function createStringSelect(customId, options) {
     type: MessageComponentTypes.STRING_SELECT,
     custom_id: customId,
     options,
+  };
+}
+
+/**
+ * Creates the challenge button message
+ */
+export function createChallengeMessage(userId, gameId) {
+  return {
+    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [
+      createTextDisplay(`Trivia challenge from <@${userId}>`),
+      createActionRow([
+        createButton(
+          `${COMPONENT_IDS.ACCEPT_BUTTON}${gameId}`,
+          'Accept'
+        ),
+      ]),
+    ],
   };
 }
 
@@ -45,65 +90,26 @@ export function createChoiceSelectionMessage(gameId, options) {
   };
 }
 
-// ============================================================
-// Message Builder Utilities
-// Converted to ES Module syntax (import/export)
-// ============================================================
+/**
+ * Creates a simple text message
+ */
+export function createSimpleMessage(content, ephemeral = false) {
+  const flags = ephemeral
+    ? InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2
+    : InteractionResponseFlags.IS_COMPONENTS_V2;
 
-// ✅ Simple text message
-export function createSimpleMessage(content) {
-  return { content };
-}
-
-
-// ✅ Game-result message
-export function createGameResultMessage(resultText) {
-  return { content: resultText };
-}
-
-// ✅ Error message
-export function createErrorMessage(errorText) {
   return {
-    content: `⚠️ Error: ${errorText}`,
-    flags: 64, // ephemeral (visible only to user)
+    flags,
+    components: [createTextDisplay(content, ephemeral)],
   };
 }
 
-// ✅ Trivia question message (new addition)
-export function createTriviaQuestionMessage(gameId, question, category = "random") {
-  const categoryEmoji = {
-    math: "🧮",
-    history: "📜",
-    science: "🧪",
-    sports: "⚽",
-    language: "🗣️",
-    art: "🎨",
-    "pop culture": "🎬",
-    random: "❓"
-  }[category] || "❓";
-
+/**
+ * Creates the game result message
+ */
+export function createResultMessage(resultStr) {
   return {
-    embeds: [{
-      title: `${categoryEmoji} **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
-      description: `**${question.question}**`,
-      color: 0x5865F2, // Discord blurple
-      footer: { text: "You have 30 seconds • Correct answers earn points!" },
-      timestamp: new Date().toISOString(),
-    }],
-    components: [{
-      type: 1,
-      components: [{
-        type: 3, // SELECT_MENU
-        custom_id: `select_choice_${gameId}`,
-        options: question.options.map((opt, i) => ({
-          label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
-          value: opt,
-          description: `Option ${i + 1}`,
-        })),
-        placeholder: "Choose the correct answer...",
-        min_values: 1,
-        max_values: 1,
-      }],
-    }],
+    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [createTextDisplay(resultStr)],
   };
 }

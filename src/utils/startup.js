@@ -1,4 +1,3 @@
-// src/utils/startup.js
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { discordRequest } from './discord.js';
@@ -14,7 +13,7 @@ async function getGitCommitInfo() {
     const { stdout: message } = await execAsync('git log -1 --pretty=%B');
 
     return {
-      hash: hash.trim().substring(0, 7),
+      hash: hash.trim().substring(0, 7), // Short hash
       fullHash: hash.trim(),
       message: message.trim()
     };
@@ -33,38 +32,87 @@ async function getGitCommitInfo() {
  */
 async function getBotGuilds() {
   try {
-    const data = await discordRequest('users/@me/guilds', { method: 'GET' });
-    return Array.isArray(data) ? data : [];
-  } catch (err) {
-    console.error('Error fetching guilds:', err);
+    const response = await discordRequest('users/@me/guilds');
+    const guilds = await response.json();
+    return guilds;
+  } catch (error) {
+    console.error('Error fetching guilds:', error);
     return [];
   }
 }
 
 /**
- * Sends a startup announcement to a channel
+ * Finds the best channel to post announcements in a guild
+ * Priority: system channel > first text channel bot has permission to send in
  */
-async function sendAnnouncement(channelId, commitInfo) {
+async function findAnnouncementChannel(guildId) {
   try {
+    // Get guild information
+    const guildResponse = await discordRequest(`guilds/${guildId}`);
+    const guild = await guildResponse.json();
+
+    // Try system channel first (usually the default channel for announcements)
+    if (guild.system_channel_id) {
+      try {
+        // Check if we can send messages there
+        const channelResponse = await discordRequest(`channels/${guild.system_channel_id}`);
+        await channelResponse.json();
+        return guild.system_channel_id;
+      } catch (error) {
+        console.log(`Cannot access system channel for guild ${guild.name}`);
+      }
+    }
+
+    // Get all channels in the guild
+    const channelsResponse = await discordRequest(`guilds/${guildId}/channels`);
+    const channels = await channelsResponse.json();
+
+    // Find first text channel (type 0) that we can send messages to
+    // Sort by position to get the top-most channel
+    const textChannels = channels
+      .filter(ch => ch.type === 0) // GUILD_TEXT
+      .sort((a, b) => a.position - b.position);
+
+    if (textChannels.length > 0) {
+      return textChannels[0].id;
+    }
+
+    return null;
+  } catch (error) {
+    console.error(`Error finding announcement channel for guild ${guildId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Posts a startup announcement message to a channel
+ */
+async function postAnnouncementToChannel(channelId, commitInfo) {
+  try {
+    const message = {
+      content: `🤖 **Bot Started**\n` +
+               `Commit: \`${commitInfo.hash}\`\n` +
+               `Message: ${commitInfo.message}`
+    };
+
     await discordRequest(`channels/${channelId}/messages`, {
       method: 'POST',
-      body: {
-        content: `**Bot Started!**\nCommit: \`${commitInfo.hash}\`\n${commitInfo.message}`,
-      },
+      body: message
     });
-    console.log(`  ✓ Announcement sent to channel ${channelId}`);
+
     return true;
-  } catch (err) {
-    console.error(`  ✗ Failed to send announcement to ${channelId}:`, err);
+  } catch (error) {
+    console.error(`Error posting announcement to channel ${channelId}:`, error);
     return false;
   }
 }
 
 /**
- * Main startup announcement function — NO CHANNEL ID NEEDED
+ * Announces bot startup to all guilds the bot is in
  */
 export async function announceStartup() {
   console.log('Sending startup announcements...');
+
   const commitInfo = await getGitCommitInfo();
   console.log(`Git commit: ${commitInfo.hash} - ${commitInfo.message}`);
 
@@ -76,26 +124,25 @@ export async function announceStartup() {
     return;
   }
 
-    let successCount = 0;
+  let successCount = 0;
+
   for (const guild of guilds) {
     console.log(`Processing guild: ${guild.name} (${guild.id})`);
-    
-    try {
-      const channels = await discordRequest(`guilds/${guild.id}/channels`, { method: 'GET' });
-      // ←←← FIX: Pick first visible text channel (works even with complex perms)
-      const textChannel = channels
-        .filter(c => c.type === 0)
-        .sort((a, b) => a.position - b.position)
-        .find(() => true);  // just take first
 
-      if (textChannel) {
-        const success = await sendAnnouncement(textChannel.id, commitInfo);
-        if (success) successCount++;
-      } else {
-        console.log(`  No text channel found in ${guild.name}`);
-      }
-    } catch (e) {
-      console.error(`Failed to process guild ${guild.name}:`, e);
+    const channelId = await findAnnouncementChannel(guild.id);
+
+    if (!channelId) {
+      console.log(`  ⚠️  Could not find suitable channel for ${guild.name}`);
+      continue;
+    }
+
+    const success = await postAnnouncementToChannel(channelId, commitInfo);
+
+    if (success) {
+      console.log(`  ✓ Announcement sent to ${guild.name}`);
+      successCount++;
+    } else {
+      console.log(`  ✗ Failed to send announcement to ${guild.name}`);
     }
   }
 

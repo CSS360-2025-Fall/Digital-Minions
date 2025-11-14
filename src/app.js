@@ -1,39 +1,55 @@
-// src/app.js
 import 'dotenv/config';
 import express from 'express';
-import { InteractionType, InteractionResponseType, verifyKeyMiddleware } from 'discord-interactions';
-//import { announceStartup } from './utils/startup.js';
-import { handleMessageComponent } from './handlers/components/index.js';
+import {
+  InteractionResponseType,
+  InteractionType,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
 import { handleApplicationCommand } from './handlers/commands/index.js';
+import { handleMessageComponent } from './handlers/components/index.js';
+import { announceStartup } from './utils/startup.js';
 
+// Create Express app
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// VERIFY DISCORD REQUESTS
-app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async (req, res) => {
-  const interaction = req.body;
+/**
+ * Main interactions endpoint
+ * Discord sends all interaction events here
+ */
+app.post(
+  '/interactions',
+  verifyKeyMiddleware(process.env.PUBLIC_KEY),
+  async (req, res) => {
+    const { type } = req.body;
 
-  if (interaction.type === InteractionType.PING) {
-    return res.send({ type: InteractionResponseType.PONG });
+    // Handle verification requests from Discord
+    if (type === InteractionType.PING) {
+      return res.send({ type: InteractionResponseType.PONG });
+    }
+
+    // Handle slash commands
+    if (type === InteractionType.APPLICATION_COMMAND) {
+      return handleApplicationCommand(req, res);
+    }
+
+    // Handle button clicks and select menu interactions
+    if (type === InteractionType.MESSAGE_COMPONENT) {
+      return handleMessageComponent(req, res);
+    }
+
+    // Unknown interaction type
+    console.error('Unknown interaction type', type);
+    return res.status(400).json({ error: 'unknown interaction type' });
   }
+);
 
-  if (interaction.type === InteractionType.APPLICATION_COMMAND) {
-    return handleApplicationCommand(req, res);
-  }
+// Start server
+app.listen(PORT, () => {
+  console.log('Listening on port', PORT);
 
-  if (interaction.type === InteractionType.MESSAGE_COMPONENT) {
-    return handleMessageComponent(req, res);
-  }
-
-  res.status(400).send({ error: 'Unknown interaction type' });
-});
-
-// HEALTH CHECK (open http://localhost:3000 in browser)
-app.get('/', (req, res) => {
-  res.send('Dawgs of war trivia bot is ALIVE locally! 🐶🔥🚀');
-});
-
-// ←←← LOCAL ONLY: HARD-CODED PORT 3000
-app.listen(3000, () => {
-  console.log('Listening on port 3000');
-  //announceStartup();
+  // Announce startup to all guilds
+  announceStartup().catch(err => {
+    console.error('Error during startup announcement:', err);
+  });
 });

@@ -1,6 +1,6 @@
 import { COMMANDS } from '../../constants/index.js';
 import { handleTestCommand } from './test.js';
-import { handleTriviaCommand } from './trivia.js';
+import { handleChallengeCommand } from './challenge.js';
 import { handleRulesCommand } from './rules.js';
 import { handleRecordCommand } from './record.js';
 
@@ -10,7 +10,7 @@ import { handleRecordCommand } from './record.js';
  */
 const commandHandlers = {
   [COMMANDS.TEST]: handleTestCommand,
-  [COMMANDS.TRIVIA]: handleTriviaCommand,
+  [COMMANDS.CHALLENGE]: handleChallengeCommand,
   [COMMANDS.RULES]: handleRulesCommand,
   [COMMANDS.RECORD]: handleRecordCommand,
 };
