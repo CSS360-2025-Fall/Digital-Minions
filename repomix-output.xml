@@ -1,0 +1,2667 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+.vs/Digital-Minions-JR/CopilotIndices/17.14.1231.31060/CodeChunks.db
+.vs/Digital-Minions-JR/CopilotIndices/17.14.1231.31060/SemanticSymbols.db
+.vs/Digital-Minions-JR/FileContentIndex/1d86ecdc-b27b-4b03-8342-3b32a2d64d63.vsidx
+.vs/Digital-Minions-JR/v17/.wsuo
+.vs/Digital-Minions-JR/v17/DocumentLayout.json
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+ARCHITECTURE.md
+assets/getting-started-demo.gif
+CLAUDE.md
+eslint.config.js
+examples/app.js
+examples/button.js
+examples/command.js
+examples/modal.js
+examples/selectMenu.js
+LICENSE
+LIMITS.md
+package.json
+README.md
+records.json
+renovate.json
+src/app.js
+src/commands.js
+src/config/commands.js
+src/constants/index.js
+src/handlers/commands/index.js
+src/handlers/commands/record.js
+src/handlers/commands/rules.js
+src/handlers/commands/test.js
+src/handlers/commands/trivia.js
+src/handlers/components/buttons.js
+src/handlers/components/index.js
+src/handlers/components/selectMenus.js
+src/services/game.js
+src/services/gameState.js
+src/services/triviaQuestions.js
+src/services/userRecords.js
+src/utils/discord.js
+src/utils/helpers.js
+src/utils/messageBuilders.js
+src/utils/startup.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+node_modules
+.env
+</file>
+
+<file path=".vs/Digital-Minions-JR/v17/DocumentLayout.json">
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\cyndi\\Digital-Minions-JR\\",
+  "Documents": [],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": []
+    }
+  ]
+}
+</file>
+
+<file path=".vs/ProjectSettings.json">
+{
+  "CurrentProjectSetting": null
+}
+</file>
+
+<file path=".vs/VSWorkspaceState.json">
+{
+  "ExpandedNodes": [
+    ""
+  ],
+  "PreviewInSolutionExplorer": false
+}
+</file>
+
+<file path="ARCHITECTURE.md">
+# Bot Architecture
+
+## Networking
+This bot works over HTTP. It starts an HTTP server on port 3000, and listens for POSTS to '/interactions'. Connections are verified with middleware provided by Discord. Requests sent to Discord go to their API URL via `discordRequest`. Various HTTP methods can be sent, and they are verified with the 'Authorization' field in the HTTP header, which contains our API token.
+
+### Development Networking
+
+When running the bot from a development environment, ngrok is used. ngrok creates a public-facing, static URL that automagically forwards 80/443 to our local dev machine. The ngrok URL automatically handles TLS. The traffic goes from Discord, to ngrok, to our machine, encrypted the whole way. Once the traffic reaches our machine, ngrok-cli forwards it to port 3000.
+
+### Deployment Server Networking
+
+When running the bot on our deployment server -- on which the group 'CSS360 Digital Minions' bot runs -- things are more traditional. The server sits behind NAT on v4, and is directly accessible on v6. The containers that run on the server are in their own network, routed by the hypervisor. Static routes are used upstream. The bot/CD container (srv.parsl.xyz) runs three services: nginx, the bot, and a GitHub webhook server. nginx is set up with certbot to get TLS certificates with Let's Encrypt. For v4, 80/443 are forwarded to this container. For v6, 80/443 are allowed through the firewall. nginx forwards the '/interactions' endpoint to port 3000 (the bot), and the '/webhook' endpoint to port 7777 (the GitHub webhook service). Ports 3000 and 7777 are not allowed through the firewall. GitHub webhooks automatically update and restart the bot upon pull requests with PM2.
+
+## How Slash Commands Get Registered (npm run register)
+__Defining a slash command:__
+
+Each slash command has the following:
+- A name (e.g. /rules)
+- A description
+- Optional parameters (options, choices, subcommands)
+- A handler function in the bot code that executes when the command is invoked
+
+In our codebase, commands are defined in a structured command class format:
+
+      {
+        name: "rules",
+        description: "Describes the rules of the game",
+         type: 1,
+         integration_types: [0, 1],
+         contexts: [0, 1, 2],
+      };
+
+and are built in their own javascript files (rules.js, test.js, and so on).
+
+__Registering a command:__  
+Commands are registered globally meaning that new and updated commands are available across all the servers trivia bot is in (typically takes up to 1 hour to propagate). When commands are registered discord sends these definitions to their external api (https://discord.com/api/v10/applications/<some_application_id>/command). This process is automated using discords software development kit in the discord.js file in trivia bot's utilities. Trivia Bot also has CI/CD where we the developers commit changes and merge branches while the bot is able to pull the latest versions for us to test.
+
+__When a command gets registered:__
+* Once registered, Discord adds our commands to the command list when users type / in any server trivia bot is in.
+* Discord validates the commands (so users can’t run malformed commands), and stores them globally in its backend.
+* Users who have access to trivia bot can now see the commands autocomplete in the Discord UI
+
+__When a user invokes a slash command:__
+* Discord sends an interaction payload (JSON) to trivia bot’s interaction endpoint hosted on our own server or locally on our own machines with ngrok. 
+* The bot parses the command data, matches it to its internal handler registry, and calls the correct function.
+* The bot responds within 3 seconds (via deffered response) with either: An ephemeral message (only the invoking user can see) or a public message in the channel.
+
+__Simplified:__
+
+[Developer] → defines slash command → 
+[Registration Script] → POSTs to Discord API → 
+[Discord] → lists command in chat UI → 
+[User] → invokes slash command → 
+[Discord API] → sends interaction payload → 
+[Bot Listener] → executes handler → 
+[Bot] → sends message response
+
+_This architecture ensures commands are validated before execution, improving safety and user interaction._
+
+## Commands
+
+### Test Command
+Once all the commands are established and the user types out the test command, but before they select it. 
+The compiler will go to the method test_command in commands.js in config to pull the name and description to display to the user. 
+Then, once the test command is called. The compiler will go to test.js in commands that is in handlers. There, it retrieves the text to 
+send back to the user, as well as the command to go to the getRandomEmogi() method, which is in helpers.js, which is in the utils folder. This method 
+will add a random emoji to the text that is being sent to the user. Once that is completed, the message will be sent to the user. This message will look 
+like: Hello World (random emoji).
+      
+### Challenge Command
+
+Once the challenge command is typed but not selected, it will go to the commands.js class, but the challenge_command method, which is all in config to pull the name and description to display to the user. Then, once the command is selected, the compiler will move from commands.js in config to challenge.js, which will call for a method called extractUserId in helpers.js, which is in the utils folder. This method will give the user ID to the challenge.js, which will take it and then call game.js to get the options to the user. Once the user picks a choice challenge.js, it will go to a method called creategame in gamestates.js before returning to challenge.js. From there, it will utilize the InteractionResponseType from the discord-interactions library to help ask the user if they accept the challenge. Although the message will come from createChallengeMessage in message builders.js. While in that method, it will call a createbutton method, which is in challenge.js. This button will read "Accept". 
+
+Once the user clicks on it, we will move to index.js in components, where it will look for the action that was taken. Since ours is the Accept button being selected, it will move to buttons.js in components. Here, it will call getShuffledOptions in game.js, which is in the services folder. In this method, it uses the getChoices method that is in the same class to collect all the options and descriptions, and then returns to buttons.js. Where it will use that information to call the createChoiceSelectionMessage method in messagebuilders.js, which is in the utils folder. There, it creates the dropdown menu to ask the user's opponent what their choice will be, but with the descriptions under the options. Once this is done, it will be sent to the user's opponent, and the original challenge message will be deleted. Once the user selects their choice, we will go back to the index.js file in components, where we will again look for the action taken. index.js will send us over to selectMenus.js file in the components folder, where it will retrieve the game ID from the extractUserId method in helpers.js in the utils folder. Using that data, it will call calculateGameResult in the game.js file in the service folder, where it will determine who won the game before being sent back to selectmenus.js and then being sent back to the same file for getResults, which will send back the results formatted the way the user will see them. After collecting that info, it will call the updateUserRecord method in the userrecords.js file in the service folder. There, it will take the results and then update the record log for when the command record is called. After that is conducted, it will go back to selectmenus.js, where it calls to delete the game with the deleteGame method in gamestate.js file, which is in the service folder. From there, it will conduct the final steps of sending the results to createResultMessage, which is a method in the messagebuilders.js file in the utils folder. There, it will create the textdisplay and return to the selectMenus.js file, where it will send the results to Discord. Then, it will use createWebhookEndpoint in the helpers.js file to update the ephemeral message. From there, it will call Discord to send over a message created with the help of createSimpleMessage in messageBuilders.js and the getRandomEmoji method in the helpers.js file. With this message set and assuming Discord responded, it is sent, and the user will see one text saying "Nice Choice [random emoji]" and another that will show the results of the match. An example of this is "[userid]'s language generates its next creators [userid]'s art".
+
+### Rules Command
+
+Once the Rules command is typed but not selected, it will go to the commands.js class, but the rules_command method, where it will give the description of what it is. When selected, it will go to the rules.js file in the commands folder. Here, it will send over the rules to the game and then call createSimpleMessage in the messageBuilders.js file in the utils folder, where it will create a textdisplay not visible to the user.
+
+### Record Command
+
+Once the Record command is typed but not selected, it will go to the commands.js class, but the record_command method, where it will give the description of what it is. When selected, it will stay in this method to give options which will be who played. When the user is selected, it will go to the record.js file in the commands folder. Here, it will call the extractUserId method in helpers.js, which is in the utils folder, to get the user's ID. Then it will call the getUserRecord method in the userRecords file, which is in the services folder. There, it will send back the record for the record.js to calculate total games and then call calculateWinRate in the userRecords file, which is in the services folder. There, it will use the data to find the percentage of times the user won a game and then send that percentage back to record.js. Where it will format the text and send it to the user, and create a textdisplay not visible to the user.
+</file>
+
+<file path="CLAUDE.md">
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+This is a Discord bot that implements a trivia-themed rock-paper-scissors variant with 7 subject categories: Math, History, Science, Sports, Language, Art, and Pop Culture. Each category beats 3 others with creative "verb" descriptions (e.g., "math out calculates sports"). The bot uses Discord's slash commands and interactive components (buttons and select menus) for gameplay.
+
+## Development Commands
+
+```bash
+npm install        # Install dependencies
+npm run register   # Register slash commands with Discord API (run after command changes)
+npm start          # Start the bot server (production)
+npm run dev        # Start with nodemon (auto-restart on file changes)
+```
+
+### First-time Setup
+1. Create `.env` file with Discord credentials:
+   - `APP_ID` - Discord application ID
+   - `PUBLIC_KEY` - Public key for request verification
+   - `DISCORD_TOKEN` - Bot token for API authentication
+2. Run `npm install`
+3. Run `npm run register` to register commands
+4. Start bot with `npm start` or `npm run dev`
+
+## Architecture
+
+The codebase follows a modular architecture with clear separation of concerns:
+
+```
+src/
+├── app.js                      # Main Express server (entry point)
+├── commands.js                 # Command registration script
+├── constants/
+│   └── index.js               # Shared constants and enums
+├── config/
+│   └── commands.js            # Discord command definitions
+├── handlers/
+│   ├── commands/
+│   │   ├── index.js          # Command router
+│   │   ├── test.js           # /test command handler
+│   │   ├── challenge.js      # /challenge command handler
+│   │   ├── rules.js          # /rules command handler
+│   │   └── record.js         # /record command handler
+│   └── components/
+│       ├── index.js          # Component router
+│       ├── buttons.js        # Accept button handler
+│       └── selectMenus.js    # Choice selection handler
+├── services/
+│   ├── game.js               # Game logic and rules
+│   ├── gameState.js          # Active game state management
+│   └── userRecords.js        # Win/loss record tracking
+└── utils/
+    ├── discord.js            # Discord API wrapper
+    ├── helpers.js            # Common utility functions
+    └── messageBuilders.js    # Discord message component builders
+```
+
+### Core Components
+
+1. **app.js** - Main Express server listening on `/interactions`
+   - Routes interactions to appropriate handlers
+   - Handles 3 interaction types: PING, APPLICATION_COMMAND, MESSAGE_COMPONENT
+   - Uses `verifyKeyMiddleware` to cryptographically verify Discord requests
+   - Clean orchestrator with minimal business logic
+
+2. **commands.js** - Run once to register slash commands with Discord
+   - Loads command definitions from `config/commands.js`
+   - Calls `installGlobalCommands()` to push to Discord API
+   - Must be re-run whenever command definitions change
+
+3. **handlers/** - Request handlers organized by type
+   - **commands/**: Individual handlers for each slash command
+   - **components/**: Handlers for interactive components (buttons, menus)
+   - Each handler is a focused, single-purpose function
+
+4. **services/** - Business logic and state management
+   - **game.js**: Game rules, win conditions, result calculation
+   - **gameState.js**: In-memory active game storage
+   - **userRecords.js**: Win/loss record tracking and statistics
+
+5. **utils/** - Reusable utilities
+   - **discord.js**: Authenticated Discord API requests
+   - **helpers.js**: Common functions (user ID extraction, emoji, capitalize)
+   - **messageBuilders.js**: Discord component factory functions
+
+6. **config/** - Configuration and definitions
+   - **commands.js**: Discord command structures and options
+
+7. **constants/** - Shared constants
+   - Component ID prefixes, command names, result types, context types
+
+### Complete Game Interaction Flow
+
+1. User runs `/challenge <choice>` → handled by `handlers/commands/challenge.js`
+   - Extracts user ID and choice
+   - Creates game entry via `services/gameState.js`
+   - Returns challenge message with Accept button
+
+2. Bot posts message with "Accept" button (custom_id: `accept_button_{gameId}`)
+
+3. Another user clicks Accept → handled by `handlers/components/buttons.js`
+   - Sends ephemeral select menu with shuffled choices
+   - Deletes original challenge message
+
+4. User selects choice from menu (custom_id: `select_choice_{gameId}`) → handled by `handlers/components/selectMenus.js`
+   - Retrieves game from state
+   - Calculates result via `services/game.js`
+   - Updates user records via `services/userRecords.js`
+   - Posts game outcome and deletes game from state
+
+### Discord API Implementation Details
+
+**Components V2 Usage:**
+- All responses use `IS_COMPONENTS_V2` flag
+- Component types: `TEXT_DISPLAY`, `ACTION_ROW`, `BUTTON`, `STRING_SELECT`
+- Custom IDs track game state by appending game ID to component identifiers
+
+**User ID Extraction:**
+```javascript
+// Centralized in utils/helpers.js
+import { extractUserId } from '../utils/helpers.js';
+const userId = extractUserId(req);
+// Context 0 = guild/server, others = DM contexts
+```
+
+**Message Updates:**
+```javascript
+// Centralized endpoint creation in utils/helpers.js
+import { createWebhookEndpoint } from '../utils/helpers.js';
+const endpoint = createWebhookEndpoint(appId, token, messageId);
+// Pattern: webhooks/{APP_ID}/{token}/messages/{messageId}
+```
+- PATCH method updates existing messages
+- DELETE method removes messages
+- Message builders in `utils/messageBuilders.js` handle component structure
+
+### State Management
+
+**Active Games** (`services/gameState.js`):
+```javascript
+// In-memory storage with clean API
+createGame(gameId, userId, objectName)
+getGame(gameId)
+deleteGame(gameId)
+```
+
+**User Records** (`services/userRecords.js`):
+```javascript
+// Win/loss tracking with statistics
+updateUserRecord(userId, result)  // result: 'win', 'loss', or 'tie'
+getUserRecord(userId)
+calculateWinRate(userId)
+```
+
+**Important:** Both use in-memory storage and are cleared on bot restart. For production, replace with persistent database (SQLite, PostgreSQL, etc.).
+
+### Examples Directory
+
+The `examples/` folder contains reference implementations:
+- `button.js` - Button component examples
+- `selectMenu.js` - Select menu examples
+- `modal.js` - Modal dialog examples
+- `command.js` - Command structure examples
+- `app.js` - Alternative server implementation patterns
+
+These are reference files, not executed code.
+
+## Technical Requirements
+
+- Node.js >= 18.x
+- ES modules enabled (`"type": "module"` in package.json)
+- All imports must include `.js` extension
+- Environment variables required (see First-time Setup)
+</file>
+
+<file path="eslint.config.js">
+import js from "@eslint/js";
+import globals from "globals";
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.browser } },
+  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+]);
+</file>
+
+<file path="examples/app.js">
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionType,
+  InteractionResponseType,
+  InteractionResponseFlags,
+  MessageComponentTypes,
+  ButtonStyleTypes,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
+import { getRandomEmoji, DiscordRequest } from './utils.js';
+import { getShuffledOptions, getResult } from './game.js';
+
+// Create an express app
+const app = express();
+// Get port, or default to 3000
+const PORT = process.env.PORT || 3000;
+
+// Store for in-progress games. In production, you'd want to use a DB
+const activeGames = {};
+
+/**
+ * Interactions endpoint URL where Discord will send HTTP requests
+ * Parse request body and verifies incoming requests using discord-interactions package
+ */
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async function (req, res) {
+  // Interaction type and data
+  const { type, id, data } = req.body;
+
+  /**
+   * Handle verification requests
+   */
+  if (type === InteractionType.PING) {
+    return res.send({ type: InteractionResponseType.PONG });
+  }
+
+  /**
+   * Handle slash command requests
+   * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
+   */
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    const { name } = data;
+
+    // "test" command
+    if (name === 'test') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              // Fetches a random emoji to send from a helper function
+              content: `hello world ${getRandomEmoji()}`
+            }
+          ]
+        },
+      });
+    }
+
+    // "challenge" command
+    if (name === 'challenge' && id) {
+      // Interaction context
+      const context = req.body.context;
+      // User ID is in user field for (G)DMs, and member for servers
+      const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+      // User's object choice
+      const objectName = req.body.data.options[0].value;
+
+      // Create active game using message ID as the game ID
+      activeGames[id] = {
+        id: userId,
+        objectName,
+      };
+
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              // Fetches a random emoji to send from a helper function
+              content: `Rock papers scissors challenge from <@${userId}>`,
+            },
+            {
+              type: MessageComponentTypes.ACTION_ROW,
+              components: [
+                {
+                  type: MessageComponentTypes.BUTTON,
+                  // Append the game ID to use later on
+                  custom_id: `accept_button_${req.body.id}`,
+                  label: 'Accept',
+                  style: ButtonStyleTypes.PRIMARY,
+                },
+              ],
+            },
+          ],
+        },
+      });
+    }
+
+    console.error(`unknown command: ${name}`);
+    return res.status(400).json({ error: 'unknown command' });
+  }
+
+  /**
+   * Handle requests from interactive components
+   * See https://discord.com/developers/docs/components/using-message-components#using-message-components-with-interactions
+   */
+  if (type === InteractionType.MESSAGE_COMPONENT) {
+    // custom_id set in payload when sending message component
+    const componentId = data.custom_id;
+
+    if (componentId.startsWith('accept_button_')) {
+      // get the associated game ID
+      const gameId = componentId.replace('accept_button_', '');
+      // Delete message with token in request body
+      const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
+      try {
+        await res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            // Indicates it'll be an ephemeral message
+            flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
+            components: [
+              {
+                type: MessageComponentTypes.TEXT_DISPLAY,
+                content: 'What is your object of choice?',
+              },
+              {
+                type: MessageComponentTypes.ACTION_ROW,
+                components: [
+                  {
+                    type: MessageComponentTypes.STRING_SELECT,
+                    // Append game ID
+                    custom_id: `select_choice_${gameId}`,
+                    options: getShuffledOptions(),
+                  },
+                ],
+              },
+            ],
+          },
+        });
+        // Delete previous message
+        await DiscordRequest(endpoint, { method: 'DELETE' });
+      } catch (err) {
+        console.error('Error sending message:', err);
+      }
+    } else if (componentId.startsWith('select_choice_')) {
+      // get the associated game ID
+      const gameId = componentId.replace('select_choice_', '');
+
+      if (activeGames[gameId]) {
+        // Interaction context
+        const context = req.body.context;
+        // Get user ID and object choice for responding user
+        // User ID is in user field for (G)DMs, and member for servers
+        const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+        const objectName = data.values[0];
+        // Calculate result from helper function
+        const resultStr = getResult(activeGames[gameId], {
+          id: userId,
+          objectName,
+        });
+
+        // Remove game from storage
+        delete activeGames[gameId];
+        // Update message with token in request body
+        const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
+
+        try {
+          // Send results
+          await res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { 
+              flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+              components: [
+                {
+                  type: MessageComponentTypes.TEXT_DISPLAY,
+                  content: resultStr
+                }
+              ]
+             },
+          });
+          // Update ephemeral message
+          await DiscordRequest(endpoint, {
+            method: 'PATCH',
+            body: {
+              components: [
+                {
+                  type: MessageComponentTypes.TEXT_DISPLAY,
+                  content: 'Nice choice ' + getRandomEmoji()
+                }
+              ],
+            },
+          });
+        } catch (err) {
+          console.error('Error sending message:', err);
+        }
+      }
+    }
+    
+    return;
+  }
+
+  console.error('unknown interaction type', type);
+  return res.status(400).json({ error: 'unknown interaction type' });
+});
+
+app.listen(PORT, () => {
+  console.log('Listening on port', PORT);
+});
+</file>
+
+<file path="examples/button.js">
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionType,
+  InteractionResponseType,
+  MessageComponentTypes,
+  ButtonStyleTypes,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
+
+// Create and configure express app
+const app = express();
+
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function (req, res) {
+  // Interaction type and data
+  const { type, data } = req.body;
+  /**
+   * Handle slash command requests
+   */
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    // Slash command with name of "test"
+    if (data.name === 'test') {
+      // Send a message with a button
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          // Buttons are inside of action rows
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: 'A message with a button',
+            },
+            {
+              type: MessageComponentTypes.ACTION_ROW,
+              components: [
+                {
+                  type: MessageComponentTypes.BUTTON,
+                  // Value for your app to identify the button
+                  custom_id: 'my_button',
+                  label: 'Click',
+                  style: ButtonStyleTypes.PRIMARY,
+                },
+              ],
+            },
+          ],
+        },
+      });
+    }
+  }
+
+  /**
+   * Handle requests from interactive components
+   */
+  if (type === InteractionType.MESSAGE_COMPONENT) {
+    // custom_id set in payload when sending message component
+    const componentId = data.custom_id;
+    // user who clicked button
+    const userId = req.body.member.user.id;
+
+    if (componentId === 'my_button') {
+      console.log(req.body);
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: { content: `<@${userId}> clicked the button` },
+      });
+    }
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
+});
+</file>
+
+<file path="examples/command.js">
+import 'dotenv/config';
+import express from 'express';
+import { InteractionType, InteractionResponseType, verifyKeyMiddleware } from 'discord-interactions';
+import { DiscordRequest } from '../utils.js';
+
+// Create and configure express app
+const app = express();
+
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function (req, res) {
+  // Interaction type and data
+  const { type, data } = req.body;
+  /**
+   * Handle slash command requests
+   */
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    // Slash command with name of "test"
+    if (data.name === 'test') {
+      // Send a message as response
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: { content: 'A wild message appeared' },
+      });
+    }
+  }
+});
+
+async function createCommand() {
+  const appId = process.env.APP_ID;
+
+  /**
+   * Globally-scoped slash commands (generally only recommended for production)
+   * See https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+   */
+  const globalEndpoint = `applications/${appId}/commands`;
+
+  /**
+   * Guild-scoped slash commands
+   * See https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command
+   */
+  // const guildEndpoint = `applications/${appId}/guilds/<your guild id>/commands`;
+  const commandBody = {
+    name: 'test',
+    description: 'Just your average command',
+    // chat command (see https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types)
+    type: 1,
+  };
+
+  try {
+    // Send HTTP request with bot token
+    const res = await DiscordRequest(globalEndpoint, {
+      method: 'POST',
+      body: commandBody,
+    });
+    console.log(await res.json());
+  } catch (err) {
+    console.error('Error installing commands: ', err);
+  }
+}
+
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
+
+  createCommand();
+});
+</file>
+
+<file path="examples/modal.js">
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionType,
+  InteractionResponseType,
+  MessageComponentTypes,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
+
+// Create and configure express app
+const app = express();
+
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function (req, res) {
+  // Interaction type and data
+  const { type, data } = req.body;
+  /**
+   * Handle slash command requests
+   */
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    // Slash command with name of "test"
+    if (data.name === 'test') {
+      // Send a modal as response
+      return res.send({
+        type: InteractionResponseType.MODAL,
+        data: {
+          custom_id: 'my_modal',
+          title: 'Modal title',
+          components: [
+            {
+              // Text inputs must be inside of an action component
+              type: MessageComponentTypes.ACTION_ROW,
+              components: [
+                {
+                  // See https://discord.com/developers/docs/components/reference#text-input
+                  type: MessageComponentTypes.INPUT_TEXT,
+                  custom_id: 'my_text',
+                  style: 1,
+                  label: 'Type some text',
+                },
+              ],
+            },
+            {
+              type: MessageComponentTypes.ACTION_ROW,
+              components: [
+                {
+                  type: MessageComponentTypes.INPUT_TEXT,
+                  custom_id: 'my_longer_text',
+                  // Bigger text box for input
+                  style: 2,
+                  label: 'Type some (longer) text',
+                },
+              ],
+            },
+          ],
+        },
+      });
+    }
+  }
+
+  /**
+   * Handle modal submissions
+   */
+  if (type === InteractionType.MODAL_SUBMIT) {
+    // custom_id of modal
+    const modalId = data.custom_id;
+    // user ID of member who filled out modal
+    const userId = req.body.member.user.id;
+
+    if (modalId === 'my_modal') {
+      let modalValues = '';
+      // Get value of text inputs
+      for (let action of data.components) {
+        let inputComponent = action.components[0];
+        modalValues += `${inputComponent.custom_id}: ${inputComponent.value}\n`;
+      }
+
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: `<@${userId}> typed the following (in a modal):\n\n${modalValues}`,
+        },
+      });
+    }
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
+});
+</file>
+
+<file path="examples/selectMenu.js">
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionType,
+  InteractionResponseType,
+  MessageComponentTypes,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
+
+// Create and configure express app
+const app = express();
+
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function (req, res) {
+  // Interaction type and data
+  const { type, data } = req.body;
+  /**
+   * Handle slash command requests
+   */
+  if (type === InteractionType.APPLICATION_COMMAND) {
+    // Slash command with name of "test"
+    if (data.name === 'test') {
+      // Send a message with a button
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+          // Selects are inside of action rows
+          components: [
+            {
+              type: MessageComponentTypes.TEXT_DISPLAY,
+              content: 'What is your object of choice?',
+            },
+            {
+              type: MessageComponentTypes.ACTION_ROW,
+              components: [
+                {
+                  type: MessageComponentTypes.STRING_SELECT,
+                  // Value for your app to identify the select menu interactions
+                  custom_id: 'my_select',
+                  // Select options - see https://discord.com/developers/docs/components/reference#string-select
+                  options: [
+                    {
+                      label: 'Option #1',
+                      value: 'option_1',
+                      description: 'The very first option',
+                    },
+                    {
+                      label: 'Second option',
+                      value: 'option_2',
+                      description: 'The second AND last option',
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      });
+    }
+  }
+
+  /**
+   * Handle requests from interactive components
+   */
+  if (type === InteractionType.MESSAGE_COMPONENT) {
+    // custom_id set in payload when sending message component
+    const componentId = data.custom_id;
+
+    if (componentId === 'my_select') {
+      console.log(req.body);
+
+      // Get selected option from payload
+      const selectedOption = data.values[0];
+      const userId = req.body.member.user.id;
+
+      // Send results
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: { content: `<@${userId}> selected ${selectedOption}` },
+      });
+    }
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Listening on port 3000');
+});
+</file>
+
+<file path="LICENSE">
+MIT License
+
+Copyright (c) 2022 Shay DeWael
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</file>
+
+<file path="LIMITS.md">
+# Limitations
+
+## ESLint Suggestions
+### Methodology:
+
+For an initial search into possible syntax errors and other problems in our codebase we used the static analysis tool ESLint to audit our javascript files in their current states. We first went through each javascript file in our source folder, using ESLint individually on all them. We then audited the entire repository with ESLint to ensure we hadn't missed anything.
+
+ In both tests ESLint found the same 3 errors:
+
+    in button.js
+       'InteractionResponseFlags' is undefined
+    in selectMenu.js
+       'InteractionResponseFlags' is undefined
+    in  startup.js
+        'error' is defined but never used
+ 
+### Error Interpretation:
+- _'InteractionResponseFlags'_ is undefined in both __buttons.js__ and __selectMenus.js__
+
+This means that somewhere in __buttons.js__ and __selectMenus.js__, our code is referencing _'InteractionResponseFlags'_, but that variable or import doesn’t exist in our current scope. Since these files are imported from the discord example bot and we haven't altered them in any significant way, we believe these errors may be the result of a false positive. This is because _'InteractionResponseFlags'_ isn't referenced in either __buttons.js__ or __selectMenus.js__, _'InteractionResponseFlags'_ also aids in ephemerality which we have yet to use in any meaningful way. However, we can't be 100% certain that it won't be an issue going forward. Thus, we'll continue investigating just to be sure.
+
+- _'error'_ is defined but never used in __startup.js__
+
+This mean that in __startup.js__ _'error'_ is an unused variable which gets flagged by ESLint to reduce clutter and show unfinished logic. When combing through __startup.js__ we found that all catches had some sort of error handling and weren't intentionally or unintentionally left blank. This is likely a false positive, but we will continue investigating just to be certain. However, in the current scope of our bot's capabilities we have yet to focus on error handling; this might be an issue that leads to tech debt later depending on how we go about error handling for Trivia Bot. 
+
+### Next Steps:
+
+- For the _'InteracionResponseFlags'_ error, we plan on just using the built in __Discord.js__ property "ephemeral: True" instead of using response flags like "InteractionResponseFlags.Ephemeral". If the error persists we could also just explicitly import in __buttons.js__ and __selectMenus.js__.
+
+- For the _'error'_ defined but never used problem, we plan on finding it and handling it if it turns out to be a blank catch from the example bot template, but worst case scenario we can just remove it if necessary to reduce clutter. 
+
+### Conclusion
+Overall, the linting audit went over well. It was helpful for highlighting some issues that need to be worked on in the coming sprint. Linting the codebase was an essential part of our post-refactoring limitation assessment as files post-refactor have been trimmed/scaled down for efficiency and easy scalability. We wanted to check this automated refactor to make certain that any new or older syntax errors and bugs didn't persist in the code going forward.
+
+## Memory leak in gameState.js
+### Description:
+Games that are added to the map exist indefinitely if a game is abandoned.
+
+### Implications:
+Memory leak.
+
+### Scope:
+Critical bug.
+
+### Status:
+Queued for immediate fix.
+
+### Possible steps forward:
+Add timer thread that removes games after a certain timeout.
+
+## Concurrency not handled in gameState.js
+### Description:
+The game storage object does not use any form of locking. It could be written to by multiple users at once.
+
+### Implications:
+Potential memory corruption leading to crashes.
+
+### Scope:
+Critical bug.
+
+### Status:
+Queued for immediate change, alongside the switch to persistent record storage.
+
+### Possible steps forward:
+Implement proper locking when we switch to persistent record storage.
+
+## CD Implementation
+### Description:
+For CD purposes, the bot announces its current commit and commit description every time it starts. It does this in the main channel of every server.
+
+### Implications:
+- Spam in servers
+- Uses `exec` on the CD server. Currently, commands are hard-coded and do not use environmental variables. If this were to change, there could be risk of command injection.
+
+### Scope:
+If the `exec` statements are changed by future devs security issues could arise. Server spam is not acceptable for production.
+
+### Status:
+- Left as-is for testing purposes. Node config change is in the queue.
+
+### Possible steps forward:
+- Specific node configuration for testing that conditionally includes the announcement function.
+- Only announce in the development server.
+
+## Lack of Rate Limit
+### Description:
+Currently, the bot does not enforce any rate limits on user-triggered actions. This includes:
+- Discord API requests
+- Button or select menu interactions
+- Game creation or acceptance
+
+### Implications:
+- Spam risk: Users could repeatedly trigger interactions, creating excessive load on the bot or the Discord API.
+- Game state conflicts: Multiple rapid interactions can cause race conditions or an inconsistent in-memory game state.
+- API throttling: Excessive requests could exceed Discord’s rate limits, leading to temporary API bans or downtime.
+
+### Scope:
+This is an operational problem affecting user interaction at runtime. It does not directly involve sensitive secrets or
+environment variables.
+
+### Status:
+Currently left as-is during the testing phase. Will be patched before deployment.
+
+### Possible steps forward:
+- Add middleware or throttling mechanisms before launch to enforce limits on:
+  - Interaction frequency per user
+  - Game creation/acceptance rate
+  - API request bursts
+- Add server-side queuing or cooldowns to prevent spam and ensure fair gameplay.
+
+## Non-persistent User Records
+### Description:
+The bot currently stores user records (win/loss/tie data) in temporary memory. As a result, once the bot restarts or a user logs out, 
+all stored data is lost.
+
+### Implications:
+- Loss of progress: Users cannot maintain long-term records or compete on persistent leaderboards.
+- Inconsistent analytics: Gameplay statistics and user metrics are unreliable after each session.
+- Limited engagement: Players lack motivation to return since progress is erased.
+  
+### Scope:
+This is a functional limitation and has no security risk. This primarily affects user experience and continuity.
+
+### Status:
+Intended for early testing to simplify debugging.
+
+### Possible steps forward:
+- Connect the bot to a persistent data store (e.g., SQLite, PostgreSQL, or MongoDB).
+- Implement CRUD operations for user stats retrieval and updates.
+- Optionally sync stats with Discord IDs to ensure persistence across sessions.
+
+## Game in Rock Paper Scissors Mode
+### Description:
+The bot’s game logic is still based on Rock, Paper, Scissors (RPS) instead of Trivia.
+While the user interface references trivia categories, the underlying decision-making still follows the RPS model.
+
+### Implications:
+- Functional mismatch: The bot’s behavior does not match the project’s intended trivia gameplay or documentation.
+- Unclear outcomes: Players have no way to understand which category “beats” another, reducing clarity and strategy.
+- Incomplete testing: Trivia-specific features (question banks, scoring, validation) cannot yet be tested or implemented.
+- Requirement gap: The bot does not yet meet the user requirement for a trivia challenge game.
+  
+### Scope:
+This is a functional/design limitation, affecting the core purpose of the bot.
+
+### Status:
+Trivia logic has not yet been added. The RPS framework remains for testing the interaction flow.
+
+### Possible steps forward:
+- Add a trivia command module and supporting question database.
+- Replace the RPS outcome system with trivia question logic (category, question, answer, score).
+- Update /rules or help commands to explain trivia gameplay.
+- the game logic to support future expansion (e.g., different trivia categories or difficulties).
+</file>
+
+<file path="README.md">
+## Trivia Bot
+It will quiz you on 7 sections of random trivia
+The following 7 are:
+1. Math
+2. History
+3. Science
+4. Sports
+5. Language
+6. Art
+7. Pop culture
+
+Questions will be multiple choice by listing out the options with letters.
+We will log answers on if correct or not and do a correct streak.
+</file>
+
+<file path="records.json">
+{"948311202533109851":{"wins":0,"losses":0,"ties":0}}
+</file>
+
+<file path="renovate.json">
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableDependencyDashboard",
+    ":preserveSemverRanges"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**"
+  ]
+}
+</file>
+
+<file path="src/handlers/commands/rules.js">
+import { InteractionResponseType } from 'discord-interactions';
+import { createSimpleMessage } from '../../utils/messageBuilders.js';
+
+/**
+ * Handles the /rules command
+ */
+export async function handleRulesCommand(req, res) {
+  const rulesText = [
+    '**Trivia Rules**',
+    '1. Questions are multiple choice.',
+    '2. Correct answers earn you 1 point.',
+    '3. No cheating! Google is off-limits!',
+    '4. The player with the highest score wins.',
+  ].join('\n');
+
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: createSimpleMessage(rulesText, true),
+  });
+}
+</file>
+
+<file path="src/handlers/commands/test.js">
+import { InteractionResponseType } from 'discord-interactions';
+import { getRandomEmoji } from '../../utils/helpers.js';
+import { createSimpleMessage } from '../../utils/messageBuilders.js';
+
+/**
+ * Handles the /test command
+ */
+export async function handleTestCommand(req, res) {
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: createSimpleMessage(`hello world ${getRandomEmoji()}`),
+  });
+}
+</file>
+
+<file path="src/utils/helpers.js">
+import { CONTEXT_TYPES } from '../constants/index.js';
+
+/**
+ * Extracts user ID from Discord request based on context
+ * User ID is in different locations for guild vs DM contexts
+ */
+export function extractUserId(req) {
+  const context = req.body.context;
+  return context === CONTEXT_TYPES.GUILD
+    ? req.body.member.user.id
+    : req.body.user.id;
+}
+
+/**
+ * Creates a webhook endpoint URL for message operations
+ */
+export function createWebhookEndpoint(appId, token, messageId) {
+  return `webhooks/${appId}/${token}/messages/${messageId}`;
+}
+
+/**
+ * Returns a random emoji from predefined list
+ */
+export function getRandomEmoji() {
+  const emojiList = ['😭','😄','😌','🤓','😎','😤','🤖','😶‍🌫️','🌏','📸','💿','👋','🌊','✨'];
+  return emojiList[Math.floor(Math.random() * emojiList.length)];
+}
+
+/**
+ * Capitalizes the first letter of a string
+ */
+export function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+</file>
+
+<file path="src/constants/index.js">
+// Discord API Configuration
+export const DISCORD_API_VERSION = 'v10';
+export const DISCORD_API_BASE_URL = `https://discord.com/api/${DISCORD_API_VERSION}/`;
+
+// Component ID Prefixes
+export const COMPONENT_IDS = {
+  ACCEPT_BUTTON: 'accept_button_',
+  SELECT_CHOICE: 'select_choice_',
+};
+
+// Command Names
+export const COMMANDS = {
+  TEST: 'test',
+  TRIVIA: 'trivia', //modifing to trivia
+  RULES: 'rules',
+  RECORD: 'record',
+};
+
+// Game Result Types
+export const GAME_RESULTS = {
+  WIN: 'win',
+  LOSS: 'loss',
+  TIE: 'tie',
+};
+
+// Context Types (Discord Interaction Contexts)
+export const CONTEXT_TYPES = {
+  GUILD: 0,        // Server context
+  BOT_DM: 1,       // Bot DM context
+  PRIVATE_DM: 2,   // Private/Group DM context
+};
+</file>
+
+<file path="src/handlers/commands/index.js">
+import { COMMANDS } from '../../constants/index.js';
+import { handleTestCommand } from './test.js';
+import { handleChallengeCommand } from './trivia.js';
+import { handleRulesCommand } from './rules.js';
+import { handleRecordCommand } from './record.js';
+
+/**
+ * Command handler registry
+ * Maps command names to their handler functions
+ */
+const commandHandlers = {
+  [COMMANDS.TEST]: handleTestCommand,
+  [COMMANDS.TRIVIA]: handleChallengeCommand,
+  [COMMANDS.RULES]: handleRulesCommand,
+  [COMMANDS.RECORD]: handleRecordCommand,
+};
+
+/**
+ * Routes application commands to their appropriate handlers
+ */
+export async function handleApplicationCommand(req, res) {
+  const { name } = req.body.data;
+  const handler = commandHandlers[name];
+
+  if (!handler) {
+    console.error(`Unknown command: ${name}`);
+    return res.status(400).json({ error: 'unknown command' });
+  }
+
+  return handler(req, res);
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "discord-getting-started",
+  "private": true,
+  "version": "1.1.0",
+  "description": "Discord trivia",
+  "main": "src/app.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "register": "node src/commands.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "Shay DeWael",
+  "license": "MIT",
+  "dependencies": {
+    "discord-interactions": "^4.0.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.37.0",
+    "nodemon": "^3.0.0"
+  }
+}
+</file>
+
+<file path="src/services/game.js">
+/*import { capitalize } from '../utils/helpers.js';
+
+// Game choices and their win conditions
+// Each category beats 3 others with creative verb descriptions
+
+
+/**
+ * Returns all available game choices
+ *//*
+
+
+/**
+ * Calculates the game result between two players
+ *//*
+export function calculateGameResult(p1, p2) {
+  // Check if p1 wins
+  if (RPS_CHOICES[p1.objectName]?.[p2.objectName]) {
+    return {
+      win: p1,
+      lose: p2,
+      verb: RPS_CHOICES[p1.objectName][p2.objectName],
+    };
+  }
+
+  // Check if p2 wins
+  if (RPS_CHOICES[p2.objectName]?.[p1.objectName]) {
+    return {
+      win: p2,
+      lose: p1,
+      verb: RPS_CHOICES[p2.objectName][p1.objectName],
+    };
+  }
+
+  // Tie - both chose the same
+  return {
+    win: p1,
+    lose: p2,
+    verb: 'tie',
+  };
+}
+
+/**
+ * Formats the game result as a string
+ */
+/*
+* currently no cover for this bellow one but should make one.
+*/
+/*export function formatResult(result) {
+  const { win, lose, verb } = result;
+
+  if (verb === 'tie') {
+    return `<@${win.id}> and <@${lose.id}> draw with **${win.objectName}**`;
+  }
+
+  return `<@${win.id}>'s **${win.objectName}** ${verb} <@${lose.id}>'s **${lose.objectName}**`;
+}
+
+/**
+ * Calculates result and formats it as a string (convenience function)
+ *//*
+export function getResult(p1, p2) {
+  const gameResult = calculateGameResult(p1, p2);
+  return formatResult(gameResult);
+}
+
+/**
+ * Returns shuffled options formatted for Discord select menus
+ *//*
+export function getShuffledOptions() {
+  const allChoices = getChoices();
+  const options = allChoices.map((choice) => ({
+    label: capitalize(choice),
+    value: choice.toLowerCase(),
+    description: RPS_CHOICES[choice].description,
+  }));
+
+  // Shuffle array
+  return options.sort(() => Math.random() - 0.5);
+}
+*/
+</file>
+
+<file path="src/handlers/components/buttons.js">
+/*import { InteractionResponseType } from 'discord-interactions';
+import { COMPONENT_IDS } from '../../constants/index.js';
+import { discordRequest } from '../../utils/discord.js';
+import { createWebhookEndpoint } from '../../utils/helpers.js';
+import { createChoiceSelectionMessage } from '../../utils/messageBuilders.js';
+import { getShuffledOptions } from '../../services/game.js';
+
+/**
+ * Handles the accept button click
+ * Deletes the challenge message and sends an ephemeral choice menu
+ *//*
+export async function handleAcceptButton(req, res) {
+  const { data, message } = req.body;
+  const componentId = data.custom_id;
+  const gameId = componentId.replace(COMPONENT_IDS.ACCEPT_BUTTON, '');
+
+  try {
+    // Send ephemeral choice selection menu
+    await res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: createChoiceSelectionMessage(gameId, getShuffledOptions()),
+    });
+
+    // Delete the original challenge message
+    const endpoint = createWebhookEndpoint(
+      process.env.APP_ID,
+      req.body.token,
+      message.id
+    );
+    await discordRequest(endpoint, { method: 'DELETE' });
+  } catch (err) {
+    console.error('Error handling accept button:', err);
+  }
+}*/
+</file>
+
+<file path="src/handlers/components/index.js">
+import { COMPONENT_IDS } from '../../constants/index.js';
+//import { handleAcceptButton } from './buttons.js';
+import { handleSelectChoice } from './selectMenus.js';
+
+/**
+ * Routes message component interactions to their appropriate handlers
+ */
+export async function handleMessageComponent(req, res) {
+  const componentId = req.body.data.custom_id;
+
+  /*if (componentId.startsWith(COMPONENT_IDS.ACCEPT_BUTTON)) {
+    return handleAcceptButton(req, res);
+  }*/
+
+  if (componentId.startsWith(COMPONENT_IDS.SELECT_CHOICE)) {
+    return handleSelectChoice(req, res);
+  }
+
+  console.error(`Unknown component: ${componentId}`);
+  return res.status(400).json({ error: 'unknown component' });
+}
+</file>
+
+<file path="src/utils/startup.js">
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { discordRequest } from './discord.js';
+
+const execAsync = promisify(exec);
+
+/**
+ * Gets the current git commit hash and description
+ */
+async function getGitCommitInfo() {
+  try {
+    const { stdout: hash } = await execAsync('git rev-parse HEAD');
+    const { stdout: message } = await execAsync('git log -1 --pretty=%B');
+
+    return {
+      hash: hash.trim().substring(0, 7), // Short hash
+      fullHash: hash.trim(),
+      message: message.trim()
+    };
+  } catch (error) {
+    console.error('Error getting git commit info:', error);
+    return {
+      hash: 'unknown',
+      fullHash: 'unknown',
+      message: 'Unable to retrieve commit information'
+    };
+  }
+}
+
+/**
+ * Gets all guilds the bot is a member of
+ */
+async function getBotGuilds() {
+  try {
+    const response = await discordRequest('users/@me/guilds');
+    const guilds = await response.json();
+    return guilds;
+  } catch (error) {
+    console.error('Error fetching guilds:', error);
+    return [];
+  }
+}
+
+/**
+ * Finds the best channel to post announcements in a guild
+ * Priority: system channel > first text channel bot has permission to send in
+ */
+async function findAnnouncementChannel(guildId) {
+  try {
+    // Get guild information
+    const guildResponse = await discordRequest(`guilds/${guildId}`);
+    const guild = await guildResponse.json();
+
+    // Try system channel first (usually the default channel for announcements)
+    if (guild.system_channel_id) {
+      try {
+        // Check if we can send messages there
+        const channelResponse = await discordRequest(`channels/${guild.system_channel_id}`);
+        await channelResponse.json();
+        return guild.system_channel_id;
+      } catch (error) {
+        console.log(`Cannot access system channel for guild ${guild.name}`);
+      }
+    }
+
+    // Get all channels in the guild
+    const channelsResponse = await discordRequest(`guilds/${guildId}/channels`);
+    const channels = await channelsResponse.json();
+
+    // Find first text channel (type 0) that we can send messages to
+    // Sort by position to get the top-most channel
+    const textChannels = channels
+      .filter(ch => ch.type === 0) // GUILD_TEXT
+      .sort((a, b) => a.position - b.position);
+
+    if (textChannels.length > 0) {
+      return textChannels[0].id;
+    }
+
+    return null;
+  } catch (error) {
+    console.error(`Error finding announcement channel for guild ${guildId}:`, error);
+    return null;
+  }
+}
+
+/**
+ * Posts a startup announcement message to a channel
+ */
+async function postAnnouncementToChannel(channelId, commitInfo) {
+  try {
+    const message = {
+      content: `🤖 **Bot Started**\n` +
+               `Commit: \`${commitInfo.hash}\`\n` +
+               `Message: ${commitInfo.message}`
+    };
+
+    await discordRequest(`channels/${channelId}/messages`, {
+      method: 'POST',
+      body: message
+    });
+
+    return true;
+  } catch (error) {
+    console.error(`Error posting announcement to channel ${channelId}:`, error);
+    return false;
+  }
+}
+
+/**
+ * Announces bot startup to all guilds the bot is in
+ */
+export async function announceStartup() {
+  console.log('Sending startup announcements...');
+
+  const commitInfo = await getGitCommitInfo();
+  console.log(`Git commit: ${commitInfo.hash} - ${commitInfo.message}`);
+
+  const guilds = await getBotGuilds();
+  console.log(`Found ${guilds.length} guild(s)`);
+
+  if (guilds.length === 0) {
+    console.log('No guilds found. Bot may not be added to any servers yet.');
+    return;
+  }
+
+  let successCount = 0;
+
+  for (const guild of guilds) {
+    console.log(`Processing guild: ${guild.name} (${guild.id})`);
+
+    const channelId = await findAnnouncementChannel(guild.id);
+
+    if (!channelId) {
+      console.log(`  ⚠️  Could not find suitable channel for ${guild.name}`);
+      continue;
+    }
+
+    const success = await postAnnouncementToChannel(channelId, commitInfo);
+
+    if (success) {
+      console.log(`  ✓ Announcement sent to ${guild.name}`);
+      successCount++;
+    } else {
+      console.log(`  ✗ Failed to send announcement to ${guild.name}`);
+    }
+  }
+
+  console.log(`Startup announcements complete: ${successCount}/${guilds.length} successful`);
+}
+</file>
+
+<file path="src/commands.js">
+import 'dotenv/config';
+import { installGlobalCommands } from './utils/discord.js';
+import { ALL_COMMANDS } from './config/commands.js';
+
+/**
+ * Script to register all slash commands with Discord
+ * Run this whenever command definitions change
+ */
+installGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
+</file>
+
+<file path="src/handlers/commands/record.js">
+import { InteractionResponseType } from 'discord-interactions';
+import { extractUserId } from '../../utils/helpers.js';
+import { createSimpleMessage } from '../../utils/messageBuilders.js';
+import { getTriviaRecord } from '../../services/gameState.js';
+
+/**
+ * Handles the /record command
+ * Shows win/loss record for specified user or command issuer
+ */
+export async function handleRecordCommand(req, res) {
+  const { data } = req.body;
+  const targetUserId = data?.options?.[0]?.value || extractUserId(req);
+
+  const record = getTriviaRecord(targetUserId);
+  const total = (record.correct || 0) + (record.incorrect || 0);
+  const accuracy = total === 0 ? 0 : ((record.correct / total) * 100).toFixed(1);
+
+  const message = `📊 Trivia Record for <@${targetUserId}>:
+✅ **Correct:** ${record.correct || 0}
+❌ **Incorrect:** ${record.incorrect || 0}
+🏅 **Accuracy:** ${accuracy}%`;
+
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: createSimpleMessage(message),
+  });
+}
+</file>
+
+<file path="src/utils/discord.js">
+import 'dotenv/config';
+import { DISCORD_API_BASE_URL } from '../constants/index.js';
+
+/**
+ * Makes an authenticated request to the Discord API
+ */
+export async function discordRequest(endpoint, options = {}) {
+  const url = DISCORD_API_BASE_URL + endpoint;
+
+  // Stringify payloads
+  if (options.body) {
+    options.body = JSON.stringify(options.body);
+  }
+
+  // Make request with authentication headers
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
+      'Content-Type': 'application/json; charset=UTF-8',
+      'User-Agent': 'DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)',
+    },
+    ...options,
+  });
+
+  // Throw on API errors
+  if (!res.ok) {
+    const data = await res.json();
+    console.log(res.status);
+    throw new Error(JSON.stringify(data));
+  }
+
+  return res;
+}
+
+/**
+ * Installs global Discord commands for the application
+ */
+export async function installGlobalCommands(appId, commands) {
+  const endpoint = `applications/${appId}/commands`;
+
+  try {
+    // Bulk overwrite endpoint: https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands
+    await discordRequest(endpoint, { method: 'PUT', body: commands });
+  } catch (err) {
+    console.error(err);
+  }
+}
+</file>
+
+<file path="src/app.js">
+import 'dotenv/config';
+import express from 'express';
+import {
+  InteractionResponseType,
+  InteractionType,
+  verifyKeyMiddleware,
+} from 'discord-interactions';
+import { handleApplicationCommand } from './handlers/commands/index.js';
+import { handleMessageComponent } from './handlers/components/index.js';
+import { announceStartup } from './utils/startup.js';
+
+// Create Express app
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+/**
+ * Main interactions endpoint
+ * Discord sends all interaction events here
+ */
+app.post(
+  '/interactions',
+  verifyKeyMiddleware(process.env.PUBLIC_KEY),
+  async (req, res) => {
+    const { type } = req.body;
+
+    // Handle verification requests from Discord
+    if (type === InteractionType.PING) {
+      return res.send({ type: InteractionResponseType.PONG });
+    }
+
+    // Handle slash commands
+    if (type === InteractionType.APPLICATION_COMMAND) {
+      return handleApplicationCommand(req, res);
+    }
+
+    // Handle button clicks and select menu interactions
+    if (type === InteractionType.MESSAGE_COMPONENT) {
+      return handleMessageComponent(req, res);
+    }
+
+    // Unknown interaction type
+    console.error('Unknown interaction type', type);
+    return res.status(400).json({ error: 'unknown interaction type' });
+  }
+);
+
+// Start server
+app.listen(PORT, () => {
+  console.log('Listening on port', PORT);
+
+  // Announce startup to all guilds
+  announceStartup().catch(err => {
+    console.error('Error during startup announcement:', err);
+  });
+});
+</file>
+
+<file path="src/config/commands.js">
+import { getChoices } from '../services/gameState.js';
+import { capitalize } from '../utils/helpers.js';
+
+//altered getChoiice location to be in gameState.js since that on is taking care of a lot of what game.js does.
+
+/**
+ * Creates command choice options from game choices
+ */
+function createCommandChoices() {
+  const choices = getChoices();
+  return choices.map((choice) => ({
+    name: capitalize(choice),
+    value: choice.toLowerCase(),
+  }));
+}
+
+/**
+ * Command definitions for Discord
+ */
+export const TEST_COMMAND = {
+  name: 'test',
+  description: 'Basic command',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+//ONLY RENAMED FUNCTION LOGIC SHOULD BE SAME OR SIMILAR only POSSIBLE CHANGE IS CREATECOMMANDCHOICES() BELLOW.
+export const TRIVIA_COMMAND = {
+  name: 'trivia',
+  description: 'Get a trivia question',
+  options: [
+    {
+      type: 3,
+      name: 'object',
+      description: 'Pick your object',
+      required: true,
+      choices: createCommandChoices(),
+    },
+  ],
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+export const RULES_COMMAND = {
+  name: 'rules',
+  description: 'Explains the rules of the game',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+//updated description to be more general.
+export const RECORD_COMMAND = {
+  name: 'record',
+  description: 'View correct/incorrect record',
+  options: [
+    {
+      type: 6, // USER type
+      name: 'user',
+      description: 'User to view record for (defaults to yourself)',
+      required: false,
+    },
+  ],
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
+export const ALL_COMMANDS = [
+  TEST_COMMAND,
+  TRIVIA_COMMAND,
+  RULES_COMMAND,
+  RECORD_COMMAND,
+];
+</file>
+
+<file path="src/services/triviaQuestions.js">
+export const triviaQuestions = {
+  math: [
+    {
+      question: "What is 11 x 15?",
+      options: ["175", "140", "165", "160"],
+      correct: "165",
+    },
+    {
+      question: "What is 7 factorial(7!)?",
+      options: ["5,000", "5,500", "5,050", "5,040"],
+      correct: "5,040",
+    },
+    {
+      question: "What is the smallest positive number that is both a square and a cube?",
+      options: ["2", "3", "1", "0"],
+      correct: "1",
+    },
+    {
+      question: "What is the Roman numeral for 100?",
+      options: ["L", "C", "D", "M"],
+      correct: "C",
+    },
+    {
+      question: "What is the square root of 529?",
+      options: ["24", "20", "23", "21"],
+      correct: "23",
+    },
+    {
+      question: "What is the only even prime number?",
+      options: ["2", "4", "0", "6"],
+      correct: "2",
+    },
+    {
+      question: "How many prime numbers are between 1 and 20?",
+      options: ["4", "10", "9", "8"],
+      correct: "8",
+    },
+    {
+      question: "What is the next prime number after 97?",
+      options: ["99", "101", "153", "103"],
+      correct: "101",
+    },
+    {
+      question: "How many sides does a hexagon have?",
+      options: ["5", "6", "7", "8"],
+      correct: "6",
+    },
+    {
+      question: "What type of triangle has sides 3,4, and 5?",
+      options: ["Isosceles", "Equilateral", "Right", "Scalene"],
+      correct: "Right",
+    },
+  ],
+  history: [
+    {
+      question: "Which treaty ended WW1?",
+      options: ["Treaty of Paris", "Treaty of Versailles", "Treaty of Ghent", "Treaty of Tordesillas"],
+      correct: "Treaty of Versailles",
+    },
+    {
+      question: "What was the name of the first permanent English settlement in North America?",
+      options: ["Plymouth", "Jamestown", "Roanoke", "Salem"],
+      correct: "Jamestown",
+    },
+    {
+      question: "What year did the French Revolution begin?",
+      options: ["1744", "1740", "1804", "1789"],
+      correct: "1789",
+    },
+    {
+      question: "Which empire was ruled by Genghis Khan?",
+      options: ["Chinese empire", "Russian empire", "Ottoman empire", "Mongol empire"],
+      correct: "Mongol empire",
+    },
+    {
+      question: "Who discovered America in 1492 (for Europe)?",
+      options: ["Ferdinand Magellan", "Christopher Columbus", "Marco Polo", "Vasco da Gama"],
+      correct: "Christopher Columbus",
+    },
+    {
+      question: "Who was the first President of the United States?",
+      options: ["Benjamin Franklin", "Thomas Jefferson", "Abraham Lincoln", "George Washington"],
+      correct: "George Washington",
+    },
+    {
+      question: "Who wrote the Declaration of Independence?",
+      options: ["George Washington", "Benjamin Franklin", "Thomas Jefferson", "John Hancock"],
+      correct: "Thomas Jefferson",
+    },
+    {
+      question: "Who was the first woman to fly solo across the Atlantic Ocean?",
+      options: ["Bessie Coleman", "Amelia Earhart", "Sally Ride", "Harriet Quimby"],
+      correct: "Amelia Earhart",
+    },
+    {
+      question: "Who was the longest-reigning British monarch before Queen Elizabeth II?",
+      options: ["Queen Victoria", "King George III", "Henry VIII", "Elizabeth I"],
+      correct: "Queen Victoria",
+    },
+    {
+      question: "The ancient city of Troy was located in which modern-day country?",
+      options: ["Greece", "Italy", "Turkey", "Egypt"],
+      correct: "Turkey",
+    },
+  ],
+  science: [
+    {
+      question: "What planet is known as the Red Planet?",
+      options: ["Venus", "Mars", "Jupiter", "Mercury"],
+      correct: "Mars",
+    },
+    {
+      question: "What gas do humans exhale when they breathe out?",
+      options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+      correct: "Carbon Dioxide",
+    },
+    {
+      question: "What is the chemical symbol for water?",
+      options: ["H2O", "O2", "CO2", "HO2"],
+      correct: "H2O",
+    },
+    {
+      question: "Which part of the cell contains the genetic material?",
+      options: ["Cytoplasm", "Mitochondria", "Nucleus", "Ribosome"],
+      correct: "Nucleus",
+    },
+    {
+      question: "Which element has the atomic number 1?",
+      options: ["Oxygen", "Hydrogen", "Nitrogen", "Helium"],
+      correct: "Hydrogen",
+    },
+    {
+      question: "What type of energy is stored in a stretched rubber band?",
+      options: ["Thermal energy", "Kinetic energy", "Elastic potential energy", "Nuclear energy"],
+      correct: "Elastic potential energy",
+    },
+    {
+      question: "Which planet has the most moons in our Solar System?",
+      options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+      correct: "Saturn",
+    },
+    {
+      question: "What is the powerhouse of the cell?",
+      options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Apparatus"],
+      correct: "Mitochondria",
+    },
+    {
+      question: "What law states that for every action, there is an equal and opposite reaction?",
+      options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Conservation of Energy"],
+      correct: "Newton's Third Law",
+    },
+    {
+      question: "What particle in an atom has a positive charge?",
+      options: ["Neutron", "Electron", "Proton", "Photon"],
+      correct: "Proton",
+    },
+  ],
+  sports: [
+    {
+      question: "How many players are there on a soccer team on the field at once?",
+      options: ["9", "10", "11", "12"],
+      correct: "11",
+    },
+    {
+      question: "In what sport would you perform a slam dunk?",
+      options: ["Volleyball", "Basketball", "Tennis", "Baseball"],
+      correct: "Basketball",
+    },
+    {
+      question: "What country hosted the 2016 Summer Olympics?",
+      options: ["China", "Brazil", "United Kingdom", "Japan"],
+      correct: "Brazil",
+    },
+    {
+      question: "What is the maximum break in a standard game of snooker?",
+      options: ["147", "155", "150", "160"],
+      correct: "147",
+    },
+    {
+      question: "Which country has won the most FIFA World Cup titles in men's soccer?",
+      options: ["Germany", "Italy", "Argentina", "Brazil"],
+      correct: "Brazil",
+    },
+    {
+      question: "In baseball, how many strikes make an out?",
+      options: ["2", "3", "4", "5"],
+      correct: "3",
+    },
+    {
+      question: "What sport uses the terms ‘birdie’, ‘eagle’, and ‘bogey’?",
+      options: ["Tennis", "Badminton", "Golf", "Cricket"],
+      correct: "Golf",
+    },
+    {
+      question: "Who has won the most Olympic gold medals of all time?",
+      options: ["Usain Bolt", "Michael Phelps", "Carl Lewis", "Simone Biles"],
+      correct: "Michael Phelps",
+    },
+    {
+      question: "Which team won the first Super Bowl in 1967?",
+      options: ["Green Bay Packers", "Kansas City Chiefs", "New York Jets", "Dallas Cowboys"],
+      correct: "Green Bay Packers",
+    },
+    {
+      question: "What is the distance of a marathon?",
+      options: ["24.2 miles", "26.2 miles", "28.2 miles", "30.2 miles"],
+      correct: "26.2 miles",
+    },
+  ],
+  language: [
+    {
+      question: "What is the most widely spoken language in the world by native speakers?",
+      options: ["English", "Spanish", "Mandarin Chinese", "Hindi"],
+      correct: "Mandarin Chinese",
+    },
+    {
+      question: "Which language is the official language of Brazil?",
+      options: ["Spanish", "Portuguese", "French", "English"],
+      correct: "Portuguese",
+    },
+    {
+      question: "What does the word 'bonjour' mean in French?",
+      options: ["Good morning", "Goodbye", "Please", "Thank you"],
+      correct: "Good morning",
+    },
+    {
+      question: "In the Spanish language, what does the word 'rojo' mean?",
+      options: ["Blue", "Red", "Green", "Yellow"],
+      correct: "Red",
+    },
+    {
+      question: "Which ancient language is the root of most modern European languages?",
+      options: ["Greek", "Latin", "Sanskrit", "Hebrew"],
+      correct: "Latin",
+    },
+    {
+      question: "Which language is written from right to left?",
+      options: ["Arabic", "Korean", "Hindi", "Greek"],
+      correct: "Arabic",
+    },
+    {
+      question: "What is the longest word in the English dictionary (non-technical)?",
+      options: ["Antidisestablishmentarianism", "Supercalifragilisticexpialidocious", "Pneumonoultramicroscopicsilicovolcanoconiosis", "Floccinaucinihilipilification"],
+      correct: "Pneumonoultramicroscopicsilicovolcanoconiosis",
+    },
+    {
+      question: "What does the word 'aldrig' mean in Swedish?",
+      options: ["Always", "Never", "Often", "Or"],
+      correct: "Never",
+    },
+    {
+      question: "What does the word 'Usein' mean in Finnish?",
+      options: ["Always", "Never", "Often", "Or"],
+      correct: "Often",
+    },
+    {
+      question: "What does the word 'Livi' mean in Tongan?",
+      options: ["Leave", "Come", "Away", "Child"],
+      correct: "Leave",
+    },
+  ],
+  art: [
+    {
+      question: "Who painted the Mona Lisa?",
+      options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet"],
+      correct: "Leonardo da Vinci",
+    },
+    {
+      question: "Which artist is famous for cutting off part of his ear?",
+      options: ["Salvador Dalí", "Vincent van Gogh", "Edvard Munch", "Paul Cézanne"],
+      correct: "Vincent van Gogh",
+    },
+    {
+      question: "The painting 'The Starry Night' was created by which artist?",
+      options: ["Vincent van Gogh", "Claude Monet", "Pablo Picasso", "Georgia O’Keeffe"],
+      correct: "Vincent van Gogh",
+    },
+    {
+      question: "What is the art movement associated with Salvador Dalí?",
+      options: ["Cubism", "Surrealism", "Impressionism", "Expressionism"],
+      correct: "Surrealism",
+    },
+    {
+      question: "Which artist is known for the abstract drip paintings in the mid-20th century?",
+      options: ["Jackson Pollock", "Andy Warhol", "Wassily Kandinsky", "Henri Matisse"],
+      correct: "Jackson Pollock",
+    },
+    {
+      question: "What material did Michelangelo use to carve the statue of David?",
+      options: ["Bronze", "Marble", "Granite", "Wood"],
+      correct: "Marble",
+    },
+    {
+      question: "The painting 'The Persistence of Memory', featuring melting clocks, was painted by whom?",
+      options: ["Salvador Dalí", "René Magritte", "Joan Miró", "Henri Rousseau"],
+      correct: "Salvador Dalí",
+    },
+    {
+      question: "Which artist is considered the founder of the Cubist movement?",
+      options: ["Pablo Picasso", "Henri Matisse", "Paul Gauguin", "Claude Monet"],
+      correct: "Pablo Picasso",
+    },
+    {
+      question: "The term 'Renaissance' refers to a period of renewed interest in which subjects?",
+      options: ["Science and Religion", "Art and Learning", "War and Politics", "Trade and Exploration"],
+      correct: "Art and Learning",
+    },
+    {
+      question: "What city is home to the Louvre Museum?",
+      options: ["Rome", "Paris", "London", "Madrid"],
+      correct: "Paris",
+    },
+  ],
+  pop_culture: [
+    {
+      question: "Which singer is known as the 'King of Pop'?",
+      options: ["Elvis Presley", "Prince", "Michael Jackson", "Justin Timberlake"],
+      correct: "Michael Jackson",
+    },
+    {
+      question: "Who played Iron Man in the Marvel movies?",
+      options: ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Tom Holland"],
+      correct: "Robert Downey Jr.",
+    },
+    {
+      question: "What social media app is known for short video clips and viral trends?",
+      options: ["Twitter", "TikTok", "Snapchat", "Instagram"],
+      correct: "TikTok",
+    },
+    {
+      question: "Which singer released the 2022 album Midnights?",
+      options: ["Ariana Grande", "Beyoncé", "Taylor Swift", "Adele"],
+      correct: "Taylor Swift",
+    },
+    {
+      question: "In The Office (U.S.), what is the name of the paper company?",
+      options: ["Dunder Mifflin", "PaperCo", "Scranton Supply", "Office Depot"],
+      correct: "Dunder Mifflin",
+    },
+    {
+      question: "Which film won the Academy Award for Best Picture in 2020?",
+      options: ["1917", "Joker", "Parasite", "Once Upon a Time in Hollywood"],
+      correct: "Parasite",
+    },
+    {
+      question: "Who voiced Elsa in Disney’s Frozen?",
+      options: ["Idina Menzel", "Kristen Bell", "Demi Lovato", "Mandy Moore"],
+      correct: "Idina Menzel",
+    },
+    {
+      question: "Which artist painted the album cover for The Beatles’ Sgt. Pepper’s Lonely Hearts Club Band?",
+      options: ["Peter Blake", "Andy Warhol", "Roy Lichtenstein", "David Hockney"],
+      correct: "Peter Blake",
+    },
+    {
+      question: "Who won the first season of American Idol?",
+      options: ["Kelly Clarkson", "Carrie Underwood", "Fantasia Barrino", "Ruben Studdard"],
+      correct: "Kelly Clarkson",
+    },
+    {
+      question: "What is the name of the fictional African nation in Black Panther?",
+      options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
+      correct: "Wakanda",
+    },
+  ],
+};
+
+// ←←← FIXED getRandomQuestion — WORKS WITH YOUR OBJECT ABOVE
+export function getRandomQuestion(category = "random") {
+  let availableQuestions = [];
+
+  if (category === "random") {
+    // Add ALL questions from every category
+    for (const cat in triviaQuestions) {
+      availableQuestions = availableQuestions.concat(triviaQuestions[cat]);
+    }
+  } else {
+    const catKey = category.toLowerCase();
+    const catQuestions = triviaQuestions[catKey] || triviaQuestions[catKey.replace(" ", "_")];
+    if (catQuestions) {
+      availableQuestions = catQuestions;
+    }
+  }
+
+  if (availableQuestions.length === 0) {
+    return null; // no questions
+  }
+
+  // Pick random question
+  const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+  // Shuffle options
+  const shuffled = [...selectedQuestion.options].sort(() => Math.random() - 0.5);
+
+  return {
+    question: selectedQuestion.question,
+    options: shuffled,
+    correct: selectedQuestion.correct,
+  };
+}
+</file>
+
+<file path="src/utils/messageBuilders.js">
+import {
+  ButtonStyleTypes,
+  InteractionResponseFlags,
+  MessageComponentTypes,
+} from 'discord-interactions';
+import { COMPONENT_IDS } from '../constants/index.js';
+
+/**
+ * Creates a text display component
+ */
+export function createTextDisplay(content, ephemeral = false) {
+  const component = {
+    type: MessageComponentTypes.TEXT_DISPLAY,
+    content,
+  };
+
+  if (ephemeral) {
+    component.ephemeral = true;
+  }
+
+  return component;
+}
+
+/**
+ * Creates an action row component
+ */
+export function createActionRow(components) {
+  return {
+    type: MessageComponentTypes.ACTION_ROW,
+    components,
+  };
+}
+
+/**
+ * Creates a button component
+ */
+export function createButton(customId, label, style = ButtonStyleTypes.PRIMARY) {
+  return {
+    type: MessageComponentTypes.BUTTON,
+    custom_id: customId,
+    label,
+    style,
+  };
+}
+
+/**
+ * Creates a string select menu component
+ */
+export function createStringSelect(customId, options) {
+  return {
+    type: MessageComponentTypes.STRING_SELECT,
+    custom_id: customId,
+    options,
+  };
+}
+
+/**
+ * Creates the challenge button message
+ */
+export function createChallengeMessage(userId, gameId) {
+  return {
+    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [
+      createTextDisplay(`Trivia challenge from <@${userId}>`),
+      createActionRow([
+        createButton(
+          `${COMPONENT_IDS.ACCEPT_BUTTON}${gameId}`,
+          'Accept'
+        ),
+      ]),
+    ],
+  };
+}
+
+/**
+ * Creates the choice selection menu (ephemeral)
+ */
+export function createChoiceSelectionMessage(gameId, options) {
+  return {
+    flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [
+      createTextDisplay('What is your object of choice?'),
+      createActionRow([
+        createStringSelect(
+          `${COMPONENT_IDS.SELECT_CHOICE}${gameId}`,
+          options
+        ),
+      ]),
+    ],
+  };
+}
+
+/**
+ * Creates a simple text message
+ */
+export function createSimpleMessage(content, ephemeral = false) {
+  const flags = ephemeral
+    ? InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2
+    : InteractionResponseFlags.IS_COMPONENTS_V2;
+
+  return {
+    flags,
+    components: [createTextDisplay(content, ephemeral)],
+  };
+}
+
+/**
+ * Creates the game result message
+ */
+export function createResultMessage(resultStr) {
+  return {
+    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+    components: [createTextDisplay(resultStr)],
+  };
+}
+/**
+ * This creates the embedded trivia question and the drop down menu for the multiple choice answers to the questions
+ */
+
+export function createTriviaQuestionMessage(gameId, question, category = "random") {
+    const categoryEmoji = {
+        math: "🧮",
+        history: "📜",
+        science: "🧪",
+        sports: "⚽",
+        language: "🗣️",
+        art: "🎨",
+        "pop culture": "🎬",
+        random: "❓",
+    }[category] || "❓";
+
+    return {
+        embeds: [
+            {
+                title: `${categoryEmoji} **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
+                description: `**${question.question}**`,
+                color: 5793266,
+                footer: { text: "You have 30 seconds • Correct answers earn points!" },
+                timestamp: new Date().toISOString(),
+            },
+        ],
+        components: [
+            {
+                type: 1, // Action Row
+                components: [
+                    {
+                        type: 3, // String select
+                        custom_id: `select_choice_${gameId}`,
+                        options: question.options.map((opt, i) => ({
+                            label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
+                            value: opt,
+                            description: `Option ${i + 1}`,
+                        })),
+                        placeholder: "Choose the correct answer...",
+                        min_values: 1,
+                        max_values: 1,
+                    },
+                ],
+            },
+        ],
+    };
+}
+</file>
+
+<file path="src/services/userRecords.js">
+/*import { GAME_RESULTS } from '../constants/index.js';
+
+// In-memory storage for user win/loss records
+// NOTE: This is ephemeral and will be cleared on bot restart
+// For production, replace with persistent database storage
+const userRecords = {};
+
+/**
+ * Initializes a user record if it doesn't exist
+ *//*
+function initializeUserRecord(userId) {
+  if (!userRecords[userId]) {
+    userRecords[userId] = { wins: 0, losses: 0, ties: 0 };
+  }
+}
+
+/**
+ * Updates a user's record with a win, loss, or tie
+ *//*
+export function updateUserRecord(userId, result) {
+  initializeUserRecord(userId);
+
+  switch (result) {
+    case GAME_RESULTS.WIN:
+      userRecords[userId].wins++;
+      break;
+    case GAME_RESULTS.LOSS:
+      userRecords[userId].losses++;
+      break;
+    case GAME_RESULTS.TIE:
+      userRecords[userId].ties++;
+      break;
+    default:
+      console.warn(`Unknown game result: ${result}`);
+  }
+}
+
+/**
+ * Retrieves a user's record
+ *//*
+export function getUserRecord(userId) {
+  return userRecords[userId] || { wins: 0, losses: 0, ties: 0 };
+}
+
+/**
+ * Calculates win rate for a user
+ *//*
+export function calculateWinRate(userId) {
+  const record = getUserRecord(userId);
+  const totalGames = record.wins + record.losses + record.ties;
+
+  if (totalGames === 0) {
+    return 0;
+  }
+
+  return ((record.wins / totalGames) * 100).toFixed(1);
+}
+
+/**
+ * Returns all user records (primarily for debugging)
+ *//*
+export function getAllRecords() {
+  return { ...userRecords };
+}*/
+</file>
+
+<file path="src/services/gameState.js">
+// src/services/gameState.js
+
+// ===== Trivia Score Tracking =====
+const triviaScores = {};
+
+export function recordTriviaResult(userId, isCorrect) {
+    if (!triviaScores[userId]) {
+        triviaScores[userId] = { correct: 0, incorrect: 0 };
+    }
+    if (isCorrect) triviaScores[userId].correct++;
+    else triviaScores[userId].incorrect++;
+}
+
+export function getTriviaRecord(userId) {
+    if (!triviaScores[userId]) {
+        triviaScores[userId] = { correct: 0, incorrect: 0 };
+    }
+    return triviaScores[userId];
+}
+
+// ===== Category Choices =====
+const RPS_CHOICES = {
+    math: { description: "Painful, hard, and perhaps clever" },
+    history: { description: "The birth of past from a new age" },
+    science: { description: "Precise, dangerous, and explosive" },
+    sports: { description: "Exciting, energetic and limit pushing" },
+    language: { description: "Vi är väldigt ung" },
+    art: { description: "Silly, fun yet deliberate" },
+    pop_culture: { description: "Wild and fun yet attractive" },
+};
+
+export function getChoices() {
+    return Object.keys(RPS_CHOICES);
+}
+
+// ===== ACTIVE GAME STORAGE =====
+const games = new Map();
+
+/**
+ * Create a trivia game
+ */
+export function createGame(gameId, userId, category, question) {
+    const game = {
+        id: userId,
+        category,
+        data: {
+            question,
+        },
+        createdAt: Date.now(),
+    };
+
+    // Store the game in the Map
+    games.set(gameId, game);
+
+    // Auto-clean after 30 seconds
+    setTimeout(() => {
+        games.delete(gameId);
+    }, 30 * 1000);
+
+    return gameId;
+}
+
+
+
+/**
+ * Retrieve game by ID
+ */
+export function getGame(gameId) {
+    return games.get(gameId);
+}
+
+/**
+ * Delete game
+ */
+export function deleteGame(gameId) {
+    games.delete(gameId);
+}
+
+/**
+ * Debug helper
+ */
+export function getAllGames() {
+    return Object.fromEntries(games.entries());
+}
+</file>
+
+<file path="src/handlers/components/selectMenus.js">
+import { InteractionResponseType } from "discord-interactions";
+import { deleteGame, getGame } from "../../services/gameState.js";
+import { recordTriviaResult } from "../../services/gameState.js";
+import { extractUserId } from "../../utils/helpers.js";
+
+/**
+ * Handles the choice selection from the select menu
+ * Calculates game result, updates records, and displays outcome
+ */
+export async function handleSelectChoice(req, res) {
+    try {
+        const { data, member, user } = req.body;
+        const userId = member.user.id;
+        if (!userId) throw new Error("User ID not found");
+
+        const gameId = data.custom_id.replace("select_choice_", "");
+        const selectedAnswer = data.values[0];
+        const game = getGame(gameId);
+        if (!game) {
+            return res.send({
+                type: InteractionResponseType.UPDATE_MESSAGE, data: {
+                    content: "⏰ This trivia has expired!",
+                    embeds: [],
+                    components: [],
+                    flags: 64, // only you see it 
+                },
+            });
+        }
+        const { question } = game.data;
+        const isCorrect = question.correct === selectedAnswer;
+        recordTriviaResult(userId, isCorrect);
+        const resultText = isCorrect
+            ? `✅ **Correct!** The answer is **${question.correct}**`
+            : `❌ **Incorrect.** The correct answer was **${question.correct}**`;
+        deleteGame(gameId);
+        return res.send({
+            type: InteractionResponseType.UPDATE_MESSAGE,
+            data: {
+                content: resultText,
+                embeds: [],       // clear embeds
+                components: [],   // remove dropdown
+            },
+        });
+    } catch (err) {
+        console.error("Select menu error:", err);
+        return res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+                content: "⚠️ An error occurred processing your selection.",
+                flags: 64,
+            },
+        });
+    }
+}
+</file>
+
+<file path="src/handlers/commands/trivia.js">
+import { InteractionResponseType } from 'discord-interactions';
+import { extractUserId } from '../../utils/helpers.js';
+import { createTriviaQuestionMessage } from '../../utils/messageBuilders.js';
+import { createGame } from '../../services/gameState.js';
+import { getRandomQuestion } from "../../services/triviaQuestions.js";
+
+
+//renamed file to trivia due to the removal of commands.
+
+/**
+ * Handles the /challenge command
+ * Creates a new game and posts an accept button (outdated comment))
+ */
+//leaving function name as is even though command is renamed to trivia for clarity and to privent potential issues.
+export async function handleChallengeCommand(req, res) {
+  const { id, data } = req.body;
+  const userId = extractUserId(req);
+  const objectName = data.options[0].value;
+
+    const question = getRandomQuestion(objectName)
+  // Create active game using interaction ID as game ID
+  createGame(id, userId, objectName, question);
+    //require question from triviaQuestions.js in order to send it to discord.
+  
+
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: createTriviaQuestionMessage(id, question, objectName),
+  });
+}
+</file>
+
+</files>

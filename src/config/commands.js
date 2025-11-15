@@ -1,5 +1,7 @@
-import { getChoices } from '../services/game.js';
+import { getChoices } from '../services/gameState.js';
 import { capitalize } from '../utils/helpers.js';
+
+//altered getChoiice location to be in gameState.js since that on is taking care of a lot of what game.js does.
 
 /**
  * Creates command choice options from game choices
@@ -22,10 +24,10 @@ export const TEST_COMMAND = {
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
-
-export const CHALLENGE_COMMAND = {
-  name: 'challenge',
-  description: 'Challenge to a match of trivia',
+//ONLY RENAMED FUNCTION LOGIC SHOULD BE SAME OR SIMILAR only POSSIBLE CHANGE IS CREATECOMMANDCHOICES() BELLOW.
+export const TRIVIA_COMMAND = {
+  name: 'trivia',
+  description: 'Get a trivia question',
   options: [
     {
       type: 3,
@@ -37,7 +39,7 @@ export const CHALLENGE_COMMAND = {
   ],
   type: 1,
   integration_types: [0, 1],
-  contexts: [0, 2],
+  contexts: [0, 1, 2],
 };
 
 export const RULES_COMMAND = {
@@ -47,10 +49,10 @@ export const RULES_COMMAND = {
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
-
+//updated description to be more general.
 export const RECORD_COMMAND = {
   name: 'record',
-  description: 'View win/loss record',
+  description: 'View correct/incorrect record',
   options: [
     {
       type: 6, // USER type
@@ -66,7 +68,7 @@ export const RECORD_COMMAND = {
 
 export const ALL_COMMANDS = [
   TEST_COMMAND,
-  CHALLENGE_COMMAND,
+  TRIVIA_COMMAND,
   RULES_COMMAND,
   RECORD_COMMAND,
 ];

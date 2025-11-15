@@ -1,35 +1,29 @@
-import { InteractionResponseType } from 'discord-interactions';
+﻿import { InteractionResponseType } from 'discord-interactions';
 import { extractUserId } from '../../utils/helpers.js';
 import { createSimpleMessage } from '../../utils/messageBuilders.js';
-import { getUserRecord, calculateWinRate } from '../../services/userRecords.js';
+import { getTriviaRecord } from '../../services/gameState.js';
 
 /**
  * Handles the /record command
  * Shows win/loss record for specified user or command issuer
  */
+//conducted required updates to reflect trivia record instead of rps record.
 export async function handleRecordCommand(req, res) {
   const { data } = req.body;
   const commandUserId = extractUserId(req);
-
-  // Check if a specific user was mentioned, otherwise use command user
   const targetUserId = data.options?.[0]?.value || commandUserId;
 
-  // Get user's record
-  const record = getUserRecord(targetUserId);
-  const totalGames = record.wins + record.losses + record.ties;
-  const winRate = calculateWinRate(targetUserId);
+  const record = getTriviaRecord(targetUserId);
+  const total = (record.correct || 0) + (record.incorrect || 0);
+  const accuracy = total === 0 ? 0 : ((record.correct / total) * 100).toFixed(1);
 
-  const recordText = [
-    `**<@${targetUserId}>'s Record**`,
-    `Wins: **${record.wins}**`,
-    `Losses: **${record.losses}**`,
-    `Ties: **${record.ties}**`,
-    `Total Games: **${totalGames}**`,
-    `Win Rate: **${winRate}%**`,
-  ].join('\n');
+  const message = `📊 Trivia Record for <@${targetUserId}>:
+✅ **Correct:** ${record.correct || 0}
+❌ **Incorrect:** ${record.incorrect || 0}
+🏅 **Accuracy:** ${accuracy}%`;
 
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: createSimpleMessage(recordText),
+    data: createSimpleMessage(message),
   });
 }
