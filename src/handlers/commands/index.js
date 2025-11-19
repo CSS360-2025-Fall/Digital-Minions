@@ -1,6 +1,6 @@
 import { COMMANDS } from '../../constants/index.js';
 import { handleTestCommand } from './test.js';
-import { handleChallengeCommand } from './challenge.js';
+import { handleChallengeCommand } from './trivia.js';
 import { handleRulesCommand } from './rules.js';
 import { handleRecordCommand } from './record.js';
 
@@ -8,9 +8,10 @@ import { handleRecordCommand } from './record.js';
  * Command handler registry
  * Maps command names to their handler functions
  */
+//required update due to trivia command rename.
 const commandHandlers = {
   [COMMANDS.TEST]: handleTestCommand,
-  [COMMANDS.CHALLENGE]: handleChallengeCommand,
+  [COMMANDS.TRIVIA]: handleChallengeCommand,
   [COMMANDS.RULES]: handleRulesCommand,
   [COMMANDS.RECORD]: handleRecordCommand,
 };
