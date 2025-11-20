@@ -2,6 +2,8 @@
 import { extractUserId } from '../../utils/helpers.js';
 import { createSimpleMessage } from '../../utils/messageBuilders.js';
 import { getTriviaRecord } from '../../services/gameState.js';
+import { t } from '../../localization/strings.js';
+import { getUserLocale } from '../../services/gameState.js';
 
 /**
  * Handles the /record command
@@ -12,15 +14,16 @@ export async function handleRecordCommand(req, res) {
   const { data } = req.body;
   const commandUserId = extractUserId(req);
   const targetUserId = data.options?.[0]?.value || commandUserId;
+  const locale = getUserLocale(commandUserId);
 
   const record = getTriviaRecord(targetUserId);
   const total = (record.correct || 0) + (record.incorrect || 0);
   const accuracy = total === 0 ? 0 : ((record.correct / total) * 100).toFixed(1);
 
-  const message = `📊 Trivia Record for <@${targetUserId}>:
-✅ **Correct:** ${record.correct || 0}
-❌ **Incorrect:** ${record.incorrect || 0}
-🏅 **Accuracy:** ${accuracy}%`;
+  const message = `${t(locale, 'record.title', targetUserId)}
+${t(locale, 'record.correct', record.correct || 0)}
+${t(locale, 'record.incorrect', record.incorrect || 0)}
+${t(locale, 'record.accuracy', accuracy)}`;
 
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
