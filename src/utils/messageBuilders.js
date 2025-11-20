@@ -4,6 +4,7 @@
   MessageComponentTypes,
 } from 'discord-interactions';
 import { COMPONENT_IDS } from '../constants/index.js';
+import { t } from '../localization/strings.js';
 
 /**
  * Creates a text display component
@@ -130,7 +131,7 @@ export function createSimpleMessage(content, ephemeral = false) {
  * This creates the embedded trivia question and the drop down menu for the multiple choice answers to the questions
  */
 
-export function createTriviaQuestionMessage(gameId, question, category = "random") {
+export function createTriviaQuestionMessage(gameId, question, category = "random", locale = "en") {
     const categoryEmoji = {
         math: "🧮",
         history: "📜",
@@ -138,17 +139,23 @@ export function createTriviaQuestionMessage(gameId, question, category = "random
         sports: "⚽",
         language: "🗣️",
         art: "🎨",
-        "pop culture": "🎬",
+        pop_culture: "🎬",
         random: "❓",
     }[category] || "❓";
+
+    // Normalize category name (replace spaces with underscores, lowercase)
+    const categoryKey = category.toLowerCase().replace(/\s+/g, '_');
+
+    // Get localized category name with fallback
+    const localizedCategory = t(locale, `categories.${categoryKey}`, category);
 
     return {
         embeds: [
             {
-                title: `${categoryEmoji} **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
+                title: `${categoryEmoji} **Trivia: ${localizedCategory}**`,
                 description: `**${question.question}**`,
                 color: 5793266,
-                footer: { text: "You have 30 seconds • Correct answers earn points!" },
+                footer: { text: t(locale, 'trivia.embedFooter') },
                 timestamp: new Date().toISOString(),
             },
         ],
@@ -162,9 +169,9 @@ export function createTriviaQuestionMessage(gameId, question, category = "random
                         options: question.options.map((opt, i) => ({
                             label: opt.length > 100 ? opt.substring(0, 97) + "..." : opt,
                             value: opt,
-                            description: `Option ${i + 1}`,
+                            description: t(locale, 'trivia.optionLabel', i + 1),
                         })),
-                        placeholder: "Choose the correct answer...",
+                        placeholder: t(locale, 'trivia.placeholder'),
                         min_values: 1,
                         max_values: 1,
                     },
