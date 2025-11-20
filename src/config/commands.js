@@ -66,9 +66,31 @@ export const RECORD_COMMAND = {
   contexts: [0, 1, 2],
 };
 
+export const LANGUAGE_COMMAND = {
+    name: 'language',
+    description: 'Change your language preference',
+    options: [
+        {
+            type: 3, // STRING
+            name: 'locale',
+            description: 'Choose your language',
+            required: true,
+            choices: [
+                { name: 'English', value: 'en' },
+                { name: 'Espanol', value: 'es' },
+                { name: 'Francais', value: 'fr' },
+            ],
+        },
+    ],
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+};
+
 export const ALL_COMMANDS = [
   TEST_COMMAND,
   TRIVIA_COMMAND,
   RULES_COMMAND,
   RECORD_COMMAND,
+  LANGUAGE_COMMAND,
 ];
