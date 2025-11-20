@@ -4,6 +4,10 @@ import { recordTriviaResult } from "../../services/gameState.js";
 import { extractUserId } from "../../utils/helpers.js";
 import { t } from "../../localization/strings.js";
 
+/**
+ * Handles the choice selection from the select menu
+ * Calculates game result, updates records, and displays outcome
+ */
 export async function handleSelectChoice(req, res) {
     try {
         const { data } = req.body;
@@ -21,8 +25,8 @@ export async function handleSelectChoice(req, res) {
                 type: InteractionResponseType.UPDATE_MESSAGE,
                 data: {
                     content: t(locale, 'trivia.expired'),
-                    embeds: [],
-                    components: [],
+                    embeds: [],     // clear embeds
+                    components: [], // remove dropdown
                     flags: 64,
                 },
             });

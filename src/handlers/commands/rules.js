@@ -4,6 +4,9 @@ import { extractUserId } from '../../utils/helpers.js';
 import { getUserLocale } from '../../services/gameState.js';
 import { t } from '../../localization/strings.js';
 
+/**
+ * Handles the /rules command
+ */
 export async function handleRulesCommand(req, res) {
     const userId = extractUserId(req);
     const locale = getUserLocale(userId);

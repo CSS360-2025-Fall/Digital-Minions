@@ -4,6 +4,9 @@ import { createSimpleMessage } from '../../utils/messageBuilders.js';
 import { getUserLocale } from '../../services/gameState.js';
 import { t } from '../../localization/strings.js';
 
+/**
+ * Handles the /test command
+ */
 export async function handleTestCommand(req, res) {
     const userId = extractUserId(req);
     const locale = getUserLocale(userId);
