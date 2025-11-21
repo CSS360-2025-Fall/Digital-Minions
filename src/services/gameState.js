@@ -29,6 +29,23 @@ try {
     triviaScores = {};
 }
 
+// User preferences storage
+const userPreferences = new Map();
+
+/**
+ * Set user's language preference
+ */
+export function setUserLocale(userId, locale) {
+    userPreferences.set(userId, { locale });
+}
+
+/**
+ * Get user's language preference (defaults to English)
+ */
+export function getUserLocale(userId) {
+    return userPreferences.get(userId)?.locale || 'en';
+}
+
 // Save trivia scores to file
 function saveTriviaScores() {
     try {

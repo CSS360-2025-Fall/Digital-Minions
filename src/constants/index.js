@@ -14,6 +14,7 @@ export const COMMANDS = {
   TRIVIA: 'trivia', //modifing to trivia
   RULES: 'rules',
   RECORD: 'record',
+  LANGUAGE: 'language'
 };
 
 // Game Result Types

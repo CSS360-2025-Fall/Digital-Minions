@@ -1,20 +1,26 @@
 import { InteractionResponseType } from 'discord-interactions';
 import { createSimpleMessage } from '../../utils/messageBuilders.js';
+import { extractUserId } from '../../utils/helpers.js';
+import { getUserLocale } from '../../services/gameState.js';
+import { t } from '../../localization/strings.js';
 
 /**
  * Handles the /rules command
  */
 export async function handleRulesCommand(req, res) {
-  const rulesText = [
-    '**Trivia Rules**',
-    '1. Questions are multiple choice.',
-    '2. Correct answers earn you 1 point.',
-    '3. No cheating! Google is off-limits!',
-    '4. The player with the highest score wins.',
-  ].join('\n');
+    const userId = extractUserId(req);
+    const locale = getUserLocale(userId);
 
-  return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: createSimpleMessage(rulesText, true),
-  });
+    const rulesText = [
+        t(locale, 'rules.title'),
+        t(locale, 'rules.rule1'),
+        t(locale, 'rules.rule2'),
+        t(locale, 'rules.rule3'),
+        t(locale, 'rules.rule4'),
+    ].join('\n');
+
+    return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: createSimpleMessage(rulesText, true),
+    });
 }
