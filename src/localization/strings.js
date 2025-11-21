@@ -3,6 +3,132 @@
 
 export const strings = {
     en: {
+        // Command responses
+        test: {
+            greeting: (emoji) => `hello world ${emoji}`,
+        },
+        trivia: {
+            embedTitle: (category) => `🎯 **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
+            embedFooter: "You have 30 seconds • Correct answers earn points!",
+            placeholder: "Choose the correct answer...",
+            optionLabel: (index) => `Option ${index + 1}`,
+            correct: (answer) => `✅ **Correct!** The answer is **${answer}**`,
+            incorrect: (answer) => `❌ **Incorrect.** The correct answer was **${answer}**`,
+            expired: "⏰ This trivia has expired!",
+        },
+        rules: {
+            title: "**Trivia Rules**",
+            rule1: "1. Questions are multiple choice.",
+            rule2: "2. Correct answers earn you 1 point.",
+            rule3: "3. No cheating! Google is off-limits!",
+            rule4: "4. The player with the highest score wins.",
+        },
+        record: {
+            title: (userId) => `📊 Trivia Record for <@${userId}>:`,
+            correct: (count) => `✅ **Correct:** ${count}`,
+            incorrect: (count) => `❌ **Incorrect:** ${count}`,
+            accuracy: (percent) => `🏆 **Accuracy:** ${percent}%`,
+        },
+        errors: {
+            processing: "⚠️ An error occurred processing your selection.",
+        },
+        categories: {
+            math: "Math",
+            history: "History",
+            science: "Science",
+            sports: "Sports",
+            language: "Language",
+            art: "Art",
+            pop_culture: "Pop Culture",
+            random: "Random",
+        },
+    },
+    es: {
+        // Spanish translations
+        test: {
+            greeting: (emoji) => `hola mundo ${emoji}`,
+        },
+        trivia: {
+            embedTitle: (category) => `🎯 **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
+            embedFooter: "¡Tienes 30 segundos • Las respuestas correctas dan puntos!",
+            placeholder: "Elige la respuesta correcta...",
+            optionLabel: (index) => `Opción ${index + 1}`,
+            correct: (answer) => `✅ **¡Correcto!** La respuesta es **${answer}**`,
+            incorrect: (answer) => `❌ **Incorrecto.** La respuesta correcta era **${answer}**`,
+            expired: "⏰ ¡Esta trivia ha expirado!",
+        },
+        rules: {
+            title: "**Reglas de Trivia**",
+            rule1: "1. Las preguntas son de opción múltiple.",
+            rule2: "2. Las respuestas correctas te dan 1 punto.",
+            rule3: "3. ¡No hagas trampa! Google está prohibido.",
+            rule4: "4. El jugador con la puntuación más alta gana.",
+        },
+        record: {
+            title: (userId) => `📊 Récord de Trivia para <@${userId}>:`,
+            correct: (count) => `✅ **Correctas:** ${count}`,
+            incorrect: (count) => `❌ **Incorrectas:** ${count}`,
+            accuracy: (percent) => `🏆 **Precisión:** ${percent}%`,
+        },
+        errors: {
+            processing: "⚠️ Ocurrió un error al procesar tu selección.",
+        },
+        categories: {
+            math: "Matemáticas",
+            history: "Historia",
+            science: "Ciencia",
+            sports: "Deportes",
+            language: "Idioma",
+            art: "Arte",
+            pop_culture: "Cultura Pop",
+            random: "Aleatorio",
+        },
+    },
+    fr: {
+        // French translations
+        test: {
+            greeting: (emoji) => `bonjour monde ${emoji}`,
+        },
+        trivia: {
+            embedTitle: (category) => `🎯 **Trivia: ${category.charAt(0).toUpperCase() + category.slice(1)}**`,
+            embedFooter: "Vous avez 30 secondes • Les bonnes réponses rapportent des points!",
+            placeholder: "Choisissez la bonne réponse...",
+            optionLabel: (index) => `Option ${index + 1}`,
+            correct: (answer) => `✅ **Correct!** La réponse est **${answer}**`,
+            incorrect: (answer) => `❌ **Incorrect.** La bonne réponse était **${answer}**`,
+            expired: "⏰ Ce trivia a expiré!",
+        },
+        rules: {
+            title: "**Règles du Trivia**",
+            rule1: "1. Les questions sont à choix multiples.",
+            rule2: "2. Les bonnes réponses vous rapportent 1 point.",
+            rule3: "3. Pas de triche! Google est interdit!",
+            rule4: "4. Le joueur avec le score le plus élevé gagne.",
+        },
+        record: {
+            title: (userId) => `📊 Record de Trivia pour <@${userId}>:`,
+            correct: (count) => `✅ **Correctes:** ${count}`,
+            incorrect: (count) => `❌ **Incorrectes:** ${count}`,
+            accuracy: (percent) => `🏆 **Précision:** ${percent}%`,
+        },
+        errors: {
+            processing: "⚠️ Une erreur s'est produite lors du traitement de votre sélection.",
+        },
+        categories: {
+            math: "Mathématiques",
+            history: "Histoire",
+            science: "Science",
+            sports: "Sports",
+            language: "Langue",
+            art: "Art",
+            pop_culture: "Culture Pop",
+            random: "Aléatoire",
+        },
+    },
+};
+
+export const triviaQuestions = {
+    en: {
         math: [
             {
                 question: "What is 11 x 15?",
