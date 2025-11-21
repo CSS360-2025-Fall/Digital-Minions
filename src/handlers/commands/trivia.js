@@ -2,7 +2,7 @@ import { InteractionResponseType } from 'discord-interactions';
 import { extractUserId } from '../../utils/helpers.js';
 import { createTriviaQuestionMessage } from '../../utils/messageBuilders.js';
 import { createGame, getUserLocale } from '../../services/gameState.js';
-import { getRandomQuestion } from "../../services/triviaQuestions.js";
+import { getRandomQuestion } from "../../services/gameState.js";
 
 //renamed file to trivia due to the removal of commands.
 
