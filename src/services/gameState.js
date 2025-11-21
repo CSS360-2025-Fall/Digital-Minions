@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getLocalizedQuestion } from '../localization/strings.js';
 
 // Get __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,10 @@ try {
     console.error('Error loading trivia scores:', error);
     triviaScores = {};
 }
+/**
+ * Question function moved from triviaQuestions
+ */
+export { getLocalizedQuestion as getRandomQuestion };
 
 // User preferences storage
 const userPreferences = new Map();
