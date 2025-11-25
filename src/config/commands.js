@@ -31,8 +31,8 @@ export const TRIVIA_COMMAND = {
   options: [
     {
       type: 3,
-      name: 'object',
-      description: 'Pick your object',
+      name: 'genre',
+      description: 'Pick your genre',
       required: true,
       choices: createCommandChoices(),
     },
