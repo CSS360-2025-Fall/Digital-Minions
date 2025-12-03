@@ -180,6 +180,25 @@ export const triviaQuestions = {
                 options: ["Isosceles", "Equilateral", "Right", "Scalene"],
                 correct: "Right",
             },
+            // new question start point:
+            {//1
+                question: "What is the derivative of ln(x)?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "What is the difference between 100 and 245?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "What is the next number in the Fibonacci sequence: 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "Which of the follow
+                
         ],
         history: [
             {
