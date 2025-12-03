@@ -197,7 +197,40 @@ export const triviaQuestions = {
                 correct: "13",
             },
             {//4
-                question: "Which of the follow
+                question: "Which of the following is an obtuse angle?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "What percentage is 5/8?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "What is the median of 8,5,6,15,10?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "What is the fraction form of 0.55?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "How many sides does an Octagon have?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "What is the square root of 961?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "What is the sum of angles in a square?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            }
                 
         ],
         history: [
