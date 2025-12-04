@@ -633,6 +633,107 @@ export const triviaQuestions = {
                 options: ["Isósceles", "Equilátero", "Rectángulo", "Escaleno"],
                 correct: "Rectángulo",
             },
+            //start of new questions:
+            {//1
+                question: "¿Cuál es la derivada de ln(x)?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "¿Cuál es la diferencia entre 100 y 245?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "¿Cuál es el siguiente número en la secuencia de Fibonacci: 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "¿Cuál de los siguientes es un ángulo obtuso?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "¿Qué porcentaje es 5/8?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "¿Cuál es la mediana de 8,5,6,15,10?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "¿Cuál es la forma fraccionaria de 0.55?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "¿Cuántos lados tiene un octágono?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "¿Cuál es la raíz cuadrada de 961?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "¿Cuál es la suma de los ángulos en un cuadrado?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            },
+            {//11
+                question: "¿Cuál es la fórmula de la circunferencia de un círculo?",
+                options: ["πr", "2πr", "πr²", "2πr²"],
+                correct: "2πr",
+            },
+            {//12
+                question: "¿Cuál es el área de un rectángulo de 5x3?",
+                options: ["26", "25", "15", "10"],
+                correct: "15",
+            },
+            {//13
+                question: "¿Cuál es el 67% de 35?",
+                options: ["24", "23", "23.45", "23.50"],
+                correct: "23.45",
+            },
+            {//14
+                question: "¿Cuál es el valor de pi hasta la cuarta cifra decimal?",
+                options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                correct: "3.1416",
+            },
+            {//15
+                question: "¿Cuál es 3 elevado a la potencia de 5?",
+                options: ["15", "243", "245", "210"],
+                correct: "243",
+            },
+            {//16
+                question: "¿Cuántas horas son 246 minutos?",
+                options: ["4.0", "4.3", "4.1", "4.2"],
+                correct: "4.1",
+            },
+            {//17
+                question: "¿Cuál es el máximo común divisor de 60 y 80?",
+                options: ["2", "30", "20", "10"],
+                correct: "20",
+            },
+            {//18
+                question: "Si sumas los dígitos de cualquier múltiplo de 9, ¿por qué número será siempre divisible la suma?",
+                options: ["3", "6", "9", "12"],
+                correct: "9",
+            },
+            {//19
+                question: "¿Qué número se conoce como la \"identidad aditiva\"?",
+                options: ["1", "0", "10", "2"],
+                correct: "0",
+            },
+            {//20
+                question: "¿Qué figura tiene el área más grande para un perímetro dado?",
+                options: ["Cuadrado", "Círculo", "Triángulo", "Rectángulo"],
+                correct: "Círculo",
+            },
         ],
         history: [
             {
@@ -1003,6 +1104,107 @@ export const triviaQuestions = {
                 question: "Quel type de triangle possède des côtés de 3, 4 et 5 ?",
                 options: ["Isocèle", "Équilatéral", "Rectangle", "Scalène"],
                 correct: "Rectangle",
+            },
+            //start of new questions:
+            {//1
+                question: "Quelle est la dérivée de ln(x) ?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "Quelle est la différence entre 100 et 245 ?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "Quel est le nombre suivant dans la suite de Fibonacci : 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "Lequel des angles suivants est un angle obtus ?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "Quel pourcentage représente 5/8 ?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "Quelle est la médiane de 8,5,6,15,10 ?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "Quelle est la forme fractionnaire de 0.55 ?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "Combien de côtés a un octogone ?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "Quelle est la racine carrée de 961 ?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "Quelle est la somme des angles dans un carré ?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            },
+            {//11
+                 question: "Quelle est la formule de la circonférence d’un cercle ?",
+                 options: ["πr", "2πr", "πr²", "2πr²"],
+                 correct: "2πr",
+            },
+            {//12
+                 question: "Quelle est l’aire d’un rectangle de 5x3 ?",
+                 options: ["26", "25", "15", "10"],
+                 correct: "15",
+            },
+            {//13
+                 question: "Quel est 67% de 35 ?",
+                 options: ["24", "23", "23.45", "23.50"],
+                 correct: "23.45",
+            },
+            {//14
+                 question: "Quelle est la valeur de pi à la quatrième décimale ?",
+                 options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                 correct: "3.1416",
+            },
+            {//15
+                 question: "Quel est 3 à la puissance 5 ?",
+                 options: ["15", "243", "245", "210"],
+                 correct: "243",
+            },
+            {//16
+                 question: "Combien d’heures font 246 minutes ?",
+                 options: ["4.0", "4.3", "4.1", "4.2"],
+                 correct: "4.1",
+            },
+            {//17
+                 question: "Quel est le plus grand diviseur commun de 60 et 80 ?",
+                 options: ["2", "30", "20", "10"],
+                 correct: "20",
+            },
+            {//18
+                 question: "Si tu additionnes les chiffres de n’importe quel multiple de 9, par quel nombre la somme sera-t-elle toujours divisible ?",
+                 options: ["3", "6", "9", "12"],
+                 correct: "9",
+            },
+            {//19
+                 question: "Quel nombre est connu comme « l’identité additive » ?",
+                 options: ["1", "0", "10", "2"],
+                 correct: "0",
+            },
+            {//20
+                 question: "Quelle figure a la plus grande aire pour un périmètre donné ?",
+                 options: ["Carré", "Cercle", "Triangle", "Rectangle"],
+                 correct: "Cercle",
             },
         ],
 
