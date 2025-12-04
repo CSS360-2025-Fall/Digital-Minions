@@ -230,7 +230,57 @@ export const triviaQuestions = {
                 question: "What is the sum of angles in a square?",
                 options: ["180", "90", "270", "360"],
                 correct: "360",
-            }
+            },
+            {//11
+                question: "What is the circumference formula for a circle?",
+                options: ["πr", "2πr", "πr²", "2πr²"],
+                correct: "2πr",
+            },
+            {//12
+                question: "What is the area of a 5x3 rectangle?",
+                options: ["26", "25", "15", "10"],
+                correct: "15",
+            },
+            {//13
+                question: "What is 67% of 35?",
+                options: ["24", "23", "23.45", "23.50"],
+                correct: "23.45",
+            },
+            {//14
+                question: "What is the value of pi to the 4th decimal place?",
+                options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                correct: "3.1416",
+            },
+            {//15
+                question: "What is 3 to the power of 5?",
+                options: ["15", "243", "245", "210"],
+                correct: "243",
+            },
+            {//16
+                question: "How many hours does 246 minutes make?",
+                options: ["4.0", "4.3", "4.1", "4.2"],
+                correct: "4.1",
+            },
+            {//17
+                question: "What is the greatest common divisor of 60 and 80?",
+                options: ["2", "30", "20", "10"],
+                correct: "20",
+            },
+            {//18
+                question: "If you add the digits of any multiple of 9, what number will the sum always be divisible by?",
+                options: ["3", "6", "9", "12"],
+                correct: "9",
+            },
+            {//19
+                question: "What number is known as the \"additive identity\”?",
+                options: ["1", "0", "10", "2"],
+                correct: "0",
+            },
+            {//20
+                question: "Which shape has the largest area for a given perimeter?",
+                options: ["Square", "Circle", "triangle", "rectangle"],
+                correct: "Circle",
+            },
                 
         ],
         history: [
