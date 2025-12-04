@@ -324,6 +324,107 @@ export const triviaQuestions = {
                 options: ["Greece", "Italy", "Turkey", "Egypt"],
                 correct: "Turkey",
             },
+            //new question start point
+            {//1
+                question: "In what year did World War II end?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "Who was the first Emperor of Rome?",
+                options: ["Julius Caesar", "Augustus", "Nero", "Caligula"],
+                correct: "Augustus",
+            },
+            {//3
+                question: "What year did the Berlin Wall fall?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "Who discovered penicillin?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "What ancient wonder was located in Alexandria, Egypt?",
+                options: ["Hanging Gardens", "Colossus of Rhodes", "Lighthouse", "Temple of Artemis"],
+                correct: "Lighthouse",
+            },
+            {//6
+                question: "Who was the first person to circumnavigate the globe?",
+                options: ["Christopher Columbus", "Ferdinand Magellan", "Vasco da Gama", "Marco Polo"],
+                correct: "Ferdinand Magellan",
+            },
+            {//7
+                question: "Who built the Great Wall of China?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucius", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "In what year did India gain independence from British rule?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "What was the name of the first successful English colony in America?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "Who was the Egyptian queen who allied with Julius Caesar and Mark Antony?",
+                options: ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"],
+                correct: "Cleopatra",
+            },
+            {//11
+                question: "What year did the Titanic sink?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "What year did the Spanish Armada attempt to invade England?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "Who was assassinated in Sarajevo in 1914, triggering World War I?",
+                options: ["Franz Ferdinand", "Otto von Bismarck", "Kaiser Wilhelm II", "Nicholas II"],
+                correct: "Franz Ferdinand",
+            },
+            {//14
+                question: "What was the name of the pandemic that killed millions in the 14th century?",
+                options: ["Spanish Flu", "Black Death", "Cholera", "Typhus"],
+                correct: "Black Death",
+            },
+            {//15
+                question: "Who led the Haitian Revolution?",
+                options: ["Simon Bolivar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "What city was buried by the eruption of Mount Vesuvius in 79 AD?",
+                options: ["Athens", "Pompeii", "Carthage", "Babylon"],
+                correct: "Pompii",
+            },
+            {//17
+                question: "Who invented the printing press?",
+                options: ["Galileo Galilei", "Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "Which ancient civilization invented the wheel?",
+                options: ["Egyptians", "Sumerians", "Greeks", "Romans"],
+                correct: "Sumerians",
+            },
+            {//19
+                question: "The Rosetta Stone helped historians finally understand what writing system?",
+                options: ["Cuneiform", "Mayan script", "Hieroglyphics", "Runes"],
+                correct: "Hieroglyphics",
+            },
+            {//20
+                question: "Who was the first President to live in the White House?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
+            }
         ],
         science: [
             {
@@ -785,6 +886,107 @@ export const triviaQuestions = {
                 question: "¿En qué país actual estaba situada la antigua ciudad de Troya?",
                 options: ["Grecia", "Italia", "Turquía", "Egipto"],
                 correct: "Turquía",
+            },
+            //start of new questions:
+            {//1
+                question: "¿En qué año terminó la Segunda Guerra Mundial?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "¿Quién fue el primer emperador de Roma?",
+                options: ["Julio César", "Augusto", "Nerón", "Calígula"],
+                correct: "Augusto",
+            },
+            {//3
+                question: "¿En qué año cayó el Muro de Berlín?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "¿Quién descubrió la penicilina?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "¿Qué maravilla antigua estaba ubicada en Alejandría, Egipto?",
+                options: ["Jardines Colgantes", "Coloso de Rodas", "Faro", "Templo de Artemisa"],
+                correct: "Faro",
+            },
+            {//6
+                question: "¿Quién fue la primera persona en circunnavegar el mundo?",
+                options: ["Cristóbal Colón", "Fernando de Magallanes", "Vasco da Gama", "Marco Polo"],
+                correct: "Fernando de Magallanes",
+            },
+            {//7
+                question: "¿Quién construyó la Gran Muralla China?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucio", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "¿En qué año obtuvo la India su independencia del dominio británico?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "¿Cuál fue el nombre de la primera colonia inglesa exitosa en América?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "¿Quién fue la reina egipcia que se alió con Julio César y Marco Antonio?",
+                options: ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"],
+                correct: "Cleopatra",
+            },
+            {//11
+                question: "¿En qué año se hundió el Titanic?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "¿En qué año intentó la Armada Española invadir Inglaterra?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "¿Quién fue asesinado en Sarajevo en 1914, desencadenando la Primera Guerra Mundial?",
+                options: ["Francisco Fernando", "Otto von Bismarck", "Kaiser Guillermo II", "Nicolás II"],
+                correct: "Francisco Fernando",
+            },
+            {//14
+                question: "¿Cuál fue el nombre de la pandemia que mató a millones en el siglo XIV?",
+                options: ["Gripe Española", "Peste Negra", "Cólera", "Tifus"],
+                correct: "Peste Negra",
+            },
+            {//15
+                question: "¿Quién lideró la Revolución Haitiana?",
+                options: ["Simón Bolívar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "¿Qué ciudad fue enterrada por la erupción del Monte Vesubio en el año 79 d.C.?",
+                options: ["Atenas", "Pompeya", "Cartago", "Babilonia"],
+                correct: "Pompeya",
+            },
+            {//17
+                question: "¿Quién inventó la imprenta?",
+                options: ["Galileo Galilei", "Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "¿Qué civilización antigua inventó la rueda?",
+                options: ["Egipcios", "Sumerios", "Griegos", "Romanos"],
+                correct: "Sumerios",
+            },
+            {//19
+                question: "¿La Piedra de Rosetta ayudó a los historiadores a comprender finalmente qué sistema de escritura?",
+                options: ["Cuneiforme", "Escritura maya", "Jeroglíficos", "Runas"],
+                correct: "Jeroglíficos",
+            },
+            {//20
+                question: "¿Quién fue el primer presidente en vivir en la Casa Blanca?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
             },
         ],
         science: [
@@ -1258,6 +1460,107 @@ export const triviaQuestions = {
                 question: "Dans quel pays moderne se trouvait l'ancienne ville de Troie ?",
                 options: ["Grèce", "Italie", "Turquie", "Égypte"],
                 correct: "Turquie",
+            },
+            //start of new questions
+            {//1
+                question: "En quelle année la Seconde Guerre mondiale s’est-elle terminée ?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "Qui fut le premier empereur de Rome ?",
+                options: ["Jules César", "Auguste", "Néron", "Caligula"],
+                correct: "Auguste",
+            },
+            {//3
+                question: "En quelle année le Mur de Berlin est-il tombé ?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "Qui a découvert la pénicilline ?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "Quelle merveille antique se trouvait à Alexandrie, en Égypte ?",
+                options: ["Jardins suspendus", "Colosse de Rhodes", "Phare", "Temple d’Artémis"],
+                correct: "Phare",
+            },
+            {//6
+                question: "Qui fut la première personne à faire le tour du monde ?",
+                options: ["Christophe Colomb", "Fernand de Magellan", "Vasco de Gama", "Marco Polo"],
+                correct: "Fernand de Magellan",
+            },
+            {//7
+                question: "Qui a construit la Grande Muraille de Chine ?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucius", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "En quelle année l’Inde a-t-elle obtenu son indépendance de la domination britannique ?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "Quel fut le nom de la première colonie anglaise réussie en Amérique ?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "Quelle reine égyptienne s’est alliée avec Jules César et Marc Antoine ?",
+                options: ["Néfertiti", "Cléopâtre", "Hatshepsout", "Néfertari"],
+                correct: "Cléopâtre",
+            },
+            {//11
+                question: "En quelle année le Titanic a-t-il coulé ?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "En quelle année l’Armada espagnole a-t-elle tenté d’envahir l’Angleterre ?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "Qui a été assassiné à Sarajevo en 1914, déclenchant la Première Guerre mondiale ?",
+                options: ["François-Ferdinand", "Otto von Bismarck", "Kaiser Guillaume II", "Nicolas II"],
+                correct: "François-Ferdinand",
+            },
+            {//14
+                question: "Quel était le nom de la pandémie qui a tué des millions de personnes au XIVe siècle ?",
+                options: ["Grippe espagnole", "Peste noire", "Choléra", "Typhus"],
+                correct: "Peste noire",
+            },
+            {//15
+                question: "Qui a dirigé la Révolution haïtienne ?",
+                options: ["Simón Bolívar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "Quelle ville a été ensevelie par l’éruption du Vésuve en 79 apr. J.-C. ?",
+                options: ["Athènes", "Pompéi", "Carthage", "Babylone"],
+                correct: "Pompéi",
+            },
+            {//17
+                question: "Qui a inventé l’imprimerie ?",
+                options: ["Galilée", "Léonard de Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "Quelle civilisation antique a inventé la roue ?",
+                options: ["Égyptiens", "Sumériens", "Grecs", "Romains"],
+                correct: "Sumériens",
+            },
+            {//19
+                question: "La pierre de Rosette a aidé les historiens à comprendre enfin quel système d’écriture ?",
+                options: ["Cunéiforme", "Écriture maya", "Hiéroglyphes", "Runes"],
+                correct: "Hiéroglyphes",
+            },
+            {//20
+                question: "Qui fut le premier président à vivre à la Maison-Blanche ?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
             },
         ],
 
