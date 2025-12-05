@@ -4,6 +4,7 @@ import { handleChallengeCommand } from './trivia.js';
 import { handleRulesCommand } from './rules.js';
 import { handleRecordCommand } from './record.js';
 import { handleLanguageCommand } from './language.js';
+import { handleLeaderboardCommand } from './leaderboard.js';
 
 /**
  * Command handler registry
@@ -15,7 +16,8 @@ const commandHandlers = {
   [COMMANDS.TRIVIA]: handleChallengeCommand,
   [COMMANDS.RULES]: handleRulesCommand,
   [COMMANDS.RECORD]: handleRecordCommand,
-  language: handleLanguageCommand,
+  [COMMANDS.LANGUAGE]: handleLanguageCommand,
+  [COMMANDS.LEADERBOARD]: handleLeaderboardCommand,
 };
 
 /**
