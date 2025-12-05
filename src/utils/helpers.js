@@ -12,6 +12,14 @@ export function extractUserId(req) {
 }
 
 /**
+ * Extracts guild ID from Discord request
+ * Returns 'dm' if not in a guild context
+ */
+export function extractGuildId(req) {
+  return req.body.guild_id || 'dm';
+}
+
+/**
  * Creates a webhook endpoint URL for message operations
  */
 export function createWebhookEndpoint(appId, token, messageId) {

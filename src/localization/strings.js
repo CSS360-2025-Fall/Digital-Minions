@@ -29,6 +29,11 @@ export const strings = {
             incorrect: (count) => `❌ **Incorrect:** ${count}`,
             accuracy: (percent) => `🏆 **Accuracy:** ${percent}%`,
         },
+        leaderboard: {
+            title: "🏆 **Trivia Leaderboard - Top 20**",
+            empty: "📊 No trivia records yet in this server. Play some trivia to get on the leaderboard!",
+            entry: (medal, userId, accuracy, correct, incorrect) => `${medal} <@${userId}> - **${accuracy}%** (${correct}✅ ${incorrect}❌)`,
+        },
         errors: {
             processing: "⚠️ An error occurred processing your selection.",
         },
@@ -70,6 +75,11 @@ export const strings = {
             incorrect: (count) => `❌ **Incorrectas:** ${count}`,
             accuracy: (percent) => `🏆 **Precisión:** ${percent}%`,
         },
+        leaderboard: {
+            title: "🏆 **Tabla de Clasificación de Trivia - Top 20**",
+            empty: "📊 Aún no hay registros de trivia en este servidor. ¡Juega trivia para aparecer en la tabla!",
+            entry: (medal, userId, accuracy, correct, incorrect) => `${medal} <@${userId}> - **${accuracy}%** (${correct}✅ ${incorrect}❌)`,
+        },
         errors: {
             processing: "⚠️ Ocurrió un error al procesar tu selección.",
         },
@@ -110,6 +120,11 @@ export const strings = {
             correct: (count) => `✅ **Correctes:** ${count}`,
             incorrect: (count) => `❌ **Incorrectes:** ${count}`,
             accuracy: (percent) => `🏆 **Précision:** ${percent}%`,
+        },
+        leaderboard: {
+            title: "🏆 **Classement Trivia - Top 20**",
+            empty: "📊 Pas encore de records de trivia sur ce serveur. Jouez au trivia pour apparaître dans le classement!",
+            entry: (medal, userId, accuracy, correct, incorrect) => `${medal} <@${userId}> - **${accuracy}%** (${correct}✅ ${incorrect}❌)`,
         },
         errors: {
             processing: "⚠️ Une erreur s'est produite lors du traitement de votre sélection.",

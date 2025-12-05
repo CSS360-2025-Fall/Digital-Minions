@@ -60,22 +60,59 @@ function saveTriviaScores() {
     }
 }
 
-export function recordTriviaResult(userId, isCorrect) {
-    if (!triviaScores[userId]) {
-        triviaScores[userId] = { correct: 0, incorrect: 0 };
+export function recordTriviaResult(userId, isCorrect, guildId = 'dm') {
+    // Use guild-based storage structure: guildId -> userId -> stats
+    if (!triviaScores[guildId]) {
+        triviaScores[guildId] = {};
     }
-    if (isCorrect) triviaScores[userId].correct++;
-    else triviaScores[userId].incorrect++;
+    if (!triviaScores[guildId][userId]) {
+        triviaScores[guildId][userId] = { correct: 0, incorrect: 0 };
+    }
+    if (isCorrect) triviaScores[guildId][userId].correct++;
+    else triviaScores[guildId][userId].incorrect++;
 
     // Persist to disk
     saveTriviaScores();
 }
 
-export function getTriviaRecord(userId) {
-    if (!triviaScores[userId]) {
-        triviaScores[userId] = { correct: 0, incorrect: 0 };
+export function getTriviaRecord(userId, guildId = 'dm') {
+    if (!triviaScores[guildId]) {
+        triviaScores[guildId] = {};
     }
-    return triviaScores[userId];
+    if (!triviaScores[guildId][userId]) {
+        triviaScores[guildId][userId] = { correct: 0, incorrect: 0 };
+    }
+    return triviaScores[guildId][userId];
+}
+
+export function getGuildLeaderboard(guildId = 'dm', limit = 20) {
+    if (!triviaScores[guildId]) {
+        return [];
+    }
+
+    // Convert to array and calculate accuracy
+    const players = Object.entries(triviaScores[guildId]).map(([userId, stats]) => {
+        const total = stats.correct + stats.incorrect;
+        const accuracy = total === 0 ? 0 : (stats.correct / total) * 100;
+        return {
+            userId,
+            correct: stats.correct,
+            incorrect: stats.incorrect,
+            total,
+            accuracy,
+        };
+    });
+
+    // Sort by accuracy (descending), then by total questions (descending) as tiebreaker
+    players.sort((a, b) => {
+        if (b.accuracy !== a.accuracy) {
+            return b.accuracy - a.accuracy;
+        }
+        return b.total - a.total;
+    });
+
+    // Return top N players
+    return players.slice(0, limit);
 }
 
 // ===== Category Choices =====

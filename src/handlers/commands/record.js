@@ -1,5 +1,5 @@
 ﻿import { InteractionResponseType } from 'discord-interactions';
-import { extractUserId } from '../../utils/helpers.js';
+import { extractUserId, extractGuildId } from '../../utils/helpers.js';
 import { createSimpleMessage } from '../../utils/messageBuilders.js';
 import { getTriviaRecord } from '../../services/gameState.js';
 import { t } from '../../localization/strings.js';
@@ -15,8 +15,9 @@ export async function handleRecordCommand(req, res) {
   const commandUserId = extractUserId(req);
   const targetUserId = data.options?.[0]?.value || commandUserId;
   const locale = getUserLocale(commandUserId);
+  const guildId = extractGuildId(req);
 
-  const record = getTriviaRecord(targetUserId);
+  const record = getTriviaRecord(targetUserId, guildId);
   const total = (record.correct || 0) + (record.incorrect || 0);
   const accuracy = total === 0 ? 0 : ((record.correct / total) * 100).toFixed(1);
 
