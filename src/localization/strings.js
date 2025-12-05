@@ -645,6 +645,107 @@ export const triviaQuestions = {
                 options: ["24.2 miles", "26.2 miles", "28.2 miles", "30.2 miles"],
                 correct: "26.2 miles",
             },
+            //start of new questions:
+            {//1
+                question: "Which team won the Super Bowl in 2000?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "What sport is known as 'the beautiful game'?",
+                options: ["Basketball", "Soccer", "Tennis", "Cricket"],
+                correct: "Soccer",
+            },
+            {//3
+                question: "How many Grand Slam tournaments are there in tennis each year?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "What is the national sport of Japan?",
+                options: ["Karate", "Judo", "Sumo wrestling", "Kendo"],
+                correct: "Sumo wrestling",
+            },
+            {//5
+                question: "What is the term for a score of zero in tennis?",
+                options: ["Love", "Nil", "Zero", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "What is the only sport to have been played on the moon?",
+                options: ["Baseball", "Golf", "Frisbee", "Tennis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "How many holes are played in a standard round of golf?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "Which boxer was known as 'The Greatest'?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "How many NBA championships did Michael Jordan win with the Chicago Bulls?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "What is the term for three strikes in a row in bowling?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "Which tennis player has won the most Grand Slam singles titles (as of 2024)?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "Which city is the only one to have won championships in the NFL, MLB, NBA, and NHL in the same year?",
+                options: ["None", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "None",
+            },
+            {//13
+                question: "In what year did Michael Phelps win his record 8 gold medals in a single Olympics?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "In American football, how many yards is the offense penalized for a holding call?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "Which NBA team did Kobe Bryant play for his entire career?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "Which country has won the most Olympic gold medals in hockey (field hockey)?",
+                options: ["India", "USA", "China", "Russia"],
+                correct: "India",
+            },
+            {//17
+                question: "What sport is known as “the king of sports”?", 
+                options: ["Soccer", "Cricket", "Baseball", "Basketball"],
+                correct: "Soccer",
+            },
+            {//18
+                question: "Which sport uses a shuttlecock?",
+                options: ["Badminton", "Soccer", "Cricket", "Track"],
+                correct: "Badminton",
+            },
+            {//19
+                question: "What year was the first modern Olympic Games held?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },
+            {//20
+                question: "What is the regulation height of a basketball hoop?",
+                options: ["10 feet", "10 inches", "11 feet", "11 inches"],
+                correct: "10 feet",
+            },
         ],
         language: [
             {
@@ -1317,6 +1418,107 @@ export const triviaQuestions = {
                 question: "¿Cuál es la distancia de un maratón?",
                 options: ["24.2 millas", "26.2 millas", "28.2 millas", "30.2 millas"],
                 correct: "26.2 millas",
+            },
+            //new questions
+            {//1
+                question: "¿Qué equipo ganó el Super Bowl en el año 2000?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "¿Qué deporte es conocido como 'el juego bonito'?",
+                options: ["Baloncesto", "Fútbol", "Tenis", "Críquet"],
+                correct: "Fútbol",
+            },
+            {//3
+                question: "¿Cuántos torneos de Grand Slam hay en tenis cada año?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "¿Cuál es el deporte nacional de Japón?",
+                options: ["Karate", "Judo", "Sumo", "Kendo"],
+                correct: "Sumo",
+            },
+            {//5
+                question: "¿Cuál es el término para un marcador de cero en tenis?",
+                options: ["Love", "Nil", "Zero", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "¿Cuál es el único deporte que se ha jugado en la luna?",
+                options: ["Béisbol", "Golf", "Frisbee", "Tenis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "¿Cuántos hoyos se juegan en una ronda estándar de golf?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "¿Qué boxeador fue conocido como 'El Más Grande'?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "¿Cuántos campeonatos de la NBA ganó Michael Jordan con los Chicago Bulls?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "¿Cuál es el término para tres strikes seguidos en boliche?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "¿Qué tenista ha ganado más títulos de Grand Slam en individuales (hasta 2024)?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "¿Qué ciudad es la única que ha ganado campeonatos en la NFL, MLB, NBA y NHL en el mismo año?",
+                options: ["Ninguna", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "Ninguna",
+            },
+            {//13
+                question: "¿En qué año ganó Michael Phelps su récord de 8 medallas de oro en unos mismos Juegos Olímpicos?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "En el fútbol americano, ¿cuántas yardas se penaliza a la ofensiva por una falta de 'holding'?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "¿En qué equipo de la NBA jugó Kobe Bryant toda su carrera?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "¿Qué país ha ganado más medallas de oro olímpicas en hockey (hockey sobre césped)?",
+                options: ["India", "EE.UU.", "China", "Rusia"],
+                correct: "India",
+            },
+            {//17
+                question: "¿Qué deporte es conocido como 'el rey de los deportes'?",
+                options: ["Fútbol", "Críquet", "Béisbol", "Baloncesto"],
+                correct: "Fútbol",
+            },
+            {//18
+                question: "¿Qué deporte utiliza un volante (shuttlecock)?",
+                options: ["Bádminton", "Fútbol", "Críquet", "Atletismo"],
+                correct: "Bádminton",
+            },
+            {//19
+                question: "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },        
+            {//20
+                question: "¿Cuál es la altura reglamentaria de un aro de baloncesto?",
+                options: ["10 pies", "10 pulgadas", "11 pies", "11 pulgadas"],
+                correct: "10 pies",
             },
         ],
         language: [
@@ -1993,6 +2195,107 @@ export const triviaQuestions = {
                 question: "Quelle est la distance d’un marathon ?",
                 options: ["24,2 miles", "26,2 miles", "28,2 miles", "30,2 miles"],
                 correct: "26,2 miles",
+            },
+            //start of new questions
+            {//1
+                question: "Quelle équipe a remporté le Super Bowl en 2000 ?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "Quel sport est connu comme 'le beau jeu' ?",
+                options: ["Basket-ball", "Football", "Tennis", "Cricket"],
+                correct: "Football",
+            },
+            {//3
+                question: "Combien de tournois du Grand Chelem y a-t-il en tennis chaque année ?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "Quel est le sport national du Japon ?",
+                options: ["Karaté", "Judo", "Sumo", "Kendo"],
+                correct: "Sumo",
+            },        
+            {//5
+                question: "Quel est le terme pour un score de zéro au tennis ?",
+                options: ["Love", "Nil", "Zéro", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "Quel est le seul sport qui a été pratiqué sur la lune ?",
+                options: ["Baseball", "Golf", "Frisbee", "Tennis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "Combien de trous sont joués dans une partie standard de golf ?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "Quel boxeur était connu comme 'Le Plus Grand' ?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "Combien de championnats NBA Michael Jordan a-t-il remportés avec les Chicago Bulls ?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "Quel est le terme pour trois strikes consécutifs au bowling ?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "Quel joueur de tennis a remporté le plus de titres du Grand Chelem en simple (en 2024) ?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "Quelle ville est la seule à avoir remporté des championnats en NFL, MLB, NBA et NHL la même année ?",
+                options: ["Aucune", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "Aucune",
+            },
+            {//13
+                question: "En quelle année Michael Phelps a-t-il remporté son record de 8 médailles d’or en un seul Jeux Olympiques ?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "Au football américain, de combien de yards l’attaque est-elle pénalisée pour une faute de 'holding' ?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "Dans quelle équipe NBA Kobe Bryant a-t-il joué toute sa carrière ?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "Quel pays a remporté le plus de médailles d’or olympiques en hockey sur gazon ?",
+                options: ["Inde", "États-Unis", "Chine", "Russie"],
+                correct: "Inde",
+            },
+            {//17
+                question: "Quel sport est connu comme 'le roi des sports' ?",
+                options: ["Football", "Cricket", "Baseball", "Basket-ball"],
+                correct: "Football",
+            },
+            {//18
+                question: "Quel sport utilise un volant (shuttlecock) ?",
+                options: ["Badminton", "Football", "Cricket", "Athlétisme"],
+                correct: "Badminton",
+            },
+            {//19
+                question: "En quelle année ont eu lieu les premiers Jeux Olympiques modernes ?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },
+            {//20
+                question: "Quelle est la hauteur réglementaire d’un panier de basket-ball ?",
+                options: ["10 pieds", "10 pouces", "11 pieds", "11 pouces"],
+                correct: "10 pieds",
             },
         ],
 
