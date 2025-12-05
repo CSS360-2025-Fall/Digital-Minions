@@ -427,45 +427,156 @@ export const triviaQuestions = {
             }
         ],
         science: [
-            {
+            {//1
                 question: "What planet is known as the Red Planet?",
                 options: ["Venus", "Mars", "Jupiter", "Mercury"],
                 correct: "Mars",
             },
-            {
+            {//2
                 question: "What is the chemical symbol for water?",
                 options: ["H2O", "O2", "CO2", "HO2"],
                 correct: "H2O",
             },
-            {
+            {//3
                 question: "Which element has the atomic number 1?",
                 options: ["Oxygen", "Hydrogen", "Nitrogen", "Helium"],
                 correct: "Hydrogen",
             },
-            {
+            {//4
                 question: "What type of energy is stored in a stretched rubber band?",
                 options: ["Thermal energy", "Kinetic energy", "Elastic potential energy", "Nuclear energy"],
                 correct: "Elastic potential energy",
             },
-            {
+            {//5
                 question: "Which planet has the most moons in our Solar System?",
                 options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
                 correct: "Saturn",
             },
-            {
+            {//6
                 question: "What is the powerhouse of the cell?",
                 options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Apparatus"],
                 correct: "Mitochondria",
             },
-            {
+            {//7
                 question: "What law states that for every action, there is an equal and opposite reaction?",
                 options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Conservation of Energy"],
                 correct: "Newton's Third Law",
             },
-            {
+            {//8
                 question: "What particle in an atom has a positive charge?",
                 options: ["Neutron", "Electron", "Proton", "Photon"],
                 correct: "Proton",
+            },
+            //new questions start
+            {//9
+                question: "What is the hardest natural substance on Earth?",
+                options: ["Gold", "Iron", "Diamond", "Titanium"],
+                correct: "Diamond",
+            },
+            {//10
+                question: "What is the speed of light in a vacuum?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "What gas makes up most of Earth's atmosphere?",
+                options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+                correct: "Nitrogen",
+            },
+            {//12
+                question: "How many bones are in the adult human body?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "What is the chemical symbol for gold?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "What planet is closest to the Sun?",
+                options: ["Venus", "Earth", "Mercury", "Mars"],
+                correct: "Mercury",
+            },
+            {//15
+                question: "What is the boiling point of water in Celsius?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "What organ pumps blood through the human body?",
+                options: ["Liver", "Lungs", "Heart", "Kidney"],
+                correct: "Heart",
+            },
+            {//17
+                question: "What is the largest planet in our solar system?",
+                options: ["Saturn", "Neptune", "Jupiter", "Uranus"],
+                correct: "Jupiter",
+            },
+            {//18
+                question: "What type of animal is a Komodo dragon?",
+                options: ["Snake", "Lizard", "Crocodile", "Dinosaur"],
+                correct: "Lizard",
+            },
+            {//19
+                question: "How many hearts does an octopus have?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "What is the study of weather called?",
+                options: ["Geology", "Meteorology", "Astronomy", "Biology"],
+                correct: "Meteorology",
+            },
+            {//21
+                question: "What is the smallest unit of life?",
+                options: ["Atom", "Molecule", "Cell", "Tissue"],
+                correct: "Cell",
+            },
+            {//22
+                question: "What is dry ice made of?",
+                options: ["Frozen water", "Frozen nitrogen", "Frozen oxygen", "Frozen carbon dioxide"],
+                correct: "Frozen carbon dioxide",
+            },
+            {//23
+                question: "How long does it take for Earth to orbit the Sun?",
+                options: ["30 days", "365 days", "24 hours", "12 months"],
+                correct: "365 days",
+            },
+            {//24
+                question: "What is the largest organ in the human body?",
+                options: ["Liver", "Brain", "Skin", "Heart"],
+                correct: "Skin",
+            },
+            {//25
+                question: "What force keeps us on the ground?",
+                options: ["Magnetism", "Gravity", "Friction", "Inertia"],
+                correct: "Gravity",
+            },
+            {//26
+                question: "What is the chemical formula for table salt?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "Which blood type is known as the universal donor?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "What vitamin is produced when skin is exposed to sunlight?",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin E"],
+                correct: "Vitamin D",
+            },
+            {//29
+                question: "What do we call molten rock beneath the Earth’s surface?",
+                options: ["Lava", "Magma", "Basalt", "Granite"],
+                correct: "Magma",
+            },
+            {//30
+                question: "Which layer of Earth contains all weather?",
+                options: ["Stratosphere", "Mesosphere", "Troposphere", "Thermosphere"],
+                correct: "Troposphere",
             },
         ],
         sports: [
@@ -996,19 +1107,9 @@ export const triviaQuestions = {
                 correct: "Marte",
             },
             {
-                question: "¿Qué gas exhalan los humanos al respirar?",
-                options: ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Hidrógeno"],
-                correct: "Dióxido de carbono",
-            },
-            {
                 question: "¿Cuál es el símbolo químico del agua?",
                 options: ["H2O", "O2", "CO2", "HO2"],
                 correct: "H2O",
-            },
-            {
-                question: "¿Qué parte de la célula contiene el material genético?",
-                options: ["Citoplasma", "Mitocondria", "Núcleo", "Ribosoma"],
-                correct: "Núcleo",
             },
             {
                 question: "¿Qué elemento tiene el número atómico 1?",
@@ -1039,6 +1140,116 @@ export const triviaQuestions = {
                 question: "¿Qué partícula en un átomo tiene carga positiva?",
                 options: ["Neutrón", "Electrón", "Protón", "Fotón"],
                 correct: "Protón",
+            },
+            {//9
+                question: "¿Cuál es la sustancia natural más dura de la Tierra?",
+                options: ["Oro", "Hierro", "Diamante", "Titanio"],
+                correct: "Diamante",
+            },
+            {//10
+                question: "¿Cuál es la velocidad de la luz en el vacío?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "¿Qué gas compone la mayor parte de la atmósfera terrestre?",
+                options: ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Hidrógeno"],
+                correct: "Nitrógeno",
+            },
+            {//12
+                question: "¿Cuántos huesos tiene el cuerpo humano adulto?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "¿Cuál es el símbolo químico del oro?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "¿Qué planeta está más cerca del Sol?",
+                options: ["Venus", "Tierra", "Mercurio", "Marte"],
+                correct: "Mercurio",
+            },
+            {//15
+                question: "¿Cuál es el punto de ebullición del agua en grados Celsius?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "¿Qué órgano bombea la sangre a través del cuerpo humano?",
+                options: ["Hígado", "Pulmones", "Corazón", "Riñón"],
+                correct: "Corazón",
+            },
+            {//17
+                question: "¿Cuál es el planeta más grande de nuestro sistema solar?",
+                options: ["Saturno", "Neptuno", "Júpiter", "Urano"],
+                correct: "Júpiter",
+            },
+            {//18
+                question: "¿Qué tipo de animal es un dragón de Komodo?",
+                options: ["Serpiente", "Lagarto", "Cocodrilo", "Dinosaurio"],
+                correct: "Lagarto",
+            },
+            {//19
+                question: "¿Cuántos corazones tiene un pulpo?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "¿Cómo se llama el estudio del clima?",
+                options: ["Geología", "Meteorología", "Astronomía", "Biología"],
+                correct: "Meteorología",
+            },
+            {//21
+                question: "¿Cuál es la unidad más pequeña de la vida?",
+                options: ["Átomo", "Molécula", "Célula", "Tejido"],
+                correct: "Célula",
+            },
+            {//22
+                question: "¿De qué está hecho el hielo seco?",
+                options: ["Agua congelada", "Nitrógeno congelado", "Oxígeno congelado", "Dióxido de carbono congelado"],
+                correct: "Dióxido de carbono congelado",
+            },
+            {//23
+                question: "¿Cuánto tarda la Tierra en orbitar alrededor del Sol?",
+                options: ["30 días", "365 días", "24 horas", "12 meses"],
+                correct: "365 días",
+            },
+            {//24
+                question: "¿Cuál es el órgano más grande del cuerpo humano?",
+                options: ["Hígado", "Cerebro", "Piel", "Corazón"],
+                correct: "Piel",
+            },
+            {//25
+                question: "¿Qué fuerza nos mantiene en el suelo?",
+                options: ["Magnetismo", "Gravedad", "Fricción", "Inercia"],
+                correct: "Gravedad",
+            },
+            {//26
+                question: "¿Cuál es la fórmula química de la sal de mesa?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "¿Qué tipo de sangre se conoce como donante universal?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "¿Qué vitamina se produce cuando la piel se expone a la luz solar?",
+                options: ["Vitamina A", "Vitamina C", "Vitamina D", "Vitamina E"],
+                correct: "Vitamina D",
+            },
+            {//29
+                question: "¿Cómo llamamos a la roca fundida bajo la superficie terrestre?",
+                options: ["Lava", "Magma", "Basalto", "Granito"],
+                correct: "Magma",
+            },
+            {//30
+                question: "¿Qué capa de la Tierra contiene todo el clima?",
+                options: ["Estratósfera", "Mesósfera", "Troposfera", "Termósfera"],
+                correct: "Troposfera",
             },
         ],
         sports: [
@@ -1571,19 +1782,9 @@ export const triviaQuestions = {
                 correct: "Mars",
             },
             {
-                question: "Quel gaz les humains expirent-ils lorsqu’ils respirent ?",
-                options: ["Oxygène", "Dioxyde de carbone", "Azote", "Hydrogène"],
-                correct: "Dioxyde de carbone",
-            },
-            {
                 question: "Quel est le symbole chimique de l’eau ?",
                 options: ["H₂O", "O₂", "CO₂", "HO₂"],
                 correct: "H₂O",
-            },
-            {
-                question: "Quelle partie de la cellule contient le matériel génétique ?",
-                options: ["Cytoplasme", "Mitochondrie", "Noyau", "Ribosome"],
-                correct: "Noyau",
             },
             {
                 question: "Quel élément a le numéro atomique 1 ?",
@@ -1614,6 +1815,116 @@ export const triviaQuestions = {
                 question: "Quelle particule dans un atome possède une charge positive ?",
                 options: ["Neutron", "Électron", "Proton", "Photon"],
                 correct: "Proton",
+            },
+            {//9
+                question: "Quelle est la substance naturelle la plus dure sur Terre ?",
+                options: ["Or", "Fer", "Diamant", "Titane"],
+                correct: "Diamant",
+            },
+            {//10
+                question: "Quelle est la vitesse de la lumière dans le vide ?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "Quel gaz compose la majeure partie de l’atmosphère terrestre ?",
+                options: ["Oxygène", "Dioxyde de carbone", "Azote", "Hydrogène"],
+                correct: "Azote",
+            },
+            {//12
+                question: "Combien d’os y a-t-il dans le corps humain adulte ?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "Quel est le symbole chimique de l’or ?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "Quelle planète est la plus proche du Soleil ?",
+                options: ["Vénus", "Terre", "Mercure", "Mars"],
+                correct: "Mercure",
+            },
+            {//15
+                question: "Quel est le point d’ébullition de l’eau en degrés Celsius ?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "Quel organe pompe le sang dans le corps humain ?",
+                options: ["Foie", "Poumons", "Cœur", "Rein"],
+                correct: "Cœur",
+            },
+            {//17
+                question: "Quelle est la plus grande planète de notre système solaire ?",
+                options: ["Saturne", "Neptune", "Jupiter", "Uranus"],
+                correct: "Jupiter",
+            },
+            {//18
+                question: "Quel type d’animal est un dragon de Komodo ?",
+                options: ["Serpent", "Lézard", "Crocodile", "Dinosaure"],
+                correct: "Lézard",
+            },
+            {//19
+                question: "Combien de cœurs possède une pieuvre ?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "Comment appelle-t-on l’étude du climat ?",
+                options: ["Géologie", "Météorologie", "Astronomie", "Biologie"],
+                correct: "Météorologie",
+            },
+            {//21
+                question: "Quelle est la plus petite unité de la vie ?",
+                options: ["Atome", "Molécule", "Cellule", "Tissu"],
+                correct: "Cellule",
+            },
+            {//22
+                question: "De quoi est constitué la glace carbonique ?",
+                options: ["Eau congelée", "Azote congelé", "Oxygène congelé", "Dioxyde de carbone congelé"],
+                correct: "Dioxyde de carbone congelé",
+            },
+            {//23
+                question: "Combien de temps la Terre met-elle pour orbiter autour du Soleil ?",
+                options: ["30 jours", "365 jours", "24 heures", "12 mois"],
+                correct: "365 jours",
+            },
+            {//24
+                question: "Quel est le plus grand organe du corps humain ?",
+                options: ["Foie", "Cerveau", "Peau", "Cœur"],
+                correct: "Peau",
+            },
+            {//25
+                question: "Quelle force nous maintient au sol ?",
+                options: ["Magnétisme", "Gravité", "Friction", "Inertie"],
+                correct: "Gravité",
+            },
+            {//26
+                question: "Quelle est la formule chimique du sel de table ?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "Quel groupe sanguin est connu comme donneur universel ?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "Quelle vitamine est produite lorsque la peau est exposée au soleil ?",
+                options: ["Vitamine A", "Vitamine C", "Vitamine D", "Vitamine E"],
+                correct: "Vitamine D",
+            },
+            {//29
+                question: "Comment appelle-t-on la roche en fusion sous la surface de la Terre ?",
+                options: ["Lave", "Magma", "Basalte", "Granite"],
+                correct: "Magma",
+            },
+            {//30
+                question: "Quelle couche de l’atmosphère terrestre contient tout le climat ?",
+                options: ["Stratosphère", "Mésosphère", "Troposphère", "Thermosphère"],
+                correct: "Troposphère",
             },
         ],
 
