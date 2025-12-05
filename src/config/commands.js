@@ -87,10 +87,19 @@ export const LANGUAGE_COMMAND = {
     contexts: [0, 1, 2],
 };
 
+export const LEADERBOARD_COMMAND = {
+  name: 'leaderboard',
+  description: 'View top 20 players by accuracy in this server',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
 export const ALL_COMMANDS = [
   TEST_COMMAND,
   TRIVIA_COMMAND,
   RULES_COMMAND,
   RECORD_COMMAND,
   LANGUAGE_COMMAND,
+  LEADERBOARD_COMMAND,
 ];

@@ -1,7 +1,7 @@
 ﻿import { InteractionResponseType } from "discord-interactions";
 import { deleteGame, getGame, getUserLocale } from "../../services/gameState.js";
 import { recordTriviaResult } from "../../services/gameState.js";
-import { extractUserId } from "../../utils/helpers.js";
+import { extractUserId, extractGuildId } from "../../utils/helpers.js";
 import { t } from "../../localization/strings.js";
 
 /**
@@ -34,7 +34,8 @@ export async function handleSelectChoice(req, res) {
 
         const { question } = game.data;
         const isCorrect = question.correct === selectedAnswer;
-        recordTriviaResult(userId, isCorrect);
+        const guildId = extractGuildId(req);
+        recordTriviaResult(userId, isCorrect, guildId);
 
         const resultText = isCorrect
             ? t(locale, 'trivia.correct', question.correct)
