@@ -803,6 +803,107 @@ export const triviaQuestions = {
                 options: ["Leave", "Come", "Away", "Child"],
                 correct: "Leave",
             },
+            //new question sp
+            {//01
+                question: "What is \"Jag heter\" in English?",
+                options: ["My name is", "Are you okay", "I am", "I wish"],
+                correct: "My name is",
+            },
+            {//02
+                question: "What is \"Flodhast\" in English?",
+                options: ["Hippo", "Dog", "Cat", "Lizard"],
+                correct: "Hippo",
+            },
+            {//03
+                question: "In which language would you say 'Danke' for thank you?",
+                options: ["French", "German", "Italian", "Spanish"],
+                correct: "German",
+            },
+            {//04
+                question: "What is the oldest known written language?",
+                options: ["Latin", "Sanskrit", "Sumerian", "Egyptian"],
+                correct: "Sumerian",
+            },
+            {//05
+                question: "What does 'grazie' mean in Italian?",
+                options: ["Hello", "Goodbye", "Please", "Thank you"],
+                correct: "Thank you",
+            },
+            {//06
+                question: "What is a synonym for 'happy'?",
+                options: ["Sad", "Joyful", "Angry", "Tired"],
+                correct: "Joyful",
+            },
+            {//07
+                question: "What does the prefix 'bi-' mean?",
+                options: ["One", "Two", "Three", "Many"],
+                correct: "Two",
+            },
+            {//08
+                question: "In Spanish, what does 'buenos días' mean?",
+                options: ["Good night", "Good afternoon", "Good morning", "Goodbye"],
+                correct: "Good morning",
+            },
+            {//09
+                question: "What is an antonym of 'hot'?",
+                options: ["Warm", "Cold", "Spicy", "Burning"],
+                correct: "Cold",
+            },
+            {//10
+                question: "How many vowels are in the English alphabet?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "What does 'konnichiwa' mean in Japanese?",
+                options: ["Goodbye", "Hello", "Thank you", "Sorry"],
+                correct: "Hello",
+            },
+            {//12
+                question: "What is a palindrome?",
+                options: ["A long word", "A word that reads the same forwards and backwards", "A made-up word", "A word with no vowels"],
+                correct: "A word that reads the same forwards and backwards",
+            },
+            {//13
+                question: "In which country is Swahili primarily spoken?",
+                options: ["Morocco", "Egypt", "Kenya", "Nigeria"],
+                correct: "Kenya",
+            },
+            {//14
+                question: "Which language uses Cyrillic script?",
+                options: ["Greek", "Arabic", "Russian", "Hindi"],
+                correct: "Russian",
+            },
+            {//15
+                question: "What does 'merci' mean in French?",
+                options: ["Sorry", "Hello", "Thank you", "Goodbye"],
+                correct: "Thank you",
+            },
+            {//16
+                question: "What is the study of language called?",
+                options: ["Linguistics", "Literature", "Lexicology", "Phonetics"],
+                correct: "Linguistics",
+            },
+            {//17
+                question: "What is \"Limbisa ngai\" in English?",
+                options: ["Excuse me", "Good night", "Good morning", "You okay"],
+                correct: "Excuse me",
+            },
+            {//18
+                question: "What is \"Excuse me\" in Spanish?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "What is \"Good morning\" in German?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "What is \"Salve\" in English?",
+                options: ["Hello", "Goodbye", "No", "Yes"],
+                correct: "Hello",
+            },
         ],
         art: [
             {
@@ -854,6 +955,107 @@ export const triviaQuestions = {
                 question: "What city is home to the Louvre Museum?",
                 options: ["Rome", "Paris", "London", "Madrid"],
                 correct: "Paris",
+            },
+            //new questions sp
+            {//1
+                question: "Which Dutch artist painted 'Girl with a Pearl Earring'?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "What is the name of Michelangelo's famous ceiling fresco?",
+                options: ["The Last Supper", "The Creation of Adam", "Sistine Chapel ceiling", "The School of Athens"],
+                correct: "Sistine Chapel ceiling",
+            },
+            {//3
+                question: "Which art movement is Claude Monet associated with?",
+                options: ["Impressionism", "Cubism", "Surrealism", "Expressionism"],
+                correct: "Impressionism",
+            },
+            {//4
+                question: "What material is traditionally used in Japanese woodblock prints?",
+                options: ["Oak", "Cherry", "Pine", "Bamboo"],
+                correct: "Cherry",
+            },
+            {//5
+                question: "Who painted 'The Scream'?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },
+            {//6
+                question: "What is the technique of painting on wet plaster called?",
+                options: ["Tempera", "Fresco", "Oil painting", "Watercolor"],
+                correct: "Fresco",
+            },
+            {//7
+                question: "Which artist is famous for painting Campbell's soup cans?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "What is the primary color that, along with blue and yellow, forms the basis of color theory?",
+                options: ["Green", "Orange", "Red", "Purple"],
+                correct: "Red",
+            },
+            {//9
+                question: "Which Spanish artist painted 'Guernica'?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "What style of architecture is Notre-Dame Cathedral in Paris?",
+                options: ["Baroque", "Gothic", "Romanesque", "Renaissance"],
+                correct: "Gothic",
+            },
+            {//11
+                question: "Who sculpted 'The Thinker'?",
+                options: ["Auguste Rodin", "Michelangelo", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "What is pointillism?",
+                options: ["Painting with small dots", "Painting with broad strokes", "Painting in black and white", "Painting with fingers"],
+                correct: "Painting with small dots",
+            },
+            {//13
+                question: "Which Mexican artist is known for her self-portraits and surrealist works?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "What is the art of beautiful handwriting called?",
+                options: ["Typography", "Calligraphy", "Lithography", "Penmanship"],
+                correct: "Calligraphy",
+            },
+            {//15
+                question: "Which Renaissance artist painted 'The Birth of Venus'?",
+                options: ["Leonardo da Vinci", "Raphael", "Sandro Botticelli", "Titian"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "What is chiaroscuro in art?",
+                options: ["Use of bright colors", "Use of light and shadow", "Use of geometric shapes", "Use of natural materials"],
+                correct: "Use of light and shadow",
+            },
+            {//17
+                question: "Which museum houses the famous painting 'The Night Watch'?",
+                options: ["The Louvre", "Rijksmuseum", "Prado Museum", "Uffizi Gallery"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "Who painted 'American Gothic'?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "What art movement did Henri Matisse help found?",
+                options: ["Impressionism", "Fauvism", "Cubism", "Dadaism"],
+                correct: "Fauvism",
+            },
+            {//20
+                question: "Which color is created by mixing blue and yellow?",
+                options: ["Green", "Orange", "Purple", "Brown"],
+                correct: "Green",
             },
         ],
         pop_culture: [
@@ -1577,6 +1779,106 @@ export const triviaQuestions = {
                 options: ["Irse", "Venir", "Lejos", "Niño"],
                 correct: "Irse",
             },
+            {//01
+                question: "¿Qué significa \"Jag heter\" en inglés?",
+                options: ["Mi nombre es", "¿Estás bien?", "Yo soy", "Yo deseo"],
+                correct: "Mi nombre es",
+            },
+            {//02
+                question: "¿Qué significa \"Flodhast\" en inglés?",
+                options: ["Hipopótamo", "Perro", "Gato", "Lagarto"],
+                correct: "Hipopótamo",
+            },
+            {//03
+                question: "¿En qué idioma se dice 'Danke' para gracias?",
+                options: ["Francés", "Alemán", "Italiano", "Español"],
+                correct: "Alemán",
+            },
+            {//04
+                question: "¿Cuál es el idioma escrito más antiguo conocido?",
+                options: ["Latín", "Sánscrito", "Sumerio", "Egipcio"],
+                correct: "Sumerio",
+            },
+            {//05
+                 question: "¿Qué significa 'grazie' en italiano?",
+                 options: ["Hola", "Adiós", "Por favor", "Gracias"],
+                 correct: "Gracias",
+            },
+            {//06
+                question: "¿Cuál es un sinónimo de 'happy'?",
+                options: ["Triste", "Alegre", "Enojado", "Cansado"],
+                correct: "Alegre",
+            },
+            {//07
+                question: "¿Qué significa el prefijo 'bi-'?",
+                options: ["Uno", "Dos", "Tres", "Muchos"],
+                correct: "Dos",
+            },
+            {//08
+                question: "En español, ¿qué significa 'buenos días'?",
+                options: ["Buenas noches", "Buenas tardes", "Buenos días", "Adiós"],
+                correct: "Buenos días",
+            },
+            {//09
+                question: "¿Cuál es un antónimo de 'hot'?",
+                options: ["Tibio", "Frío", "Picante", "Ardiendo"],
+                correct: "Frío",
+            },
+            {//10
+                question: "¿Cuántas vocales hay en el alfabeto inglés?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "¿Qué significa 'konnichiwa' en japonés?",
+                options: ["Adiós", "Hola", "Gracias", "Lo siento"],
+                correct: "Hola",
+            },
+            {//12
+                question: "¿Qué es un palíndromo?",
+                options: ["Una palabra larga", "Una palabra que se lee igual hacia adelante y hacia atrás", "Una palabra inventada", "Una palabra sin vocales"],
+                correct: "Una palabra que se lee igual hacia adelante y hacia atrás",
+            },
+            {//13
+                question: "¿En qué país se habla principalmente suajili?",
+                options: ["Marruecos", "Egipto", "Kenia", "Nigeria"],
+                correct: "Kenia",
+            },
+            {//14
+                question: "¿Qué idioma usa el alfabeto cirílico?",
+                options: ["Griego", "Árabe", "Ruso", "Hindi"],
+                correct: "Ruso",
+            },
+            {//15
+                question: "¿Qué significa 'merci' en francés?",
+                options: ["Lo siento", "Hola", "Gracias", "Adiós"],
+                correct: "Gracias",
+            },
+            {//16
+                question: "¿Cómo se llama el estudio del lenguaje?",
+                options: ["Lingüística", "Literatura", "Lexicología", "Fonética"],
+                correct: "Lingüística",
+            },
+            {//17
+                question: "¿Qué significa \"Limbisa ngai\" en inglés?",
+                options: ["Perdóneme", "Buenas noches", "Buenos días", "¿Estás bien?"],
+                correct: "Perdóneme",
+            },
+            {//18
+                question: "¿Qué significa \"Excuse me\" en español?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "¿Qué significa \"Good morning\" en alemán?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "¿Qué significa \"Salve\" en inglés?",
+                options: ["Hola", "Adiós", "No", "Sí"],
+                correct: "Hola",
+            },
         ],
         art: [
             {
@@ -1628,6 +1930,107 @@ export const triviaQuestions = {
                 question: "¿En qué ciudad se encuentra el Museo del Louvre?",
                 options: ["Roma", "París", "Londres", "Madrid"],
                 correct: "París",
+            },
+            //new question sp:
+            {//1
+                question: "¿Qué artista neerlandés pintó 'La joven de la perla'?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "¿Cuál es el nombre del famoso fresco en el techo de Miguel Ángel?",
+                options: ["La última cena", "La creación de Adán", "Techo de la Capilla Sixtina", "La escuela de Atenas"],
+                correct: "Techo de la Capilla Sixtina",
+            },
+            {//3
+                question: "¿Con qué movimiento artístico se asocia Claude Monet?",
+                options: ["Impresionismo", "Cubismo", "Surrealismo", "Expresionismo"],
+                correct: "Impresionismo",
+            },
+            {//4
+                question: "¿Qué material se usa tradicionalmente en los grabados japoneses en madera?",
+                options: ["Roble", "Cerezo", "Pino", "Bambú"],
+                correct: "Cerezo",
+            },
+            {//5
+                question: "¿Quién pintó 'El grito'?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },            
+            {//6
+                question: "¿Cómo se llama la técnica de pintar sobre yeso húmedo?",
+                options: ["Témpera", "Fresco", "Óleo", "Acuarela"],
+                correct: "Fresco",
+            },
+            {//7
+                question: "¿Qué artista es famoso por pintar las latas de sopa Campbell?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "¿Cuál es el color primario que, junto con el azul y el amarillo, forma la base de la teoría del color?",
+                options: ["Verde", "Naranja", "Rojo", "Morado"],
+                correct: "Rojo",
+            },
+            {//9
+                question: "¿Qué artista español pintó 'Guernica'?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "¿Qué estilo arquitectónico tiene la Catedral de Notre-Dame en París?",
+                options: ["Barroco", "Gótico", "Románico", "Renacimiento"],
+                correct: "Gótico",
+            },
+            {//11
+                question: "¿Quién esculpió 'El pensador'?",
+                options: ["Auguste Rodin", "Miguel Ángel", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "¿Qué es el puntillismo?",
+                options: ["Pintar con pequeños puntos", "Pintar con trazos amplios", "Pintar en blanco y negro", "Pintar con los dedos"],
+                correct: "Pintar con pequeños puntos",
+            },
+            {//13
+                question: "¿Qué artista mexicana es conocida por sus autorretratos y obras surrealistas?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "¿Cómo se llama el arte de la escritura hermosa?",
+                options: ["Tipografía", "Caligrafía", "Litografía", "Escritura a mano"],
+                correct: "Caligrafía",
+            },
+            {//15
+                question: "¿Qué artista del Renacimiento pintó 'El nacimiento de Venus'?",
+                options: ["Leonardo da Vinci", "Rafael", "Sandro Botticelli", "Tiziano"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "¿Qué es el claroscuro en el arte?",
+                options: ["Uso de colores brillantes", "Uso de luz y sombra", "Uso de formas geométricas", "Uso de materiales naturales"],
+                correct: "Uso de luz y sombra",
+            },
+            {//17
+                question: "¿Qué museo alberga la famosa pintura 'La ronda de noche'?",
+                options: ["El Louvre", "Rijksmuseum", "Museo del Prado", "Galería Uffizi"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "¿Quién pintó 'American Gothic'?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "¿Qué movimiento artístico ayudó a fundar Henri Matisse?",
+                options: ["Impresionismo", "Fauvismo", "Cubismo", "Dadaísmo"],
+                correct: "Fauvismo",
+            },
+            {//20
+                question: "¿Qué color se crea al mezclar azul y amarillo?",
+                options: ["Verde", "Naranja", "Morado", "Marrón"],
+                correct: "Verde",
             },
         ],
         pop_culture: [
@@ -2355,6 +2758,106 @@ export const triviaQuestions = {
                 options: ["Partir", "Venir", "Loin", "Enfant"],
                 correct: "Partir",
             },
+            {//01
+                question: "Que signifie \"Jag heter\" en anglais ?",
+                options: ["Mon nom est", "Ça va ?", "Je suis", "Je souhaite"],
+                correct: "Mon nom est",
+            },
+            {//02
+                question: "Que signifie \"Flodhast\" en anglais ?",
+                options: ["Hippopotame", "Chien", "Chat", "Lézard"],
+                correct: "Hippopotame",
+            },
+            {//03
+                question: "Dans quelle langue dit-on 'Danke' pour merci ?",
+                options: ["Français", "Allemand", "Italien", "Espagnol"],
+                correct: "Allemand",
+            },
+            {//04
+                question: "Quelle est la plus ancienne langue écrite connue ?",
+                options: ["Latin", "Sanskrit", "Sumérien", "Égyptien"],
+                correct: "Sumérien",
+            },
+            {//05
+                question: "Que signifie 'grazie' en italien ?",
+                options: ["Bonjour", "Au revoir", "S'il vous plaît", "Merci"],
+                correct: "Merci",
+            },
+            {//06
+                question: "Quel est un synonyme de 'happy' ?",
+                options: ["Triste", "Joyeux", "En colère", "Fatigué"],
+                correct: "Joyeux",
+            },
+            {//07
+                question: "Que signifie le préfixe 'bi-' ?",
+                options: ["Un", "Deux", "Trois", "Beaucoup"],
+                correct: "Deux",
+            },
+            {//08
+                question: "En espagnol, que signifie 'buenos días' ?",
+                options: ["Bonne nuit", "Bon après-midi", "Bonjour", "Au revoir"],
+                correct: "Bonjour",
+            },
+            {//09
+                question: "Quel est un antonyme de 'hot' ?",
+                options: ["Tiède", "Froid", "Épicé", "Brûlant"],
+                correct: "Froid",
+            },
+            {//10
+                question: "Combien de voyelles y a-t-il dans l'alphabet anglais ?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "Que signifie 'konnichiwa' en japonais ?",
+                options: ["Au revoir", "Bonjour", "Merci", "Désolé"],
+                correct: "Bonjour",
+            },
+            {//12
+                question: "Qu'est-ce qu'un palindrome ?",
+                options: ["Un mot long", "Un mot qui se lit de la même façon en avant et en arrière", "Un mot inventé", "Un mot sans voyelles"],
+                correct: "Un mot qui se lit de la même façon en avant et en arrière",
+            },
+            {//13
+                question: "Dans quel pays parle-t-on principalement le swahili ?",
+                options: ["Maroc", "Égypte", "Kenya", "Nigéria"],
+                correct: "Kenya",
+            },
+            {//14
+                question: "Quelle langue utilise l'alphabet cyrillique ?",
+                options: ["Grec", "Arabe", "Russe", "Hindi"],
+                correct: "Russe",
+            },
+            {//15
+                question: "Que signifie 'merci' en français ?",
+                options: ["Désolé", "Bonjour", "Merci", "Au revoir"],
+                correct: "Merci",
+            },
+            {//16
+                question: "Comment appelle-t-on l'étude du langage ?",
+                options: ["Linguistique", "Littérature", "Lexicologie", "Phonétique"],
+                correct: "Linguistique",
+            },
+            {//17
+                question: "Que signifie \"Limbisa ngai\" en anglais ?",
+                options: ["Excusez-moi", "Bonne nuit", "Bonjour", "Ça va ?"],
+                correct: "Excusez-moi",
+            },
+            {//18
+                question: "Que signifie \"Excuse me\" en espagnol ?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "Que signifie \"Good morning\" en allemand ?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "Que signifie \"Salve\" en anglais ?",
+                options: ["Bonjour", "Au revoir", "Non", "Oui"],
+                correct: "Bonjour",
+            },
         ],
 
         art: [
@@ -2407,6 +2910,107 @@ export const triviaQuestions = {
                 question: "Dans quelle ville se trouve le musée du Louvre ?",
                 options: ["Rome", "Paris", "Londres", "Madrid"],
                 correct: "Paris",
+            },
+            //new question sp
+            {//1
+                question: "Quel artiste néerlandais a peint 'La Jeune Fille à la perle' ?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "Quel est le nom du célèbre plafond peint par Michel-Ange ?",
+                options: ["La Cène", "La Création d'Adam", "Plafond de la Chapelle Sixtine", "L'École d'Athènes"],
+                correct: "Plafond de la Chapelle Sixtine",
+            },
+            {//3
+                question: "À quel mouvement artistique est associé Claude Monet ?",
+                options: ["Impressionnisme", "Cubisme", "Surréalisme", "Expressionnisme"],
+                correct: "Impressionnisme",
+            },
+            {//4
+                question: "Quel matériau est traditionnellement utilisé dans les estampes japonaises sur bois ?",
+                options: ["Chêne", "Cerisier", "Pin", "Bambou"],
+                correct: "Cerisier",
+            },        
+            {//5
+                question: "Qui a peint 'Le Cri' ?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },
+            {//6
+                question: "Comment s'appelle la technique de peinture sur plâtre frais ?",
+                options: ["Tempéra", "Fresque", "Peinture à l'huile", "Aquarelle"],
+                correct: "Fresque",
+            },
+            {//7
+                question: "Quel artiste est célèbre pour avoir peint les boîtes de soupe Campbell ?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "Quelle est la couleur primaire qui, avec le bleu et le jaune, forme la base de la théorie des couleurs ?",
+                options: ["Vert", "Orange", "Rouge", "Violet"],
+                correct: "Rouge",
+            },
+            {//9
+                question: "Quel artiste espagnol a peint 'Guernica' ?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "Quel style architectural caractérise la cathédrale Notre-Dame de Paris ?",
+                options: ["Baroque", "Gothique", "Roman", "Renaissance"],
+                correct: "Gothique",
+            },
+            {//11
+                question: "Qui a sculpté 'Le Penseur' ?",
+                options: ["Auguste Rodin", "Michel-Ange", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "Qu'est-ce que le pointillisme ?",
+                options: ["Peindre avec de petits points", "Peindre avec de larges coups de pinceau", "Peindre en noir et blanc", "Peindre avec les doigts"],
+                correct: "Peindre avec de petits points",
+            },
+            {//13
+                question: "Quelle artiste mexicaine est connue pour ses autoportraits et ses œuvres surréalistes ?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "Comment appelle-t-on l'art de la belle écriture ?",
+                options: ["Typographie", "Calligraphie", "Lithographie", "Écriture manuscrite"],
+                correct: "Calligraphie",
+            },
+            {//15
+                question: "Quel artiste de la Renaissance a peint 'La Naissance de Vénus' ?",
+                options: ["Léonard de Vinci", "Raphaël", "Sandro Botticelli", "Titien"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "Qu'est-ce que le clair-obscur en art ?",
+                options: ["Utilisation de couleurs vives", "Utilisation de la lumière et de l'ombre", "Utilisation de formes géométriques", "Utilisation de matériaux naturels"],
+                correct: "Utilisation de la lumière et de l'ombre",
+            },
+            {//17
+                question: "Quel musée abrite la célèbre peinture 'La Ronde de nuit' ?",
+                options: ["Le Louvre", "Rijksmuseum", "Musée du Prado", "Galerie des Offices"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "Qui a peint 'American Gothic' ?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "Quel mouvement artistique Henri Matisse a-t-il contribué à fonder ?",
+                options: ["Impressionnisme", "Fauvisme", "Cubisme", "Dadaïsme"],
+                correct: "Fauvisme",
+            },
+            {//20
+                question: "Quelle couleur est créée en mélangeant le bleu et le jaune ?",
+                options: ["Vert", "Orange", "Violet", "Marron"],
+                correct: "Vert",
             },
         ],
 
