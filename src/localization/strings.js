@@ -418,7 +418,7 @@ export const triviaQuestions = {
             {//16
                 question: "What city was buried by the eruption of Mount Vesuvius in 79 AD?",
                 options: ["Athens", "Pompeii", "Carthage", "Babylon"],
-                correct: "Pompii",
+                correct: "Pompeii",
             },
             {//17
                 question: "Who invented the printing press?",
@@ -1122,7 +1122,7 @@ export const triviaQuestions = {
             },
             {//3
                 question: "Which singer is known as the \“Queen of Pop\”?",
-                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Perry"],
                 correct: "Madonna",
             },
             {//4
