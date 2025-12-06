@@ -1109,6 +1109,107 @@ export const triviaQuestions = {
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
             },
+            //new question sp
+            {//1
+                question: "What is the name of Harry Potter's owl?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "Which Netflix series features Eleven and the Upside Down?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "Which singer is known as the \“Queen of Pop\”?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "What is the name of the coffee shop in the TV show Friends?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "Which artist released the album '1989' in 2014?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "In Game of Thrones, what is the family motto of House Stark?",
+                options: ["Fire and Blood", "Winter is Coming", "Hear Me Roar", "Growing Strong"],
+                correct: "Winter is Coming",
+            },
+            {//7
+                question: "Which superhero is known as the 'Man of Steel'?",
+                options: ["Batman", "Iron Man", "Superman", "Captain America"],
+                correct: "Superman",
+            },
+            {//8
+                question: "What streaming service created the series 'The Crown'?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "Who played Jack Dawson in Titanic?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "Which boy band had the hit song 'I Want It That Way'?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "Which rapper's real name is Marshall Mathers?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "What is the highest-grossing film of all time (not adjusted for inflation)?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: The Force Awakens"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "Who is the lead singer of Coldplay?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "Which rapper’s real name is Aubrey Drake Graham?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "What TV show follows a chemistry teacher turned meth producer?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "Who voices Groot in the Guardians of the Galaxy movies?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "Which game features the character Master Chief?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "On which fictional continent does Game of Thrones primarily take place?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "Which film features the line, \“Why so serious?\”",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "What was the first music video ever aired on MTV?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
+            },
         ],
     },
     es: {
@@ -2083,6 +2184,106 @@ export const triviaQuestions = {
                 question: "¿Cuál es el nombre de la nación africana ficticia en Black Panther?",
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
+            },
+            {//1
+                question: "¿Cuál es el nombre del búho de Harry Potter?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "¿Qué serie de Netflix presenta a Eleven y el Mundo del Revés?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "¿Qué cantante es conocida como la 'Reina del Pop'?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "¿Cuál es el nombre de la cafetería en la serie Friends?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "¿Qué artista lanzó el álbum '1989' en 2014?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "En Game of Thrones, ¿cuál es el lema de la familia Stark?",
+                options: ["Fuego y Sangre", "Se Acerca el Invierno", "Oíd mi Rugido", "Creciendo Fuertes"],
+                correct: "Se Acerca el Invierno",
+            },
+            {//7
+                question: "¿Qué superhéroe es conocido como el 'Hombre de Acero'?",
+                options: ["Batman", "Iron Man", "Superman", "Capitán América"],
+                correct: "Superman",
+            },
+            {//8
+                question: "¿Qué servicio de streaming creó la serie 'The Crown'?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "¿Quién interpretó a Jack Dawson en Titanic?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "¿Qué grupo de chicos tuvo el éxito 'I Want It That Way'?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "¿Cuál es el verdadero nombre del rapero Marshall Mathers?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "¿Cuál es la película más taquillera de todos los tiempos (sin ajustar por inflación)?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: El despertar de la Fuerza"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "¿Quién es el cantante principal de Coldplay?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "¿Cuál es el verdadero nombre del rapero Aubrey Drake Graham?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "¿Qué serie sigue a un profesor de química convertido en productor de metanfetamina?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "¿Quién da voz a Groot en las películas de Guardianes de la Galaxia?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "¿Qué videojuego presenta al personaje Jefe Maestro?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "¿En qué continente ficticio tiene lugar principalmente Game of Thrones?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "¿Qué película contiene la frase '¿Por qué tan serio?'",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "¿Cuál fue el primer video musical transmitido en MTV?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
             },
         ],
     },
@@ -3064,6 +3265,107 @@ export const triviaQuestions = {
                 question: "Quel est le nom de la nation africaine fictive dans Black Panther ?",
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
+            },
+            //new question sp
+            {//1
+                question: "Quel est le nom du hibou de Harry Potter ?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "Quelle série Netflix met en scène Eleven et l'Upside Down ?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "Quelle chanteuse est connue comme la 'Reine de la Pop' ?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "Quel est le nom du café dans la série Friends ?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "Quel artiste a sorti l'album '1989' en 2014 ?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "Dans Game of Thrones, quelle est la devise de la famille Stark ?",
+                options: ["Feu et Sang", "L'Hiver vient", "Entendez mon Rugissement", "Croître Fort"],
+                correct: "L'Hiver vient",
+            },
+            {//7
+                question: "Quel super-héros est connu comme 'l'Homme d'Acier' ?",
+                options: ["Batman", "Iron Man", "Superman", "Captain America"],
+                correct: "Superman",
+            },
+            {//8
+                question: "Quel service de streaming a créé la série 'The Crown' ?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "Qui a joué Jack Dawson dans Titanic ?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "Quel boys band a eu le tube 'I Want It That Way' ?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "Quel est le vrai nom du rappeur Marshall Mathers ?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "Quel est le film le plus rentable de tous les temps (sans ajustement pour l'inflation) ?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars : Le Réveil de la Force"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "Qui est le chanteur principal de Coldplay ?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "Quel est le vrai nom du rappeur Aubrey Drake Graham ?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "Quelle série suit un professeur de chimie devenu producteur de méthamphétamine ?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "Qui double Groot dans les films Les Gardiens de la Galaxie ?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "Quel jeu met en scène le personnage Master Chief ?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "Sur quel continent fictif se déroule principalement Game of Thrones ?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "Quel film contient la réplique 'Pourquoi si sérieux ?'",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "Quel a été le premier clip diffusé sur MTV ?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
             },
         ],
     },
