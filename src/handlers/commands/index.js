@@ -5,6 +5,8 @@ import { handleRulesCommand } from './rules.js';
 import { handleRecordCommand } from './record.js';
 import { handleLanguageCommand } from './language.js';
 import { handleLeaderboardCommand } from './leaderboard.js';
+import { handleQuoteCommand } from './quote.js';
+import { handleJokeCommand } from './joke.js';
 
 /**
  * Command handler registry
@@ -18,6 +20,8 @@ const commandHandlers = {
   [COMMANDS.RECORD]: handleRecordCommand,
   [COMMANDS.LANGUAGE]: handleLanguageCommand,
   [COMMANDS.LEADERBOARD]: handleLeaderboardCommand,
+  [COMMANDS.QUOTE]: handleQuoteCommand,
+  [COMMANDS.JOKE]: handleJokeCommand,
 };
 
 /**

@@ -124,6 +124,7 @@ const RPS_CHOICES = {
     language: { description: "Vi är väldigt ung" },
     art: { description: "Silly, fun yet deliberate" },
     pop_culture: { description: "Wild and fun yet attractive" },
+    random: { description: "Surprise me with anything!" },
 };
 
 export function getChoices() {
