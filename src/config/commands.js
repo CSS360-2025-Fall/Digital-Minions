@@ -95,6 +95,22 @@ export const LEADERBOARD_COMMAND = {
   contexts: [0, 1, 2],
 };
 
+export const QUOTE_COMMAND = {
+    name: 'quote',
+    description: 'Get an inspirational quote',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+};
+
+export const JOKE_COMMAND = {
+    name: 'joke',
+    description: 'Get a random joke',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+};
+
 export const ALL_COMMANDS = [
   TEST_COMMAND,
   TRIVIA_COMMAND,
@@ -102,4 +118,6 @@ export const ALL_COMMANDS = [
   RECORD_COMMAND,
   LANGUAGE_COMMAND,
   LEADERBOARD_COMMAND,
+  QUOTE_COMMAND,
+  JOKE_COMMAND,
 ];

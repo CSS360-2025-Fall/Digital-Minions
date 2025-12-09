@@ -15,7 +15,9 @@ export const COMMANDS = {
   RULES: 'rules',
   RECORD: 'record',
   LANGUAGE: 'language',
-  LEADERBOARD: 'leaderboard'
+  LEADERBOARD: 'leaderboard',
+  QUOTE: 'quote',
+  JOKE: 'joke',
 };
 
 // Game Result Types
