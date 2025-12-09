@@ -195,6 +195,108 @@ export const triviaQuestions = {
                 options: ["Isosceles", "Equilateral", "Right", "Scalene"],
                 correct: "Right",
             },
+            // new question start point:
+            {//1
+                question: "What is the derivative of ln(x)?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "What is the difference between 100 and 245?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "What is the next number in the Fibonacci sequence: 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "Which of the following is an obtuse angle?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "What percentage is 5/8?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "What is the median of 8,5,6,15,10?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "What is the fraction form of 0.55?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "How many sides does an Octagon have?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "What is the square root of 961?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "What is the sum of angles in a square?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            },
+            {//11
+                question: "What is the circumference formula for a circle?",
+                options: ["πr", "2πr", "πr²", "2πr²"],
+                correct: "2πr",
+            },
+            {//12
+                question: "What is the area of a 5x3 rectangle?",
+                options: ["26", "25", "15", "10"],
+                correct: "15",
+            },
+            {//13
+                question: "What is 67% of 35?",
+                options: ["24", "23", "23.45", "23.50"],
+                correct: "23.45",
+            },
+            {//14
+                question: "What is the value of pi to the 4th decimal place?",
+                options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                correct: "3.1416",
+            },
+            {//15
+                question: "What is 3 to the power of 5?",
+                options: ["15", "243", "245", "210"],
+                correct: "243",
+            },
+            {//16
+                question: "How many hours does 246 minutes make?",
+                options: ["4.0", "4.3", "4.1", "4.2"],
+                correct: "4.1",
+            },
+            {//17
+                question: "What is the greatest common divisor of 60 and 80?",
+                options: ["2", "30", "20", "10"],
+                correct: "20",
+            },
+            {//18
+                question: "If you add the digits of any multiple of 9, what number will the sum always be divisible by?",
+                options: ["3", "6", "9", "12"],
+                correct: "9",
+            },
+            {//19
+                question: "What number is known as the \"additive identity\”?",
+                options: ["1", "0", "10", "2"],
+                correct: "0",
+            },
+            {//20
+                question: "Which shape has the largest area for a given perimeter?",
+                options: ["Square", "Circle", "triangle", "rectangle"],
+                correct: "Circle",
+            },
+                
         ],
         history: [
             {
@@ -237,47 +339,259 @@ export const triviaQuestions = {
                 options: ["Greece", "Italy", "Turkey", "Egypt"],
                 correct: "Turkey",
             },
+            //new question start point
+            {//1
+                question: "In what year did World War II end?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "Who was the first Emperor of Rome?",
+                options: ["Julius Caesar", "Augustus", "Nero", "Caligula"],
+                correct: "Augustus",
+            },
+            {//3
+                question: "What year did the Berlin Wall fall?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "Who discovered penicillin?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "What ancient wonder was located in Alexandria, Egypt?",
+                options: ["Hanging Gardens", "Colossus of Rhodes", "Lighthouse", "Temple of Artemis"],
+                correct: "Lighthouse",
+            },
+            {//6
+                question: "Who was the first person to circumnavigate the globe?",
+                options: ["Christopher Columbus", "Ferdinand Magellan", "Vasco da Gama", "Marco Polo"],
+                correct: "Ferdinand Magellan",
+            },
+            {//7
+                question: "Who built the Great Wall of China?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucius", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "In what year did India gain independence from British rule?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "What was the name of the first successful English colony in America?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "Who was the Egyptian queen who allied with Julius Caesar and Mark Antony?",
+                options: ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"],
+                correct: "Cleopatra",
+            },
+            {//11
+                question: "What year did the Titanic sink?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "What year did the Spanish Armada attempt to invade England?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "Who was assassinated in Sarajevo in 1914, triggering World War I?",
+                options: ["Franz Ferdinand", "Otto von Bismarck", "Kaiser Wilhelm II", "Nicholas II"],
+                correct: "Franz Ferdinand",
+            },
+            {//14
+                question: "What was the name of the pandemic that killed millions in the 14th century?",
+                options: ["Spanish Flu", "Black Death", "Cholera", "Typhus"],
+                correct: "Black Death",
+            },
+            {//15
+                question: "Who led the Haitian Revolution?",
+                options: ["Simon Bolivar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "What city was buried by the eruption of Mount Vesuvius in 79 AD?",
+                options: ["Athens", "Pompeii", "Carthage", "Babylon"],
+                correct: "Pompeii",
+            },
+            {//17
+                question: "Who invented the printing press?",
+                options: ["Galileo Galilei", "Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "Which ancient civilization invented the wheel?",
+                options: ["Egyptians", "Sumerians", "Greeks", "Romans"],
+                correct: "Sumerians",
+            },
+            {//19
+                question: "The Rosetta Stone helped historians finally understand what writing system?",
+                options: ["Cuneiform", "Mayan script", "Hieroglyphics", "Runes"],
+                correct: "Hieroglyphics",
+            },
+            {//20
+                question: "Who was the first President to live in the White House?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
+            }
         ],
         science: [
-            {
+            {//1
                 question: "What planet is known as the Red Planet?",
                 options: ["Venus", "Mars", "Jupiter", "Mercury"],
                 correct: "Mars",
             },
-            {
+            {//2
                 question: "What is the chemical symbol for water?",
                 options: ["H2O", "O2", "CO2", "HO2"],
                 correct: "H2O",
             },
-            {
+            {//3
                 question: "Which element has the atomic number 1?",
                 options: ["Oxygen", "Hydrogen", "Nitrogen", "Helium"],
                 correct: "Hydrogen",
             },
-            {
+            {//4
                 question: "What type of energy is stored in a stretched rubber band?",
                 options: ["Thermal energy", "Kinetic energy", "Elastic potential energy", "Nuclear energy"],
                 correct: "Elastic potential energy",
             },
-            {
+            {//5
                 question: "Which planet has the most moons in our Solar System?",
                 options: ["Jupiter", "Saturn", "Uranus", "Neptune"],
                 correct: "Saturn",
             },
-            {
+            {//6
                 question: "What is the powerhouse of the cell?",
                 options: ["Nucleus", "Ribosome", "Mitochondria", "Golgi Apparatus"],
                 correct: "Mitochondria",
             },
-            {
+            {//7
                 question: "What law states that for every action, there is an equal and opposite reaction?",
                 options: ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Conservation of Energy"],
                 correct: "Newton's Third Law",
             },
-            {
+            {//8
                 question: "What particle in an atom has a positive charge?",
                 options: ["Neutron", "Electron", "Proton", "Photon"],
                 correct: "Proton",
+            },
+            //new questions start
+            {//9
+                question: "What is the hardest natural substance on Earth?",
+                options: ["Gold", "Iron", "Diamond", "Titanium"],
+                correct: "Diamond",
+            },
+            {//10
+                question: "What is the speed of light in a vacuum?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "What gas makes up most of Earth's atmosphere?",
+                options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"],
+                correct: "Nitrogen",
+            },
+            {//12
+                question: "How many bones are in the adult human body?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "What is the chemical symbol for gold?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "What planet is closest to the Sun?",
+                options: ["Venus", "Earth", "Mercury", "Mars"],
+                correct: "Mercury",
+            },
+            {//15
+                question: "What is the boiling point of water in Celsius?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "What organ pumps blood through the human body?",
+                options: ["Liver", "Lungs", "Heart", "Kidney"],
+                correct: "Heart",
+            },
+            {//17
+                question: "What is the largest planet in our solar system?",
+                options: ["Saturn", "Neptune", "Jupiter", "Uranus"],
+                correct: "Jupiter",
+            },
+            {//18
+                question: "What type of animal is a Komodo dragon?",
+                options: ["Snake", "Lizard", "Crocodile", "Dinosaur"],
+                correct: "Lizard",
+            },
+            {//19
+                question: "How many hearts does an octopus have?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "What is the study of weather called?",
+                options: ["Geology", "Meteorology", "Astronomy", "Biology"],
+                correct: "Meteorology",
+            },
+            {//21
+                question: "What is the smallest unit of life?",
+                options: ["Atom", "Molecule", "Cell", "Tissue"],
+                correct: "Cell",
+            },
+            {//22
+                question: "What is dry ice made of?",
+                options: ["Frozen water", "Frozen nitrogen", "Frozen oxygen", "Frozen carbon dioxide"],
+                correct: "Frozen carbon dioxide",
+            },
+            {//23
+                question: "How long does it take for Earth to orbit the Sun?",
+                options: ["30 days", "365 days", "24 hours", "12 months"],
+                correct: "365 days",
+            },
+            {//24
+                question: "What is the largest organ in the human body?",
+                options: ["Liver", "Brain", "Skin", "Heart"],
+                correct: "Skin",
+            },
+            {//25
+                question: "What force keeps us on the ground?",
+                options: ["Magnetism", "Gravity", "Friction", "Inertia"],
+                correct: "Gravity",
+            },
+            {//26
+                question: "What is the chemical formula for table salt?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "Which blood type is known as the universal donor?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "What vitamin is produced when skin is exposed to sunlight?",
+                options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin E"],
+                correct: "Vitamin D",
+            },
+            {//29
+                question: "What do we call molten rock beneath the Earth’s surface?",
+                options: ["Lava", "Magma", "Basalt", "Granite"],
+                correct: "Magma",
+            },
+            {//30
+                question: "Which layer of Earth contains all weather?",
+                options: ["Stratosphere", "Mesosphere", "Troposphere", "Thermosphere"],
+                correct: "Troposphere",
             },
         ],
         sports: [
@@ -330,6 +644,107 @@ export const triviaQuestions = {
                 question: "What is the distance of a marathon?",
                 options: ["24.2 miles", "26.2 miles", "28.2 miles", "30.2 miles"],
                 correct: "26.2 miles",
+            },
+            //start of new questions:
+            {//1
+                question: "Which team won the Super Bowl in 2000?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "What sport is known as 'the beautiful game'?",
+                options: ["Basketball", "Soccer", "Tennis", "Cricket"],
+                correct: "Soccer",
+            },
+            {//3
+                question: "How many Grand Slam tournaments are there in tennis each year?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "What is the national sport of Japan?",
+                options: ["Karate", "Judo", "Sumo wrestling", "Kendo"],
+                correct: "Sumo wrestling",
+            },
+            {//5
+                question: "What is the term for a score of zero in tennis?",
+                options: ["Love", "Nil", "Zero", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "What is the only sport to have been played on the moon?",
+                options: ["Baseball", "Golf", "Frisbee", "Tennis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "How many holes are played in a standard round of golf?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "Which boxer was known as 'The Greatest'?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "How many NBA championships did Michael Jordan win with the Chicago Bulls?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "What is the term for three strikes in a row in bowling?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "Which tennis player has won the most Grand Slam singles titles (as of 2024)?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "Which city is the only one to have won championships in the NFL, MLB, NBA, and NHL in the same year?",
+                options: ["None", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "None",
+            },
+            {//13
+                question: "In what year did Michael Phelps win his record 8 gold medals in a single Olympics?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "In American football, how many yards is the offense penalized for a holding call?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "Which NBA team did Kobe Bryant play for his entire career?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "Which country has won the most Olympic gold medals in hockey (field hockey)?",
+                options: ["India", "USA", "China", "Russia"],
+                correct: "India",
+            },
+            {//17
+                question: "What sport is known as “the king of sports”?", 
+                options: ["Soccer", "Cricket", "Baseball", "Basketball"],
+                correct: "Soccer",
+            },
+            {//18
+                question: "Which sport uses a shuttlecock?",
+                options: ["Badminton", "Soccer", "Cricket", "Track"],
+                correct: "Badminton",
+            },
+            {//19
+                question: "What year was the first modern Olympic Games held?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },
+            {//20
+                question: "What is the regulation height of a basketball hoop?",
+                options: ["10 feet", "10 inches", "11 feet", "11 inches"],
+                correct: "10 feet",
             },
         ],
         language: [
@@ -388,6 +803,107 @@ export const triviaQuestions = {
                 options: ["Leave", "Come", "Away", "Child"],
                 correct: "Leave",
             },
+            //new question sp
+            {//01
+                question: "What is \"Jag heter\" in English?",
+                options: ["My name is", "Are you okay", "I am", "I wish"],
+                correct: "My name is",
+            },
+            {//02
+                question: "What is \"Flodhast\" in English?",
+                options: ["Hippo", "Dog", "Cat", "Lizard"],
+                correct: "Hippo",
+            },
+            {//03
+                question: "In which language would you say 'Danke' for thank you?",
+                options: ["French", "German", "Italian", "Spanish"],
+                correct: "German",
+            },
+            {//04
+                question: "What is the oldest known written language?",
+                options: ["Latin", "Sanskrit", "Sumerian", "Egyptian"],
+                correct: "Sumerian",
+            },
+            {//05
+                question: "What does 'grazie' mean in Italian?",
+                options: ["Hello", "Goodbye", "Please", "Thank you"],
+                correct: "Thank you",
+            },
+            {//06
+                question: "What is a synonym for 'happy'?",
+                options: ["Sad", "Joyful", "Angry", "Tired"],
+                correct: "Joyful",
+            },
+            {//07
+                question: "What does the prefix 'bi-' mean?",
+                options: ["One", "Two", "Three", "Many"],
+                correct: "Two",
+            },
+            {//08
+                question: "In Spanish, what does 'buenos días' mean?",
+                options: ["Good night", "Good afternoon", "Good morning", "Goodbye"],
+                correct: "Good morning",
+            },
+            {//09
+                question: "What is an antonym of 'hot'?",
+                options: ["Warm", "Cold", "Spicy", "Burning"],
+                correct: "Cold",
+            },
+            {//10
+                question: "How many vowels are in the English alphabet?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "What does 'konnichiwa' mean in Japanese?",
+                options: ["Goodbye", "Hello", "Thank you", "Sorry"],
+                correct: "Hello",
+            },
+            {//12
+                question: "What is a palindrome?",
+                options: ["A long word", "A word that reads the same forwards and backwards", "A made-up word", "A word with no vowels"],
+                correct: "A word that reads the same forwards and backwards",
+            },
+            {//13
+                question: "In which country is Swahili primarily spoken?",
+                options: ["Morocco", "Egypt", "Kenya", "Nigeria"],
+                correct: "Kenya",
+            },
+            {//14
+                question: "Which language uses Cyrillic script?",
+                options: ["Greek", "Arabic", "Russian", "Hindi"],
+                correct: "Russian",
+            },
+            {//15
+                question: "What does 'merci' mean in French?",
+                options: ["Sorry", "Hello", "Thank you", "Goodbye"],
+                correct: "Thank you",
+            },
+            {//16
+                question: "What is the study of language called?",
+                options: ["Linguistics", "Literature", "Lexicology", "Phonetics"],
+                correct: "Linguistics",
+            },
+            {//17
+                question: "What is \"Limbisa ngai\" in English?",
+                options: ["Excuse me", "Good night", "Good morning", "You okay"],
+                correct: "Excuse me",
+            },
+            {//18
+                question: "What is \"Excuse me\" in Spanish?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "What is \"Good morning\" in German?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "What is \"Salve\" in English?",
+                options: ["Hello", "Goodbye", "No", "Yes"],
+                correct: "Hello",
+            },
         ],
         art: [
             {
@@ -440,6 +956,107 @@ export const triviaQuestions = {
                 options: ["Rome", "Paris", "London", "Madrid"],
                 correct: "Paris",
             },
+            //new questions sp
+            {//1
+                question: "Which Dutch artist painted 'Girl with a Pearl Earring'?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "What is the name of Michelangelo's famous ceiling fresco?",
+                options: ["The Last Supper", "The Creation of Adam", "Sistine Chapel ceiling", "The School of Athens"],
+                correct: "Sistine Chapel ceiling",
+            },
+            {//3
+                question: "Which art movement is Claude Monet associated with?",
+                options: ["Impressionism", "Cubism", "Surrealism", "Expressionism"],
+                correct: "Impressionism",
+            },
+            {//4
+                question: "What material is traditionally used in Japanese woodblock prints?",
+                options: ["Oak", "Cherry", "Pine", "Bamboo"],
+                correct: "Cherry",
+            },
+            {//5
+                question: "Who painted 'The Scream'?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },
+            {//6
+                question: "What is the technique of painting on wet plaster called?",
+                options: ["Tempera", "Fresco", "Oil painting", "Watercolor"],
+                correct: "Fresco",
+            },
+            {//7
+                question: "Which artist is famous for painting Campbell's soup cans?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "What is the primary color that, along with blue and yellow, forms the basis of color theory?",
+                options: ["Green", "Orange", "Red", "Purple"],
+                correct: "Red",
+            },
+            {//9
+                question: "Which Spanish artist painted 'Guernica'?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "What style of architecture is Notre-Dame Cathedral in Paris?",
+                options: ["Baroque", "Gothic", "Romanesque", "Renaissance"],
+                correct: "Gothic",
+            },
+            {//11
+                question: "Who sculpted 'The Thinker'?",
+                options: ["Auguste Rodin", "Michelangelo", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "What is pointillism?",
+                options: ["Painting with small dots", "Painting with broad strokes", "Painting in black and white", "Painting with fingers"],
+                correct: "Painting with small dots",
+            },
+            {//13
+                question: "Which Mexican artist is known for her self-portraits and surrealist works?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "What is the art of beautiful handwriting called?",
+                options: ["Typography", "Calligraphy", "Lithography", "Penmanship"],
+                correct: "Calligraphy",
+            },
+            {//15
+                question: "Which Renaissance artist painted 'The Birth of Venus'?",
+                options: ["Leonardo da Vinci", "Raphael", "Sandro Botticelli", "Titian"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "What is chiaroscuro in art?",
+                options: ["Use of bright colors", "Use of light and shadow", "Use of geometric shapes", "Use of natural materials"],
+                correct: "Use of light and shadow",
+            },
+            {//17
+                question: "Which museum houses the famous painting 'The Night Watch'?",
+                options: ["The Louvre", "Rijksmuseum", "Prado Museum", "Uffizi Gallery"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "Who painted 'American Gothic'?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "What art movement did Henri Matisse help found?",
+                options: ["Impressionism", "Fauvism", "Cubism", "Dadaism"],
+                correct: "Fauvism",
+            },
+            {//20
+                question: "Which color is created by mixing blue and yellow?",
+                options: ["Green", "Orange", "Purple", "Brown"],
+                correct: "Green",
+            },
         ],
         pop_culture: [
             {
@@ -491,6 +1108,107 @@ export const triviaQuestions = {
                 question: "What is the name of the fictional African nation in Black Panther?",
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
+            },
+            //new question sp
+            {//1
+                question: "What is the name of Harry Potter's owl?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "Which Netflix series features Eleven and the Upside Down?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "Which singer is known as the \“Queen of Pop\”?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Perry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "What is the name of the coffee shop in the TV show Friends?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "Which artist released the album '1989' in 2014?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "In Game of Thrones, what is the family motto of House Stark?",
+                options: ["Fire and Blood", "Winter is Coming", "Hear Me Roar", "Growing Strong"],
+                correct: "Winter is Coming",
+            },
+            {//7
+                question: "Which superhero is known as the 'Man of Steel'?",
+                options: ["Batman", "Iron Man", "Superman", "Captain America"],
+                correct: "Superman",
+            },
+            {//8
+                question: "What streaming service created the series 'The Crown'?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "Who played Jack Dawson in Titanic?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "Which boy band had the hit song 'I Want It That Way'?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "Which rapper's real name is Marshall Mathers?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "What is the highest-grossing film of all time (not adjusted for inflation)?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: The Force Awakens"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "Who is the lead singer of Coldplay?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "Which rapper’s real name is Aubrey Drake Graham?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "What TV show follows a chemistry teacher turned meth producer?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "Who voices Groot in the Guardians of the Galaxy movies?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "Which game features the character Master Chief?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "On which fictional continent does Game of Thrones primarily take place?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "Which film features the line, \“Why so serious?\”",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "What was the first music video ever aired on MTV?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
             },
         ],
     },
@@ -546,6 +1264,107 @@ export const triviaQuestions = {
                 options: ["Isósceles", "Equilátero", "Rectángulo", "Escaleno"],
                 correct: "Rectángulo",
             },
+            //start of new questions:
+            {//1
+                question: "¿Cuál es la derivada de ln(x)?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "¿Cuál es la diferencia entre 100 y 245?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "¿Cuál es el siguiente número en la secuencia de Fibonacci: 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "¿Cuál de los siguientes es un ángulo obtuso?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "¿Qué porcentaje es 5/8?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "¿Cuál es la mediana de 8,5,6,15,10?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "¿Cuál es la forma fraccionaria de 0.55?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "¿Cuántos lados tiene un octágono?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "¿Cuál es la raíz cuadrada de 961?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "¿Cuál es la suma de los ángulos en un cuadrado?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            },
+            {//11
+                question: "¿Cuál es la fórmula de la circunferencia de un círculo?",
+                options: ["πr", "2πr", "πr²", "2πr²"],
+                correct: "2πr",
+            },
+            {//12
+                question: "¿Cuál es el área de un rectángulo de 5x3?",
+                options: ["26", "25", "15", "10"],
+                correct: "15",
+            },
+            {//13
+                question: "¿Cuál es el 67% de 35?",
+                options: ["24", "23", "23.45", "23.50"],
+                correct: "23.45",
+            },
+            {//14
+                question: "¿Cuál es el valor de pi hasta la cuarta cifra decimal?",
+                options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                correct: "3.1416",
+            },
+            {//15
+                question: "¿Cuál es 3 elevado a la potencia de 5?",
+                options: ["15", "243", "245", "210"],
+                correct: "243",
+            },
+            {//16
+                question: "¿Cuántas horas son 246 minutos?",
+                options: ["4.0", "4.3", "4.1", "4.2"],
+                correct: "4.1",
+            },
+            {//17
+                question: "¿Cuál es el máximo común divisor de 60 y 80?",
+                options: ["2", "30", "20", "10"],
+                correct: "20",
+            },
+            {//18
+                question: "Si sumas los dígitos de cualquier múltiplo de 9, ¿por qué número será siempre divisible la suma?",
+                options: ["3", "6", "9", "12"],
+                correct: "9",
+            },
+            {//19
+                question: "¿Qué número se conoce como la \"identidad aditiva\"?",
+                options: ["1", "0", "10", "2"],
+                correct: "0",
+            },
+            {//20
+                question: "¿Qué figura tiene el área más grande para un perímetro dado?",
+                options: ["Cuadrado", "Círculo", "Triángulo", "Rectángulo"],
+                correct: "Círculo",
+            },
         ],
         history: [
             {
@@ -598,6 +1417,107 @@ export const triviaQuestions = {
                 options: ["Grecia", "Italia", "Turquía", "Egipto"],
                 correct: "Turquía",
             },
+            //start of new questions:
+            {//1
+                question: "¿En qué año terminó la Segunda Guerra Mundial?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "¿Quién fue el primer emperador de Roma?",
+                options: ["Julio César", "Augusto", "Nerón", "Calígula"],
+                correct: "Augusto",
+            },
+            {//3
+                question: "¿En qué año cayó el Muro de Berlín?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "¿Quién descubrió la penicilina?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "¿Qué maravilla antigua estaba ubicada en Alejandría, Egipto?",
+                options: ["Jardines Colgantes", "Coloso de Rodas", "Faro", "Templo de Artemisa"],
+                correct: "Faro",
+            },
+            {//6
+                question: "¿Quién fue la primera persona en circunnavegar el mundo?",
+                options: ["Cristóbal Colón", "Fernando de Magallanes", "Vasco da Gama", "Marco Polo"],
+                correct: "Fernando de Magallanes",
+            },
+            {//7
+                question: "¿Quién construyó la Gran Muralla China?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucio", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "¿En qué año obtuvo la India su independencia del dominio británico?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "¿Cuál fue el nombre de la primera colonia inglesa exitosa en América?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "¿Quién fue la reina egipcia que se alió con Julio César y Marco Antonio?",
+                options: ["Nefertiti", "Cleopatra", "Hatshepsut", "Nefertari"],
+                correct: "Cleopatra",
+            },
+            {//11
+                question: "¿En qué año se hundió el Titanic?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "¿En qué año intentó la Armada Española invadir Inglaterra?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "¿Quién fue asesinado en Sarajevo en 1914, desencadenando la Primera Guerra Mundial?",
+                options: ["Francisco Fernando", "Otto von Bismarck", "Kaiser Guillermo II", "Nicolás II"],
+                correct: "Francisco Fernando",
+            },
+            {//14
+                question: "¿Cuál fue el nombre de la pandemia que mató a millones en el siglo XIV?",
+                options: ["Gripe Española", "Peste Negra", "Cólera", "Tifus"],
+                correct: "Peste Negra",
+            },
+            {//15
+                question: "¿Quién lideró la Revolución Haitiana?",
+                options: ["Simón Bolívar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "¿Qué ciudad fue enterrada por la erupción del Monte Vesubio en el año 79 d.C.?",
+                options: ["Atenas", "Pompeya", "Cartago", "Babilonia"],
+                correct: "Pompeya",
+            },
+            {//17
+                question: "¿Quién inventó la imprenta?",
+                options: ["Galileo Galilei", "Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "¿Qué civilización antigua inventó la rueda?",
+                options: ["Egipcios", "Sumerios", "Griegos", "Romanos"],
+                correct: "Sumerios",
+            },
+            {//19
+                question: "¿La Piedra de Rosetta ayudó a los historiadores a comprender finalmente qué sistema de escritura?",
+                options: ["Cuneiforme", "Escritura maya", "Jeroglíficos", "Runas"],
+                correct: "Jeroglíficos",
+            },
+            {//20
+                question: "¿Quién fue el primer presidente en vivir en la Casa Blanca?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
+            },
         ],
         science: [
             {
@@ -606,19 +1526,9 @@ export const triviaQuestions = {
                 correct: "Marte",
             },
             {
-                question: "¿Qué gas exhalan los humanos al respirar?",
-                options: ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Hidrógeno"],
-                correct: "Dióxido de carbono",
-            },
-            {
                 question: "¿Cuál es el símbolo químico del agua?",
                 options: ["H2O", "O2", "CO2", "HO2"],
                 correct: "H2O",
-            },
-            {
-                question: "¿Qué parte de la célula contiene el material genético?",
-                options: ["Citoplasma", "Mitocondria", "Núcleo", "Ribosoma"],
-                correct: "Núcleo",
             },
             {
                 question: "¿Qué elemento tiene el número atómico 1?",
@@ -649,6 +1559,116 @@ export const triviaQuestions = {
                 question: "¿Qué partícula en un átomo tiene carga positiva?",
                 options: ["Neutrón", "Electrón", "Protón", "Fotón"],
                 correct: "Protón",
+            },
+            {//9
+                question: "¿Cuál es la sustancia natural más dura de la Tierra?",
+                options: ["Oro", "Hierro", "Diamante", "Titanio"],
+                correct: "Diamante",
+            },
+            {//10
+                question: "¿Cuál es la velocidad de la luz en el vacío?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "¿Qué gas compone la mayor parte de la atmósfera terrestre?",
+                options: ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Hidrógeno"],
+                correct: "Nitrógeno",
+            },
+            {//12
+                question: "¿Cuántos huesos tiene el cuerpo humano adulto?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "¿Cuál es el símbolo químico del oro?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "¿Qué planeta está más cerca del Sol?",
+                options: ["Venus", "Tierra", "Mercurio", "Marte"],
+                correct: "Mercurio",
+            },
+            {//15
+                question: "¿Cuál es el punto de ebullición del agua en grados Celsius?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "¿Qué órgano bombea la sangre a través del cuerpo humano?",
+                options: ["Hígado", "Pulmones", "Corazón", "Riñón"],
+                correct: "Corazón",
+            },
+            {//17
+                question: "¿Cuál es el planeta más grande de nuestro sistema solar?",
+                options: ["Saturno", "Neptuno", "Júpiter", "Urano"],
+                correct: "Júpiter",
+            },
+            {//18
+                question: "¿Qué tipo de animal es un dragón de Komodo?",
+                options: ["Serpiente", "Lagarto", "Cocodrilo", "Dinosaurio"],
+                correct: "Lagarto",
+            },
+            {//19
+                question: "¿Cuántos corazones tiene un pulpo?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "¿Cómo se llama el estudio del clima?",
+                options: ["Geología", "Meteorología", "Astronomía", "Biología"],
+                correct: "Meteorología",
+            },
+            {//21
+                question: "¿Cuál es la unidad más pequeña de la vida?",
+                options: ["Átomo", "Molécula", "Célula", "Tejido"],
+                correct: "Célula",
+            },
+            {//22
+                question: "¿De qué está hecho el hielo seco?",
+                options: ["Agua congelada", "Nitrógeno congelado", "Oxígeno congelado", "Dióxido de carbono congelado"],
+                correct: "Dióxido de carbono congelado",
+            },
+            {//23
+                question: "¿Cuánto tarda la Tierra en orbitar alrededor del Sol?",
+                options: ["30 días", "365 días", "24 horas", "12 meses"],
+                correct: "365 días",
+            },
+            {//24
+                question: "¿Cuál es el órgano más grande del cuerpo humano?",
+                options: ["Hígado", "Cerebro", "Piel", "Corazón"],
+                correct: "Piel",
+            },
+            {//25
+                question: "¿Qué fuerza nos mantiene en el suelo?",
+                options: ["Magnetismo", "Gravedad", "Fricción", "Inercia"],
+                correct: "Gravedad",
+            },
+            {//26
+                question: "¿Cuál es la fórmula química de la sal de mesa?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "¿Qué tipo de sangre se conoce como donante universal?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "¿Qué vitamina se produce cuando la piel se expone a la luz solar?",
+                options: ["Vitamina A", "Vitamina C", "Vitamina D", "Vitamina E"],
+                correct: "Vitamina D",
+            },
+            {//29
+                question: "¿Cómo llamamos a la roca fundida bajo la superficie terrestre?",
+                options: ["Lava", "Magma", "Basalto", "Granito"],
+                correct: "Magma",
+            },
+            {//30
+                question: "¿Qué capa de la Tierra contiene todo el clima?",
+                options: ["Estratósfera", "Mesósfera", "Troposfera", "Termósfera"],
+                correct: "Troposfera",
             },
         ],
         sports: [
@@ -701,6 +1721,107 @@ export const triviaQuestions = {
                 question: "¿Cuál es la distancia de un maratón?",
                 options: ["24.2 millas", "26.2 millas", "28.2 millas", "30.2 millas"],
                 correct: "26.2 millas",
+            },
+            //new questions
+            {//1
+                question: "¿Qué equipo ganó el Super Bowl en el año 2000?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "¿Qué deporte es conocido como 'el juego bonito'?",
+                options: ["Baloncesto", "Fútbol", "Tenis", "Críquet"],
+                correct: "Fútbol",
+            },
+            {//3
+                question: "¿Cuántos torneos de Grand Slam hay en tenis cada año?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "¿Cuál es el deporte nacional de Japón?",
+                options: ["Karate", "Judo", "Sumo", "Kendo"],
+                correct: "Sumo",
+            },
+            {//5
+                question: "¿Cuál es el término para un marcador de cero en tenis?",
+                options: ["Love", "Nil", "Zero", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "¿Cuál es el único deporte que se ha jugado en la luna?",
+                options: ["Béisbol", "Golf", "Frisbee", "Tenis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "¿Cuántos hoyos se juegan en una ronda estándar de golf?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "¿Qué boxeador fue conocido como 'El Más Grande'?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "¿Cuántos campeonatos de la NBA ganó Michael Jordan con los Chicago Bulls?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "¿Cuál es el término para tres strikes seguidos en boliche?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "¿Qué tenista ha ganado más títulos de Grand Slam en individuales (hasta 2024)?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "¿Qué ciudad es la única que ha ganado campeonatos en la NFL, MLB, NBA y NHL en el mismo año?",
+                options: ["Ninguna", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "Ninguna",
+            },
+            {//13
+                question: "¿En qué año ganó Michael Phelps su récord de 8 medallas de oro en unos mismos Juegos Olímpicos?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "En el fútbol americano, ¿cuántas yardas se penaliza a la ofensiva por una falta de 'holding'?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "¿En qué equipo de la NBA jugó Kobe Bryant toda su carrera?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "¿Qué país ha ganado más medallas de oro olímpicas en hockey (hockey sobre césped)?",
+                options: ["India", "EE.UU.", "China", "Rusia"],
+                correct: "India",
+            },
+            {//17
+                question: "¿Qué deporte es conocido como 'el rey de los deportes'?",
+                options: ["Fútbol", "Críquet", "Béisbol", "Baloncesto"],
+                correct: "Fútbol",
+            },
+            {//18
+                question: "¿Qué deporte utiliza un volante (shuttlecock)?",
+                options: ["Bádminton", "Fútbol", "Críquet", "Atletismo"],
+                correct: "Bádminton",
+            },
+            {//19
+                question: "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },        
+            {//20
+                question: "¿Cuál es la altura reglamentaria de un aro de baloncesto?",
+                options: ["10 pies", "10 pulgadas", "11 pies", "11 pulgadas"],
+                correct: "10 pies",
             },
         ],
         language: [
@@ -759,6 +1880,106 @@ export const triviaQuestions = {
                 options: ["Irse", "Venir", "Lejos", "Niño"],
                 correct: "Irse",
             },
+            {//01
+                question: "¿Qué significa \"Jag heter\" en inglés?",
+                options: ["Mi nombre es", "¿Estás bien?", "Yo soy", "Yo deseo"],
+                correct: "Mi nombre es",
+            },
+            {//02
+                question: "¿Qué significa \"Flodhast\" en inglés?",
+                options: ["Hipopótamo", "Perro", "Gato", "Lagarto"],
+                correct: "Hipopótamo",
+            },
+            {//03
+                question: "¿En qué idioma se dice 'Danke' para gracias?",
+                options: ["Francés", "Alemán", "Italiano", "Español"],
+                correct: "Alemán",
+            },
+            {//04
+                question: "¿Cuál es el idioma escrito más antiguo conocido?",
+                options: ["Latín", "Sánscrito", "Sumerio", "Egipcio"],
+                correct: "Sumerio",
+            },
+            {//05
+                 question: "¿Qué significa 'grazie' en italiano?",
+                 options: ["Hola", "Adiós", "Por favor", "Gracias"],
+                 correct: "Gracias",
+            },
+            {//06
+                question: "¿Cuál es un sinónimo de 'happy'?",
+                options: ["Triste", "Alegre", "Enojado", "Cansado"],
+                correct: "Alegre",
+            },
+            {//07
+                question: "¿Qué significa el prefijo 'bi-'?",
+                options: ["Uno", "Dos", "Tres", "Muchos"],
+                correct: "Dos",
+            },
+            {//08
+                question: "En español, ¿qué significa 'buenos días'?",
+                options: ["Buenas noches", "Buenas tardes", "Buenos días", "Adiós"],
+                correct: "Buenos días",
+            },
+            {//09
+                question: "¿Cuál es un antónimo de 'hot'?",
+                options: ["Tibio", "Frío", "Picante", "Ardiendo"],
+                correct: "Frío",
+            },
+            {//10
+                question: "¿Cuántas vocales hay en el alfabeto inglés?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "¿Qué significa 'konnichiwa' en japonés?",
+                options: ["Adiós", "Hola", "Gracias", "Lo siento"],
+                correct: "Hola",
+            },
+            {//12
+                question: "¿Qué es un palíndromo?",
+                options: ["Una palabra larga", "Una palabra que se lee igual hacia adelante y hacia atrás", "Una palabra inventada", "Una palabra sin vocales"],
+                correct: "Una palabra que se lee igual hacia adelante y hacia atrás",
+            },
+            {//13
+                question: "¿En qué país se habla principalmente suajili?",
+                options: ["Marruecos", "Egipto", "Kenia", "Nigeria"],
+                correct: "Kenia",
+            },
+            {//14
+                question: "¿Qué idioma usa el alfabeto cirílico?",
+                options: ["Griego", "Árabe", "Ruso", "Hindi"],
+                correct: "Ruso",
+            },
+            {//15
+                question: "¿Qué significa 'merci' en francés?",
+                options: ["Lo siento", "Hola", "Gracias", "Adiós"],
+                correct: "Gracias",
+            },
+            {//16
+                question: "¿Cómo se llama el estudio del lenguaje?",
+                options: ["Lingüística", "Literatura", "Lexicología", "Fonética"],
+                correct: "Lingüística",
+            },
+            {//17
+                question: "¿Qué significa \"Limbisa ngai\" en inglés?",
+                options: ["Perdóneme", "Buenas noches", "Buenos días", "¿Estás bien?"],
+                correct: "Perdóneme",
+            },
+            {//18
+                question: "¿Qué significa \"Excuse me\" en español?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "¿Qué significa \"Good morning\" en alemán?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "¿Qué significa \"Salve\" en inglés?",
+                options: ["Hola", "Adiós", "No", "Sí"],
+                correct: "Hola",
+            },
         ],
         art: [
             {
@@ -811,6 +2032,107 @@ export const triviaQuestions = {
                 options: ["Roma", "París", "Londres", "Madrid"],
                 correct: "París",
             },
+            //new question sp:
+            {//1
+                question: "¿Qué artista neerlandés pintó 'La joven de la perla'?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "¿Cuál es el nombre del famoso fresco en el techo de Miguel Ángel?",
+                options: ["La última cena", "La creación de Adán", "Techo de la Capilla Sixtina", "La escuela de Atenas"],
+                correct: "Techo de la Capilla Sixtina",
+            },
+            {//3
+                question: "¿Con qué movimiento artístico se asocia Claude Monet?",
+                options: ["Impresionismo", "Cubismo", "Surrealismo", "Expresionismo"],
+                correct: "Impresionismo",
+            },
+            {//4
+                question: "¿Qué material se usa tradicionalmente en los grabados japoneses en madera?",
+                options: ["Roble", "Cerezo", "Pino", "Bambú"],
+                correct: "Cerezo",
+            },
+            {//5
+                question: "¿Quién pintó 'El grito'?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },            
+            {//6
+                question: "¿Cómo se llama la técnica de pintar sobre yeso húmedo?",
+                options: ["Témpera", "Fresco", "Óleo", "Acuarela"],
+                correct: "Fresco",
+            },
+            {//7
+                question: "¿Qué artista es famoso por pintar las latas de sopa Campbell?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "¿Cuál es el color primario que, junto con el azul y el amarillo, forma la base de la teoría del color?",
+                options: ["Verde", "Naranja", "Rojo", "Morado"],
+                correct: "Rojo",
+            },
+            {//9
+                question: "¿Qué artista español pintó 'Guernica'?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "¿Qué estilo arquitectónico tiene la Catedral de Notre-Dame en París?",
+                options: ["Barroco", "Gótico", "Románico", "Renacimiento"],
+                correct: "Gótico",
+            },
+            {//11
+                question: "¿Quién esculpió 'El pensador'?",
+                options: ["Auguste Rodin", "Miguel Ángel", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "¿Qué es el puntillismo?",
+                options: ["Pintar con pequeños puntos", "Pintar con trazos amplios", "Pintar en blanco y negro", "Pintar con los dedos"],
+                correct: "Pintar con pequeños puntos",
+            },
+            {//13
+                question: "¿Qué artista mexicana es conocida por sus autorretratos y obras surrealistas?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "¿Cómo se llama el arte de la escritura hermosa?",
+                options: ["Tipografía", "Caligrafía", "Litografía", "Escritura a mano"],
+                correct: "Caligrafía",
+            },
+            {//15
+                question: "¿Qué artista del Renacimiento pintó 'El nacimiento de Venus'?",
+                options: ["Leonardo da Vinci", "Rafael", "Sandro Botticelli", "Tiziano"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "¿Qué es el claroscuro en el arte?",
+                options: ["Uso de colores brillantes", "Uso de luz y sombra", "Uso de formas geométricas", "Uso de materiales naturales"],
+                correct: "Uso de luz y sombra",
+            },
+            {//17
+                question: "¿Qué museo alberga la famosa pintura 'La ronda de noche'?",
+                options: ["El Louvre", "Rijksmuseum", "Museo del Prado", "Galería Uffizi"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "¿Quién pintó 'American Gothic'?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "¿Qué movimiento artístico ayudó a fundar Henri Matisse?",
+                options: ["Impresionismo", "Fauvismo", "Cubismo", "Dadaísmo"],
+                correct: "Fauvismo",
+            },
+            {//20
+                question: "¿Qué color se crea al mezclar azul y amarillo?",
+                options: ["Verde", "Naranja", "Morado", "Marrón"],
+                correct: "Verde",
+            },
         ],
         pop_culture: [
             {
@@ -862,6 +2184,106 @@ export const triviaQuestions = {
                 question: "¿Cuál es el nombre de la nación africana ficticia en Black Panther?",
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
+            },
+            {//1
+                question: "¿Cuál es el nombre del búho de Harry Potter?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "¿Qué serie de Netflix presenta a Eleven y el Mundo del Revés?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "¿Qué cantante es conocida como la 'Reina del Pop'?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "¿Cuál es el nombre de la cafetería en la serie Friends?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "¿Qué artista lanzó el álbum '1989' en 2014?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "En Game of Thrones, ¿cuál es el lema de la familia Stark?",
+                options: ["Fuego y Sangre", "Se Acerca el Invierno", "Oíd mi Rugido", "Creciendo Fuertes"],
+                correct: "Se Acerca el Invierno",
+            },
+            {//7
+                question: "¿Qué superhéroe es conocido como el 'Hombre de Acero'?",
+                options: ["Batman", "Iron Man", "Superman", "Capitán América"],
+                correct: "Superman",
+            },
+            {//8
+                question: "¿Qué servicio de streaming creó la serie 'The Crown'?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "¿Quién interpretó a Jack Dawson en Titanic?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "¿Qué grupo de chicos tuvo el éxito 'I Want It That Way'?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "¿Cuál es el verdadero nombre del rapero Marshall Mathers?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "¿Cuál es la película más taquillera de todos los tiempos (sin ajustar por inflación)?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars: El despertar de la Fuerza"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "¿Quién es el cantante principal de Coldplay?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "¿Cuál es el verdadero nombre del rapero Aubrey Drake Graham?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "¿Qué serie sigue a un profesor de química convertido en productor de metanfetamina?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "¿Quién da voz a Groot en las películas de Guardianes de la Galaxia?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "¿Qué videojuego presenta al personaje Jefe Maestro?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "¿En qué continente ficticio tiene lugar principalmente Game of Thrones?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "¿Qué película contiene la frase '¿Por qué tan serio?'",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "¿Cuál fue el primer video musical transmitido en MTV?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
             },
         ],
     },
@@ -917,6 +2339,107 @@ export const triviaQuestions = {
                 options: ["Isocèle", "Équilatéral", "Rectangle", "Scalène"],
                 correct: "Rectangle",
             },
+            //start of new questions:
+            {//1
+                question: "Quelle est la dérivée de ln(x) ?",
+                options: ["x", "1", "1/x", "x/1"],
+                correct: "1/x",
+            },
+            {//2
+                question: "Quelle est la différence entre 100 et 245 ?",
+                options: ["144", "150", "145", "146"],
+                correct: "145",
+            },
+            {//3
+                question: "Quel est le nombre suivant dans la suite de Fibonacci : 1, 1, 2, 3, 5, 8, ?",
+                options: ["11", "12", "13", "15"],
+                correct: "13",
+            },
+            {//4
+                question: "Lequel des angles suivants est un angle obtus ?",
+                options: ["44", "90", "91", "89"],
+                correct: "91",
+            },
+            {//5
+                question: "Quel pourcentage représente 5/8 ?",
+                options: ["50%", "60.4%", "64.2%", "62.5%"],
+                correct: "62.5%",
+            },
+            {//6
+                question: "Quelle est la médiane de 8,5,6,15,10 ?",
+                options: ["10", "8", "5", "15"],
+                correct: "8",
+            },
+            {//7
+                question: "Quelle est la forme fractionnaire de 0.55 ?",
+                options: ["1/2", "5/8", "13/20", "11/20"],
+                correct: "11/20",
+            },
+            {//8
+                question: "Combien de côtés a un octogone ?",
+                options: ["6", "7", "8", "9"],
+                correct: "8",
+            },
+            {//9
+                question: "Quelle est la racine carrée de 961 ?",
+                options: ["30", "31", "32", "33"],
+                correct: "31",
+            },
+            {//10
+                question: "Quelle est la somme des angles dans un carré ?",
+                options: ["180", "90", "270", "360"],
+                correct: "360",
+            },
+            {//11
+                 question: "Quelle est la formule de la circonférence d’un cercle ?",
+                 options: ["πr", "2πr", "πr²", "2πr²"],
+                 correct: "2πr",
+            },
+            {//12
+                 question: "Quelle est l’aire d’un rectangle de 5x3 ?",
+                 options: ["26", "25", "15", "10"],
+                 correct: "15",
+            },
+            {//13
+                 question: "Quel est 67% de 35 ?",
+                 options: ["24", "23", "23.45", "23.50"],
+                 correct: "23.45",
+            },
+            {//14
+                 question: "Quelle est la valeur de pi à la quatrième décimale ?",
+                 options: ["3.1416", "3.1426", "3.1406", "3.1413"],
+                 correct: "3.1416",
+            },
+            {//15
+                 question: "Quel est 3 à la puissance 5 ?",
+                 options: ["15", "243", "245", "210"],
+                 correct: "243",
+            },
+            {//16
+                 question: "Combien d’heures font 246 minutes ?",
+                 options: ["4.0", "4.3", "4.1", "4.2"],
+                 correct: "4.1",
+            },
+            {//17
+                 question: "Quel est le plus grand diviseur commun de 60 et 80 ?",
+                 options: ["2", "30", "20", "10"],
+                 correct: "20",
+            },
+            {//18
+                 question: "Si tu additionnes les chiffres de n’importe quel multiple de 9, par quel nombre la somme sera-t-elle toujours divisible ?",
+                 options: ["3", "6", "9", "12"],
+                 correct: "9",
+            },
+            {//19
+                 question: "Quel nombre est connu comme « l’identité additive » ?",
+                 options: ["1", "0", "10", "2"],
+                 correct: "0",
+            },
+            {//20
+                 question: "Quelle figure a la plus grande aire pour un périmètre donné ?",
+                 options: ["Carré", "Cercle", "Triangle", "Rectangle"],
+                 correct: "Cercle",
+            },
         ],
 
         history: [
@@ -970,6 +2493,107 @@ export const triviaQuestions = {
                 options: ["Grèce", "Italie", "Turquie", "Égypte"],
                 correct: "Turquie",
             },
+            //start of new questions
+            {//1
+                question: "En quelle année la Seconde Guerre mondiale s’est-elle terminée ?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: "1945",
+            },
+            {//2
+                question: "Qui fut le premier empereur de Rome ?",
+                options: ["Jules César", "Auguste", "Néron", "Caligula"],
+                correct: "Auguste",
+            },
+            {//3
+                question: "En quelle année le Mur de Berlin est-il tombé ?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: "1989",
+            },
+            {//4
+                question: "Qui a découvert la pénicilline ?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Jonas Salk"],
+                correct: "Alexander Fleming",
+            },
+            {//5
+                question: "Quelle merveille antique se trouvait à Alexandrie, en Égypte ?",
+                options: ["Jardins suspendus", "Colosse de Rhodes", "Phare", "Temple d’Artémis"],
+                correct: "Phare",
+            },
+            {//6
+                question: "Qui fut la première personne à faire le tour du monde ?",
+                options: ["Christophe Colomb", "Fernand de Magellan", "Vasco de Gama", "Marco Polo"],
+                correct: "Fernand de Magellan",
+            },
+            {//7
+                question: "Qui a construit la Grande Muraille de Chine ?",
+                options: ["Qin Shi Huang", "Kublai Khan", "Confucius", "Sun Tzu"],
+                correct: "Qin Shi Huang",
+            },
+            {//8
+                question: "En quelle année l’Inde a-t-elle obtenu son indépendance de la domination britannique ?",
+                options: ["1945", "1946", "1947", "1948"],
+                correct: "1947",
+            },
+            {//9
+                question: "Quel fut le nom de la première colonie anglaise réussie en Amérique ?",
+                options: ["Plymouth", "Jamestown", "Roanoke", "Boston"],
+                correct: "Jamestown",
+            },
+            {//10
+                question: "Quelle reine égyptienne s’est alliée avec Jules César et Marc Antoine ?",
+                options: ["Néfertiti", "Cléopâtre", "Hatshepsout", "Néfertari"],
+                correct: "Cléopâtre",
+            },
+            {//11
+                question: "En quelle année le Titanic a-t-il coulé ?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: "1912",
+            },
+            {//12
+                question: "En quelle année l’Armada espagnole a-t-elle tenté d’envahir l’Angleterre ?",
+                options: ["1568", "1578", "1588", "1598"],
+                correct: "1588",
+            },
+            {//13
+                question: "Qui a été assassiné à Sarajevo en 1914, déclenchant la Première Guerre mondiale ?",
+                options: ["François-Ferdinand", "Otto von Bismarck", "Kaiser Guillaume II", "Nicolas II"],
+                correct: "François-Ferdinand",
+            },
+            {//14
+                question: "Quel était le nom de la pandémie qui a tué des millions de personnes au XIVe siècle ?",
+                options: ["Grippe espagnole", "Peste noire", "Choléra", "Typhus"],
+                correct: "Peste noire",
+            },
+            {//15
+                question: "Qui a dirigé la Révolution haïtienne ?",
+                options: ["Simón Bolívar", "Toussaint Louverture", "Che Guevara", "José Martí"],
+                correct: "Toussaint Louverture",
+            },
+            {//16
+                question: "Quelle ville a été ensevelie par l’éruption du Vésuve en 79 apr. J.-C. ?",
+                options: ["Athènes", "Pompéi", "Carthage", "Babylone"],
+                correct: "Pompéi",
+            },
+            {//17
+                question: "Qui a inventé l’imprimerie ?",
+                options: ["Galilée", "Léonard de Vinci", "Johannes Gutenberg", "Isaac Newton"],
+                correct: "Johannes Gutenberg",
+            },
+            {//18
+                question: "Quelle civilisation antique a inventé la roue ?",
+                options: ["Égyptiens", "Sumériens", "Grecs", "Romains"],
+                correct: "Sumériens",
+            },
+            {//19
+                question: "La pierre de Rosette a aidé les historiens à comprendre enfin quel système d’écriture ?",
+                options: ["Cunéiforme", "Écriture maya", "Hiéroglyphes", "Runes"],
+                correct: "Hiéroglyphes",
+            },
+            {//20
+                question: "Qui fut le premier président à vivre à la Maison-Blanche ?",
+                options: ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+                correct: "John Adams",
+            },
         ],
 
         science: [
@@ -979,19 +2603,9 @@ export const triviaQuestions = {
                 correct: "Mars",
             },
             {
-                question: "Quel gaz les humains expirent-ils lorsqu’ils respirent ?",
-                options: ["Oxygène", "Dioxyde de carbone", "Azote", "Hydrogène"],
-                correct: "Dioxyde de carbone",
-            },
-            {
                 question: "Quel est le symbole chimique de l’eau ?",
                 options: ["H₂O", "O₂", "CO₂", "HO₂"],
                 correct: "H₂O",
-            },
-            {
-                question: "Quelle partie de la cellule contient le matériel génétique ?",
-                options: ["Cytoplasme", "Mitochondrie", "Noyau", "Ribosome"],
-                correct: "Noyau",
             },
             {
                 question: "Quel élément a le numéro atomique 1 ?",
@@ -1022,6 +2636,116 @@ export const triviaQuestions = {
                 question: "Quelle particule dans un atome possède une charge positive ?",
                 options: ["Neutron", "Électron", "Proton", "Photon"],
                 correct: "Proton",
+            },
+            {//9
+                question: "Quelle est la substance naturelle la plus dure sur Terre ?",
+                options: ["Or", "Fer", "Diamant", "Titane"],
+                correct: "Diamant",
+            },
+            {//10
+                question: "Quelle est la vitesse de la lumière dans le vide ?",
+                options: ["186,000 mph", "186,000 km/s", "300,000 km/s", "300,000 mph"],
+                correct: "300,000 km/s",
+            },
+            {//11
+                question: "Quel gaz compose la majeure partie de l’atmosphère terrestre ?",
+                options: ["Oxygène", "Dioxyde de carbone", "Azote", "Hydrogène"],
+                correct: "Azote",
+            },
+            {//12
+                question: "Combien d’os y a-t-il dans le corps humain adulte ?",
+                options: ["196", "206", "216", "226"],
+                correct: "206",
+            },
+            {//13
+                question: "Quel est le symbole chimique de l’or ?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: "Au",
+            },
+            {//14
+                question: "Quelle planète est la plus proche du Soleil ?",
+                options: ["Vénus", "Terre", "Mercure", "Mars"],
+                correct: "Mercure",
+            },
+            {//15
+                question: "Quel est le point d’ébullition de l’eau en degrés Celsius ?",
+                options: ["90°C", "95°C", "100°C", "105°C"],
+                correct: "100°C",
+            },
+            {//16
+                question: "Quel organe pompe le sang dans le corps humain ?",
+                options: ["Foie", "Poumons", "Cœur", "Rein"],
+                correct: "Cœur",
+            },
+            {//17
+                question: "Quelle est la plus grande planète de notre système solaire ?",
+                options: ["Saturne", "Neptune", "Jupiter", "Uranus"],
+                correct: "Jupiter",
+            },
+            {//18
+                question: "Quel type d’animal est un dragon de Komodo ?",
+                options: ["Serpent", "Lézard", "Crocodile", "Dinosaure"],
+                correct: "Lézard",
+            },
+            {//19
+                question: "Combien de cœurs possède une pieuvre ?",
+                options: ["1", "2", "3", "4"],
+                correct: "3",
+            },
+            {//20
+                question: "Comment appelle-t-on l’étude du climat ?",
+                options: ["Géologie", "Météorologie", "Astronomie", "Biologie"],
+                correct: "Météorologie",
+            },
+            {//21
+                question: "Quelle est la plus petite unité de la vie ?",
+                options: ["Atome", "Molécule", "Cellule", "Tissu"],
+                correct: "Cellule",
+            },
+            {//22
+                question: "De quoi est constitué la glace carbonique ?",
+                options: ["Eau congelée", "Azote congelé", "Oxygène congelé", "Dioxyde de carbone congelé"],
+                correct: "Dioxyde de carbone congelé",
+            },
+            {//23
+                question: "Combien de temps la Terre met-elle pour orbiter autour du Soleil ?",
+                options: ["30 jours", "365 jours", "24 heures", "12 mois"],
+                correct: "365 jours",
+            },
+            {//24
+                question: "Quel est le plus grand organe du corps humain ?",
+                options: ["Foie", "Cerveau", "Peau", "Cœur"],
+                correct: "Peau",
+            },
+            {//25
+                question: "Quelle force nous maintient au sol ?",
+                options: ["Magnétisme", "Gravité", "Friction", "Inertie"],
+                correct: "Gravité",
+            },
+            {//26
+                question: "Quelle est la formule chimique du sel de table ?",
+                options: ["NaCl", "KCl", "CaCl2", "MgCl2"],
+                correct: "NaCl",
+            },
+            {//27
+                question: "Quel groupe sanguin est connu comme donneur universel ?",
+                options: ["A", "B", "AB", "O"],
+                correct: "O",
+            },
+            {//28
+                question: "Quelle vitamine est produite lorsque la peau est exposée au soleil ?",
+                options: ["Vitamine A", "Vitamine C", "Vitamine D", "Vitamine E"],
+                correct: "Vitamine D",
+            },
+            {//29
+                question: "Comment appelle-t-on la roche en fusion sous la surface de la Terre ?",
+                options: ["Lave", "Magma", "Basalte", "Granite"],
+                correct: "Magma",
+            },
+            {//30
+                question: "Quelle couche de l’atmosphère terrestre contient tout le climat ?",
+                options: ["Stratosphère", "Mésosphère", "Troposphère", "Thermosphère"],
+                correct: "Troposphère",
             },
         ],
 
@@ -1075,6 +2799,107 @@ export const triviaQuestions = {
                 question: "Quelle est la distance d’un marathon ?",
                 options: ["24,2 miles", "26,2 miles", "28,2 miles", "30,2 miles"],
                 correct: "26,2 miles",
+            },
+            //start of new questions
+            {//1
+                question: "Quelle équipe a remporté le Super Bowl en 2000 ?",
+                options: ["Saint Louis Rams", "Los Angeles Rams", "Tennessee Titans", "Indianapolis Colts"],
+                correct: "Saint Louis Rams",
+            },
+            {//2
+                question: "Quel sport est connu comme 'le beau jeu' ?",
+                options: ["Basket-ball", "Football", "Tennis", "Cricket"],
+                correct: "Football",
+            },
+            {//3
+                question: "Combien de tournois du Grand Chelem y a-t-il en tennis chaque année ?",
+                options: ["2", "3", "4", "5"],
+                correct: "4",
+            },
+            {//4
+                question: "Quel est le sport national du Japon ?",
+                options: ["Karaté", "Judo", "Sumo", "Kendo"],
+                correct: "Sumo",
+            },        
+            {//5
+                question: "Quel est le terme pour un score de zéro au tennis ?",
+                options: ["Love", "Nil", "Zéro", "Nought"],
+                correct: "Love",
+            },
+            {//6
+                question: "Quel est le seul sport qui a été pratiqué sur la lune ?",
+                options: ["Baseball", "Golf", "Frisbee", "Tennis"],
+                correct: "Golf",
+            },
+            {//7
+                question: "Combien de trous sont joués dans une partie standard de golf ?",
+                options: ["9", "12", "18", "27"],
+                correct: "18",
+            },
+            {//8
+                question: "Quel boxeur était connu comme 'Le Plus Grand' ?",
+                options: ["Mike Tyson", "Muhammad Ali", "Joe Frazier", "George Foreman"],
+                correct: "Muhammad Ali",
+            },
+            {//9
+                question: "Combien de championnats NBA Michael Jordan a-t-il remportés avec les Chicago Bulls ?",
+                options: ["4", "5", "6", "7"],
+                correct: "6",
+            },
+            {//10
+                question: "Quel est le terme pour trois strikes consécutifs au bowling ?",
+                options: ["Turkey", "Eagle", "Hat trick", "Triple"],
+                correct: "Turkey",
+            },
+            {//11
+                question: "Quel joueur de tennis a remporté le plus de titres du Grand Chelem en simple (en 2024) ?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: "Novak Djokovic",
+            },
+            {//12
+                question: "Quelle ville est la seule à avoir remporté des championnats en NFL, MLB, NBA et NHL la même année ?",
+                options: ["Aucune", "Seattle", "Saint Louis", "Atlanta"],
+                correct: "Aucune",
+            },
+            {//13
+                question: "En quelle année Michael Phelps a-t-il remporté son record de 8 médailles d’or en un seul Jeux Olympiques ?",
+                options: ["2008", "2009", "2007", "2010"],
+                correct: "2008",
+            },
+            {//14
+                question: "Au football américain, de combien de yards l’attaque est-elle pénalisée pour une faute de 'holding' ?",
+                options: ["10", "15", "5", "20"],
+                correct: "10",
+            },
+            {//15
+                question: "Dans quelle équipe NBA Kobe Bryant a-t-il joué toute sa carrière ?",
+                options: ["LA Lakers", "Chicago Bulls", "Philadelphia 76ers", "Minnesota Timberwolves"],
+                correct: "LA Lakers",
+            },
+            {//16
+                question: "Quel pays a remporté le plus de médailles d’or olympiques en hockey sur gazon ?",
+                options: ["Inde", "États-Unis", "Chine", "Russie"],
+                correct: "Inde",
+            },
+            {//17
+                question: "Quel sport est connu comme 'le roi des sports' ?",
+                options: ["Football", "Cricket", "Baseball", "Basket-ball"],
+                correct: "Football",
+            },
+            {//18
+                question: "Quel sport utilise un volant (shuttlecock) ?",
+                options: ["Badminton", "Football", "Cricket", "Athlétisme"],
+                correct: "Badminton",
+            },
+            {//19
+                question: "En quelle année ont eu lieu les premiers Jeux Olympiques modernes ?",
+                options: ["1890", "1896", "1900", "1897"],
+                correct: "1896",
+            },
+            {//20
+                question: "Quelle est la hauteur réglementaire d’un panier de basket-ball ?",
+                options: ["10 pieds", "10 pouces", "11 pieds", "11 pouces"],
+                correct: "10 pieds",
             },
         ],
 
@@ -1134,6 +2959,106 @@ export const triviaQuestions = {
                 options: ["Partir", "Venir", "Loin", "Enfant"],
                 correct: "Partir",
             },
+            {//01
+                question: "Que signifie \"Jag heter\" en anglais ?",
+                options: ["Mon nom est", "Ça va ?", "Je suis", "Je souhaite"],
+                correct: "Mon nom est",
+            },
+            {//02
+                question: "Que signifie \"Flodhast\" en anglais ?",
+                options: ["Hippopotame", "Chien", "Chat", "Lézard"],
+                correct: "Hippopotame",
+            },
+            {//03
+                question: "Dans quelle langue dit-on 'Danke' pour merci ?",
+                options: ["Français", "Allemand", "Italien", "Espagnol"],
+                correct: "Allemand",
+            },
+            {//04
+                question: "Quelle est la plus ancienne langue écrite connue ?",
+                options: ["Latin", "Sanskrit", "Sumérien", "Égyptien"],
+                correct: "Sumérien",
+            },
+            {//05
+                question: "Que signifie 'grazie' en italien ?",
+                options: ["Bonjour", "Au revoir", "S'il vous plaît", "Merci"],
+                correct: "Merci",
+            },
+            {//06
+                question: "Quel est un synonyme de 'happy' ?",
+                options: ["Triste", "Joyeux", "En colère", "Fatigué"],
+                correct: "Joyeux",
+            },
+            {//07
+                question: "Que signifie le préfixe 'bi-' ?",
+                options: ["Un", "Deux", "Trois", "Beaucoup"],
+                correct: "Deux",
+            },
+            {//08
+                question: "En espagnol, que signifie 'buenos días' ?",
+                options: ["Bonne nuit", "Bon après-midi", "Bonjour", "Au revoir"],
+                correct: "Bonjour",
+            },
+            {//09
+                question: "Quel est un antonyme de 'hot' ?",
+                options: ["Tiède", "Froid", "Épicé", "Brûlant"],
+                correct: "Froid",
+            },
+            {//10
+                question: "Combien de voyelles y a-t-il dans l'alphabet anglais ?",
+                options: ["4", "5", "6", "7"],
+                correct: "5",
+            },
+            {//11
+                question: "Que signifie 'konnichiwa' en japonais ?",
+                options: ["Au revoir", "Bonjour", "Merci", "Désolé"],
+                correct: "Bonjour",
+            },
+            {//12
+                question: "Qu'est-ce qu'un palindrome ?",
+                options: ["Un mot long", "Un mot qui se lit de la même façon en avant et en arrière", "Un mot inventé", "Un mot sans voyelles"],
+                correct: "Un mot qui se lit de la même façon en avant et en arrière",
+            },
+            {//13
+                question: "Dans quel pays parle-t-on principalement le swahili ?",
+                options: ["Maroc", "Égypte", "Kenya", "Nigéria"],
+                correct: "Kenya",
+            },
+            {//14
+                question: "Quelle langue utilise l'alphabet cyrillique ?",
+                options: ["Grec", "Arabe", "Russe", "Hindi"],
+                correct: "Russe",
+            },
+            {//15
+                question: "Que signifie 'merci' en français ?",
+                options: ["Désolé", "Bonjour", "Merci", "Au revoir"],
+                correct: "Merci",
+            },
+            {//16
+                question: "Comment appelle-t-on l'étude du langage ?",
+                options: ["Linguistique", "Littérature", "Lexicologie", "Phonétique"],
+                correct: "Linguistique",
+            },
+            {//17
+                question: "Que signifie \"Limbisa ngai\" en anglais ?",
+                options: ["Excusez-moi", "Bonne nuit", "Bonjour", "Ça va ?"],
+                correct: "Excusez-moi",
+            },
+            {//18
+                question: "Que signifie \"Excuse me\" en espagnol ?",
+                options: ["Perdona", "Hola", "¿Cómo estás?", "Por favor"],
+                correct: "Perdona",
+            },
+            {//19
+                question: "Que signifie \"Good morning\" en allemand ?",
+                options: ["Guten Morgen", "Vielen Dank", "Auf Wiedersehen", "Gute Nacht"],
+                correct: "Guten Morgen",
+            },
+            {//20
+                question: "Que signifie \"Salve\" en anglais ?",
+                options: ["Bonjour", "Au revoir", "Non", "Oui"],
+                correct: "Bonjour",
+            },
         ],
 
         art: [
@@ -1187,6 +3112,107 @@ export const triviaQuestions = {
                 options: ["Rome", "Paris", "Londres", "Madrid"],
                 correct: "Paris",
             },
+            //new question sp
+            {//1
+                question: "Quel artiste néerlandais a peint 'La Jeune Fille à la perle' ?",
+                options: ["Rembrandt", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+                correct: "Johannes Vermeer",
+            },
+            {//2
+                question: "Quel est le nom du célèbre plafond peint par Michel-Ange ?",
+                options: ["La Cène", "La Création d'Adam", "Plafond de la Chapelle Sixtine", "L'École d'Athènes"],
+                correct: "Plafond de la Chapelle Sixtine",
+            },
+            {//3
+                question: "À quel mouvement artistique est associé Claude Monet ?",
+                options: ["Impressionnisme", "Cubisme", "Surréalisme", "Expressionnisme"],
+                correct: "Impressionnisme",
+            },
+            {//4
+                question: "Quel matériau est traditionnellement utilisé dans les estampes japonaises sur bois ?",
+                options: ["Chêne", "Cerisier", "Pin", "Bambou"],
+                correct: "Cerisier",
+            },        
+            {//5
+                question: "Qui a peint 'Le Cri' ?",
+                options: ["Edvard Munch", "Vincent van Gogh", "Pablo Picasso", "Henri Matisse"],
+                correct: "Edvard Munch",
+            },
+            {//6
+                question: "Comment s'appelle la technique de peinture sur plâtre frais ?",
+                options: ["Tempéra", "Fresque", "Peinture à l'huile", "Aquarelle"],
+                correct: "Fresque",
+            },
+            {//7
+                question: "Quel artiste est célèbre pour avoir peint les boîtes de soupe Campbell ?",
+                options: ["Roy Lichtenstein", "Andy Warhol", "Keith Haring", "Jean-Michel Basquiat"],
+                correct: "Andy Warhol",
+            },
+            {//8
+                question: "Quelle est la couleur primaire qui, avec le bleu et le jaune, forme la base de la théorie des couleurs ?",
+                options: ["Vert", "Orange", "Rouge", "Violet"],
+                correct: "Rouge",
+            },
+            {//9
+                question: "Quel artiste espagnol a peint 'Guernica' ?",
+                options: ["Salvador Dalí", "Pablo Picasso", "Joan Miró", "Diego Velázquez"],
+                correct: "Pablo Picasso",
+            },
+            {//10
+                question: "Quel style architectural caractérise la cathédrale Notre-Dame de Paris ?",
+                options: ["Baroque", "Gothique", "Roman", "Renaissance"],
+                correct: "Gothique",
+            },
+            {//11
+                question: "Qui a sculpté 'Le Penseur' ?",
+                options: ["Auguste Rodin", "Michel-Ange", "Donatello", "Bernini"],
+                correct: "Auguste Rodin",
+            },
+            {//12
+                question: "Qu'est-ce que le pointillisme ?",
+                options: ["Peindre avec de petits points", "Peindre avec de larges coups de pinceau", "Peindre en noir et blanc", "Peindre avec les doigts"],
+                correct: "Peindre avec de petits points",
+            },
+            {//13
+                question: "Quelle artiste mexicaine est connue pour ses autoportraits et ses œuvres surréalistes ?",
+                options: ["Frida Kahlo", "Diego Rivera", "Leonora Carrington", "Remedios Varo"],
+                correct: "Frida Kahlo",
+            },
+            {//14
+                question: "Comment appelle-t-on l'art de la belle écriture ?",
+                options: ["Typographie", "Calligraphie", "Lithographie", "Écriture manuscrite"],
+                correct: "Calligraphie",
+            },
+            {//15
+                question: "Quel artiste de la Renaissance a peint 'La Naissance de Vénus' ?",
+                options: ["Léonard de Vinci", "Raphaël", "Sandro Botticelli", "Titien"],
+                correct: "Sandro Botticelli",
+            },
+            {//16
+                question: "Qu'est-ce que le clair-obscur en art ?",
+                options: ["Utilisation de couleurs vives", "Utilisation de la lumière et de l'ombre", "Utilisation de formes géométriques", "Utilisation de matériaux naturels"],
+                correct: "Utilisation de la lumière et de l'ombre",
+            },
+            {//17
+                question: "Quel musée abrite la célèbre peinture 'La Ronde de nuit' ?",
+                options: ["Le Louvre", "Rijksmuseum", "Musée du Prado", "Galerie des Offices"],
+                correct: "Rijksmuseum",
+            },
+            {//18
+                question: "Qui a peint 'American Gothic' ?",
+                options: ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Andrew Wyeth"],
+                correct: "Grant Wood",
+            },
+            {//19
+                question: "Quel mouvement artistique Henri Matisse a-t-il contribué à fonder ?",
+                options: ["Impressionnisme", "Fauvisme", "Cubisme", "Dadaïsme"],
+                correct: "Fauvisme",
+            },
+            {//20
+                question: "Quelle couleur est créée en mélangeant le bleu et le jaune ?",
+                options: ["Vert", "Orange", "Violet", "Marron"],
+                correct: "Vert",
+            },
         ],
 
         pop_culture: [
@@ -1239,6 +3265,107 @@ export const triviaQuestions = {
                 question: "Quel est le nom de la nation africaine fictive dans Black Panther ?",
                 options: ["Zamunda", "Wakanda", "Narnia", "Latveria"],
                 correct: "Wakanda",
+            },
+            //new question sp
+            {//1
+                question: "Quel est le nom du hibou de Harry Potter ?",
+                options: ["Errol", "Hedwig", "Pigwidgeon", "Scabbers"],
+                correct: "Hedwig",
+            },
+            {//2
+                question: "Quelle série Netflix met en scène Eleven et l'Upside Down ?",
+                options: ["The Witcher", "Stranger Things", "The Umbrella Academy", "Dark"],
+                correct: "Stranger Things",
+            },
+            {//3
+                question: "Quelle chanteuse est connue comme la 'Reine de la Pop' ?",
+                options: ["Madonna", "Reba", "Ariana Grande", "Katy Parry"],
+                correct: "Madonna",
+            },
+            {//4
+                question: "Quel est le nom du café dans la série Friends ?",
+                options: ["Central Perk", "Java Joe's", "Café Nero", "Starbucks"],
+                correct: "Central Perk",
+            },
+            {//5
+                question: "Quel artiste a sorti l'album '1989' en 2014 ?",
+                options: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+                correct: "Taylor Swift",
+            },
+            {//6
+                question: "Dans Game of Thrones, quelle est la devise de la famille Stark ?",
+                options: ["Feu et Sang", "L'Hiver vient", "Entendez mon Rugissement", "Croître Fort"],
+                correct: "L'Hiver vient",
+            },
+            {//7
+                question: "Quel super-héros est connu comme 'l'Homme d'Acier' ?",
+                options: ["Batman", "Iron Man", "Superman", "Captain America"],
+                correct: "Superman",
+            },
+            {//8
+                question: "Quel service de streaming a créé la série 'The Crown' ?",
+                options: ["HBO", "Amazon Prime", "Netflix", "Disney+"],
+                correct: "Netflix",
+            },
+            {//9
+                question: "Qui a joué Jack Dawson dans Titanic ?",
+                options: ["Brad Pitt", "Leonardo DiCaprio", "Matt Damon", "Tom Cruise"],
+                correct: "Leonardo DiCaprio",
+            },
+            {//10
+                question: "Quel boys band a eu le tube 'I Want It That Way' ?",
+                options: ["NSYNC", "Backstreet Boys", "98 Degrees", "Boyz II Men"],
+                correct: "Backstreet Boys",
+            },
+            {//11
+                question: "Quel est le vrai nom du rappeur Marshall Mathers ?",
+                options: ["Drake", "Eminem", "50 Cent", "Jay-Z"],
+                correct: "Eminem",
+            },
+            {//12
+                question: "Quel est le film le plus rentable de tous les temps (sans ajustement pour l'inflation) ?",
+                options: ["Titanic", "Avatar", "Avengers: Endgame", "Star Wars : Le Réveil de la Force"],
+                correct: "Avatar",
+            },
+            {//13
+                question: "Qui est le chanteur principal de Coldplay ?",
+                options: ["Chris Martin", "Guy Berryman", "Jonny Buckland", "Will Champion"],
+                correct: "Chris Martin",
+            },
+            {//14
+                question: "Quel est le vrai nom du rappeur Aubrey Drake Graham ?",
+                options: ["Drake", "2 Chainz", "50 Cent", "Ludacris"],
+                correct: "Drake",
+            },
+            {//15
+                question: "Quelle série suit un professeur de chimie devenu producteur de méthamphétamine ?",
+                options: ["Ozark", "The Wire", "Breaking Bad", "Narcos"],
+                correct: "Breaking Bad",
+            },
+            {//16
+                question: "Qui double Groot dans les films Les Gardiens de la Galaxie ?",
+                options: ["Vin Diesel", "Bradley Cooper", "Chris Pratt", "Dave Bautista"],
+                correct: "Vin Diesel",
+            },
+            {//17
+                question: "Quel jeu met en scène le personnage Master Chief ?",
+                options: ["Call of Duty", "Gears of War", "Destiny", "Halo"],
+                correct: "Halo",
+            },
+            {//18
+                question: "Sur quel continent fictif se déroule principalement Game of Thrones ?",
+                options: ["Midgard", "Narnia", "Westeros", "Eldia"],
+                correct: "Westeros",
+            },
+            {//19
+                question: "Quel film contient la réplique 'Pourquoi si sérieux ?'",
+                options: ["The Dark Knight", "Inception", "Fight Club", "Joker"],
+                correct: "The Dark Knight",
+            },
+            {//20
+                question: "Quel a été le premier clip diffusé sur MTV ?",
+                options: ["Thriller — Michael Jackson", "Video Killed the Radio Star — The Buggles", "Take On Me — a-ha", "Girls Just Want to Have Fun — Cyndi Lauper"],
+                correct: "Video Killed the Radio Star — The Buggles",
             },
         ],
     },
