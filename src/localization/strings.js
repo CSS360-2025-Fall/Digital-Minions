@@ -47,6 +47,12 @@ export const strings = {
             pop_culture: "Pop Culture",
             random: "Random",
         },
+        quote: {
+            title: "💭 **Quote of the Moment**",
+        },
+        joke: {
+            title: "😂 **Joke of the Day**",
+        },
     },
     es: {
         // Spanish translations
@@ -93,6 +99,12 @@ export const strings = {
             pop_culture: "Cultura Pop",
             random: "Aleatorio",
         },
+        quote: {
+            title: "💭 **Frase del Momento**",
+        },
+        joke: {
+            title: "😂 **Chiste del Día**",
+        },
     },
     fr: {
         // French translations
@@ -138,6 +150,12 @@ export const strings = {
             art: "Art",
             pop_culture: "Culture Pop",
             random: "Aléatoire",
+        },
+        quote: {
+            title: "💭 **Citation du Moment**",
+        },
+        joke: {
+            title: "😂 **Blague du Jour**",
         },
     },
 };
